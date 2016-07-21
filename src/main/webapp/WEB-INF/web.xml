@@ -15,7 +15,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-<!--
+
     <servlet>
         <servlet-name>HelloWorldServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlet.HelloWorldServlet</servlet-class>
@@ -61,6 +61,6 @@
         <servlet-name>RedirectToJSPServlet</servlet-name>
         <url-pattern>/jsp</url-pattern>
     </servlet-mapping>
--->
+
 
 </web-app>
