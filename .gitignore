@@ -4,3 +4,8 @@
 #IDEA ignore personal project settings
 .idea/
 *.iml
+
+#ignoring tomcat target
+target/*
+
+src/main/resources/database.properties

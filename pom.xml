@@ -51,7 +51,7 @@
 
 
     <build>
-        <finalName>java2</finalName>
+        <finalName>/</finalName>
         
         <plugins>
             <plugin>

@@ -18,8 +18,10 @@ public class HelloWorldServlet extends HttpServlet {
 
 		// Prepare output html
 		PrintWriter out = resp.getWriter();
-		out.println("<h1>" + "Hello WWW world from Java!" + "</h1>");		
 		out.println("<h1>" + "Hello WWW world from Java!" + "</h1>");
+		out.println("<h1>" + "Hello WWW world from Java!" + "</h1>");
+		String padding= "padding: 10px;", border= "border:1px solid green;";
+		out.println("<div style=\" + border + padding + \">Java 2</div>");
 	}
 
 }
