@@ -42,3 +42,6 @@ target/*
 /src/main/resources/database.properties
 /target/tomcat/conf/database.properties
 *.gitkeep
+src/main/webapp/public/*
+node_modules/*
+

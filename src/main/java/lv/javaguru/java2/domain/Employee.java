@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.Date;
 
-public class Customer {
+public class Employee {
     private Long id;
     private String fName;
     private String lName;
@@ -16,23 +16,6 @@ public class Customer {
     private int phoneLand;
     private String workPlace;
     private String workPosition;
-
-    public Customer() {
-    }
-
-    public Customer(String fName, String lName, String personCode, Date birthDate,
-                    String address, int phoneMob, int phoneLand, String workPlace,
-                    String workPosition) {
-        this.fName = fName;
-        this.lName = lName;
-        this.personCode = personCode;
-        this.birthDate = birthDate;
-        this.address = address;
-        this.phoneMob = phoneMob;
-        this.phoneLand = phoneLand;
-        this.workPlace = workPlace;
-        this.workPosition = workPosition;
-    }
 
     public Long getId() {
         return id;
