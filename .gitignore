@@ -39,4 +39,6 @@ hs_err_pid*
 #ignoring tomcat target
 target/*
 
-src/main/resources/database.properties
+/src/main/resources/database.properties
+/target/tomcat/conf/database.properties
+*.gitkeep
