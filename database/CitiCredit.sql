@@ -39,18 +39,18 @@ CREATE TABLE agreement (
   sum DECIMAL(10,2) NOT NULL,
   interestRate DECIMAL(2,2) NOT NULL,
   term INT(3) DEFAULT 12,
-  termUnit VARCHAR(5) DEFAULT 'month' CHECK (TERM_UNIT IN('day', 'month')),
+  termUnit VARCHAR(5) DEFAULT 'month' CHECK (termUnit IN('day', 'month')),
   startDate DATE NOT NULL,
   endDate DATE NOT NULL,
-  agreementStatus CHAR(10) DEFAULT 'PROCESSING' CHECK (AGREEMENT_STATUS IN ('CANCELLED', 'APPROVED', 'PROCESSING')),
+  agreementStatus CHAR(10) DEFAULT 'PROCESSING' CHECK (agreementStatus IN ('CANCELLED', 'APPROVED', 'PROCESSING')),
   isExtended BIT DEFAULT 0,
   userId INT(11) ,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES 	user(id)
-); 
+);
 CREATE TABLE extension (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  extType VARCHAR(12) DEFAULT 'prolongation' CHECK (EXT_TYPE ('prolongation', 'penalty')),
+  extType VARCHAR(12) DEFAULT 'prolongation' CHECK (extType IN ('prolongation', 'penalty')),
   interestRate DECIMAL(2,2),
   comission DECIMAL(10,2) DEFAULT 1,
   agreementId INT(11) NOT NULL,
