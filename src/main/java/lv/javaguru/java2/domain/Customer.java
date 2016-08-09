@@ -3,6 +3,7 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Customer {
@@ -17,6 +18,7 @@ public class Customer {
     private String company;
     private String jobTitle;
     private String salary;
+    private ArrayList<Agreement> userAgreementList = new ArrayList<Agreement>();
 
     public Customer() {
     }
