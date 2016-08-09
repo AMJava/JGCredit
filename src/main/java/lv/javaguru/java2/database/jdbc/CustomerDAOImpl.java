@@ -23,16 +23,17 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into customer values (default, ?, ?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("insert into customer values (default, ?, ?,?,?,?,?,?,?,?,?,)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, customer.getfName());
             preparedStatement.setString(2, customer.getlName());
-            preparedStatement.setString(3, customer.getPersonCode());
+            preparedStatement.setString(3, customer.getPersonalCode());
             preparedStatement.setDate(4, (java.sql.Date)customer.getBirthDate());
             preparedStatement.setString(5, customer.getAddress());
-            preparedStatement.setInt(6, customer.getPhoneMob());
-            preparedStatement.setInt(7, customer.getPhoneLand());
-            preparedStatement.setString(8, customer.getWorkPlace());
-            preparedStatement.setString(9, customer.getWorkPosition());
+            preparedStatement.setInt(6, customer.getMobilePhoneNumber());
+            preparedStatement.setInt(7, customer.getPhoneNumber());
+            preparedStatement.setString(8, customer.getCompany());
+            preparedStatement.setString(9, customer.getJobTitle());
+            preparedStatement.setString(10, customer.getSalary());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -62,15 +63,16 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
             if (resultSet.next()) {
                 customer = new Customer();
                 customer.setId(resultSet.getLong("ID"));
-                customer.setfName(resultSet.getString("FNAME"));
-                customer.setlName(resultSet.getString("LName"));
-                customer.setPersonCode(resultSet.getString("PERSON_CODE"));
-                customer.setBirthDate(resultSet.getDate("BIRTH_DEATE"));
+                customer.setfName(resultSet.getString("FIRST_NAME"));
+                customer.setlName(resultSet.getString("LAST_NAME"));
+                customer.setPersonalCode(resultSet.getString("PERSONAL_CODE"));
+                customer.setBirthDate(resultSet.getDate("BIRTH_DATE"));
                 customer.setAddress(resultSet.getString("Address"));
-                customer.setPhoneMob(resultSet.getInt("PHONE_MOB"));
-                customer.setPhoneLand(resultSet.getInt("PHONE_LAND"));
-                customer.setWorkPlace(resultSet.getString("WORK_PLACE"));
-                customer.setWorkPlace(resultSet.getString("WORK_POSITION"));
+                customer.setPhoneNumber(resultSet.getInt("M_PHONE_NUMBER"));
+                customer.setMobilePhoneNumber(resultSet.getInt("PHONE_NUMBER"));
+                customer.setCompany(resultSet.getString("COMPANY"));
+                customer.setJobTitle(resultSet.getString("JOB_TITLE"));
+                customer.setSalary(resultSet.getString("SALARY"));
             }
             return customer;
         } catch (Throwable e) {
@@ -136,7 +138,7 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update USERS set FName = ?, LName = ? " +
+                    .prepareStatement("update USERS set first_name = ?, last_name = ? " +
                             "where ID = ?");
             preparedStatement.setString(1, customer.getfName());
             preparedStatement.setString(2, customer.getlName());
@@ -184,7 +186,7 @@ public class CustomerDAOImpl extends DAOImpl implements CustomerDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update customer set LName = ? " +
+                    .prepareStatement("update customer set last_name = ? " +
                             "where ID = ?");
             preparedStatement.setString(1, customer.getlName());
             preparedStatement.setLong(2, customer.getId());

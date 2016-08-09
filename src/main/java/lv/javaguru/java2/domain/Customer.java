@@ -9,29 +9,31 @@ public class Customer {
     private Long id;
     private String fName;
     private String lName;
-    private String personCode;
+    private String personalCode;
     private Date birthDate;
     private String address;
-    private int phoneMob;
-    private int phoneLand;
-    private String workPlace;
-    private String workPosition;
+    private int mobilePhoneNumber;
+    private int phoneNumber;
+    private String company;
+    private String jobTitle;
+    private String salary;
 
     public Customer() {
     }
 
-    public Customer(String fName, String lName, String personCode, Date birthDate,
-                    String address, int phoneMob, int phoneLand, String workPlace,
-                    String workPosition) {
+    public Customer(String fName, String lName, String personalCode, Date birthDate,
+                    String address, int mobilePhoneNumber, int phoneNumber, String company,
+                    String jobTitle, String salary) {
         this.fName = fName;
         this.lName = lName;
-        this.personCode = personCode;
+        this.personalCode = personalCode;
         this.birthDate = birthDate;
         this.address = address;
-        this.phoneMob = phoneMob;
-        this.phoneLand = phoneLand;
-        this.workPlace = workPlace;
-        this.workPosition = workPosition;
+        this.mobilePhoneNumber = mobilePhoneNumber;
+        this.phoneNumber = phoneNumber;
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.salary = salary;
     }
 
     public Long getId() {
@@ -58,12 +60,12 @@ public class Customer {
         this.lName = lName;
     }
 
-    public String getPersonCode() {
-        return personCode;
+    public String getPersonalCode() {
+        return personalCode;
     }
 
-    public void setPersonCode(String personCode) {
-        this.personCode = personCode;
+    public void setPersonalCode(String personalCode) {
+        this.personalCode = personalCode;
     }
 
     public Date getBirthDate() {
@@ -82,38 +84,45 @@ public class Customer {
         this.address = address;
     }
 
-    public int getPhoneMob() {
-        return phoneMob;
+    public int getMobilePhoneNumber() {
+        return mobilePhoneNumber;
     }
 
-    public void setPhoneMob(int phoneMob) {
-        this.phoneMob = phoneMob;
+    public void setMobilePhoneNumber(int mobilePhoneNumber) {
+        this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public int getPhoneLand() {
-        return phoneLand;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneLand(int phoneLand) {
-        this.phoneLand = phoneLand;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getWorkPlace() {
-        return workPlace;
+    public String getCompany() {
+        return company;
     }
 
-    public void setWorkPlace(String workPlace) {
-        this.workPlace = workPlace;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public String getWorkPosition() {
-        return workPosition;
+    public String getJobTitle() {
+        return jobTitle;
     }
 
-    public void setWorkPosition(String workPosition) {
-        this.workPosition = workPosition;
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
 
     @Override
     public boolean equals(Object o) {

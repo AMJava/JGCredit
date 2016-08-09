@@ -9,13 +9,13 @@ public class Employee {
     private Long id;
     private String fName;
     private String lName;
-    private String personCode;
+    private String personalCode;
     private Date birthDate;
     private String address;
-    private int phoneMob;
-    private int phoneLand;
-    private String workPlace;
-    private String workPosition;
+    private int mobilePhoneNumber;
+    private int phoneNumber;
+    private String company;
+    private String jobTitle;
 
     public Long getId() {
         return id;
@@ -41,12 +41,12 @@ public class Employee {
         this.lName = lName;
     }
 
-    public String getPersonCode() {
-        return personCode;
+    public String getPersonalCode() {
+        return personalCode;
     }
 
-    public void setPersonCode(String personCode) {
-        this.personCode = personCode;
+    public void setPersonalCode(String personalCode) {
+        this.personalCode = personalCode;
     }
 
     public Date getBirthDate() {
@@ -65,36 +65,36 @@ public class Employee {
         this.address = address;
     }
 
-    public int getPhoneMob() {
-        return phoneMob;
+    public int getMobilePhoneNumber() {
+        return mobilePhoneNumber;
     }
 
-    public void setPhoneMob(int phoneMob) {
-        this.phoneMob = phoneMob;
+    public void setMobilePhoneNumber(int mobilePhoneNumber) {
+        this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public int getPhoneLand() {
-        return phoneLand;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneLand(int phoneLand) {
-        this.phoneLand = phoneLand;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getWorkPlace() {
-        return workPlace;
+    public String getCompany() {
+        return company;
     }
 
-    public void setWorkPlace(String workPlace) {
-        this.workPlace = workPlace;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public String getWorkPosition() {
-        return workPosition;
+    public String getjobTitle() {
+        return jobTitle;
     }
 
-    public void setWorkPosition(String workPosition) {
-        this.workPosition = workPosition;
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
 

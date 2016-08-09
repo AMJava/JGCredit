@@ -8,13 +8,13 @@ public class CustomerBuilder {
 
 //    private String fName;
 //    private String lName;
-//    private String personCode;
+//    private String personalCode;
 //    private Date birthDate;
 //    private String address;
-//    private int phoneMob;
-//    private int phoneLand;
-//    private String workPlace;
-//    private String workPosition;
+//    private int mobilePhoneNumber;
+//    private int phoneNumber;
+//    private String company;
+//    private String jobTitle;
 
 
     private CustomerBuilder() { }
@@ -23,19 +23,19 @@ public class CustomerBuilder {
         return new CustomerBuilder();
     }
 
-    public Customer buildPerson(String fName,String lName,String personCode,Date birthDate,
-                          String address,int phoneMob,int phoneLand,String workPlace,
-                          String workPosition) {
+    public Customer buildPerson(String fName,String lName,String personalCode,Date birthDate,
+                          String address,int mobilePhoneNumber,int phoneNumber,String company,
+                          String jobTitle) {
         Customer customer = new Customer();
         customer.setfName(fName);
         customer.setlName(lName);
-        customer.setPersonCode(personCode);
+        customer.setPersonalCode(personalCode);
         customer.setBirthDate(birthDate);
         customer.setAddress(address);
-        customer.setPhoneMob(phoneMob);
-        customer.setPhoneLand(phoneLand);
-        customer.setWorkPlace(workPlace);
-        customer.setWorkPosition(workPosition);
+        customer.setMobilePhoneNumber(mobilePhoneNumber);
+        customer.setPhoneNumber(phoneNumber);
+        customer.setCompany(company);
+        customer.setJobTitle(jobTitle);
         return customer;
     }
 }
