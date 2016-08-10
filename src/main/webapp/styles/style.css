@@ -1,1 +1,52 @@
 
+#site_logo {
+  text-align: Right;
+  width: 300px;
+  height: 84px;
+  font-size: 40px;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto
+}
+#menu {
+  position: relative;
+  height: 47px;
+  margin: 20px 40px 0 0;
+}
+
+#menu #menu_left{
+  position: absolute;
+  width: 20px;
+  height: 47px;
+  top: 0px;
+  left: 0px;
+}
+
+#menu ul {
+  margin: 10px 20px 0 0;
+  padding: 0px;
+  list-style: none;
+}
+
+#menu ul li{
+  padding: 0px;
+  margin: 0px;
+  display: inline;
+}
+
+#menu ul li a{
+  float: left;
+  display: block;
+  width: 350px;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 34px;
+  text-decoration: none;
+  color: #919191;
+  font-weight: normal;
+  outline: none;
+}
+
+#menu li a:hover, #menu li .current{
+  color: #899fd7;
+}

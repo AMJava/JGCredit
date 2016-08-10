@@ -15,8 +15,10 @@
     <%--<style type="text/css" href="public/css/bootstrap/.css"></style>--%>
 </head>
 <body>
-<div ui-view="header"></div>
-<div ui-view="content"></div>
-<div ui-view="footer"></div>
+<%@ include file="templates/shared/header.jsp" %>
+<%@ include file="templates/shared/menu.jsp" %>
+<%--<div ui-view="header"></div>--%>
+<%--<div ui-view="content"></div>--%>
+<%--<div ui-view="footer"></div>--%>
 </body>
 </html>
