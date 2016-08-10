@@ -9,10 +9,9 @@
 <html ng-app="jagCredit">
 <head>
     <title>JagCredit Group Services</title>
-    <script type="application/javascript" src="./public/js/libs.js"></script>
-    <script type="application/javascript" src="./public/js/application.js"></script>
-    <style type="text/css" href="./public/css/style.css"></style>
-    <%--<style type="text/css" href="public/css/bootstrap/.css"></style>--%>
+  <%-- <script type="application/javascript" src="./public/js/libs.js"></script>--%>
+   <%--<script type="application/javascript" src="./public/js/application.js"></script>--%>
+ <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <%@ include file="templates/shared/header.jsp" %>
@@ -20,5 +19,6 @@
 <%--<div ui-view="header"></div>--%>
 <%--<div ui-view="content"></div>--%>
 <%--<div ui-view="footer"></div>--%>
+<script type=”text/javascript” src="libs/bootstrap.min.js"></script>
 </body>
 </html>
