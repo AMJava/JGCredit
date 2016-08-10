@@ -7,8 +7,11 @@ import java.util.Date;
 
 public class Employee {
     private Long id;
+    private String login;
+    private String password;
     private String fName;
     private String lName;
+    private String gender;
     private String personalCode;
     private Date birthDate;
     private String address;
@@ -16,6 +19,7 @@ public class Employee {
     private int phoneNumber;
     private String company;
     private String jobTitle;
+    private String photo;
 
     public Long getId() {
         return id;
@@ -23,6 +27,22 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getfName() {
@@ -39,6 +59,14 @@ public class Employee {
 
     public void setlName(String lName) {
         this.lName = lName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getPersonalCode() {
@@ -97,6 +125,13 @@ public class Employee {
         this.jobTitle = jobTitle;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     @Override
     public boolean equals(Object o) {

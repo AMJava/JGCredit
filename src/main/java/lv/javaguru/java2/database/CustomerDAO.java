@@ -10,6 +10,8 @@ public interface CustomerDAO {
 
     Customer getById(Long id) throws DBException;
 
+    Customer getByLogin(String login) throws DBException;
+
     void delete(Long id) throws DBException;
 
     void update(Customer customer) throws DBException;

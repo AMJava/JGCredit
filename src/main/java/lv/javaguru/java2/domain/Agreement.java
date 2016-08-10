@@ -14,8 +14,8 @@ public class Agreement {
     private float interestRate;
     private int term;
     private String termUnit;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private String agreementStatus;
     private String extendetFlag;
     private Long userId;
@@ -61,19 +61,19 @@ public class Agreement {
         this.termUnit = termUnit;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
