@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import com.google.gson.Gson;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.CustomerDAOImpl;
-import lv.javaguru.java2.domain.Customer;
+import lv.javaguru.java2.database.jdbc.UserDAOImpl;
+import lv.javaguru.java2.domain.User;
 
 public class AgreementExtensionServlet extends HttpServlet {
 
@@ -33,12 +33,12 @@ public class AgreementExtensionServlet extends HttpServlet {
 
         String json = req.getParameter("data");
         Gson gson = new Gson();
-        Customer customer = gson.fromJson(json,Customer.class);
-        CustomerDAOImpl impl = new CustomerDAOImpl();
+        User user = gson.fromJson(json,User.class);
+        UserDAOImpl impl = new UserDAOImpl();
         try {
-            impl.create(customer);
+            impl.create(user);
         } catch (DBException e) {
-            System.out.println("Exception creating Customer");
+            System.out.println("Exception creating User");
             e.printStackTrace();
         }
     }

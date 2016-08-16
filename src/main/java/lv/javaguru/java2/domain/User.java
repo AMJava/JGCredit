@@ -6,10 +6,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Customer {
+public class User {
     private Long id;
     private String login;
     private String password;
+    private int accessLevel;
     private String fName;
     private String lName;
     private String gender;
@@ -22,14 +23,15 @@ public class Customer {
     private String jobTitle;
     private String salary;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
-                    String address, int mobilePhoneNumber, int phoneNumber, String company,
-                    String jobTitle, String salary) {
+    public User(String login, String password, int accessLevel, String fName, String lName, String gender, String personalCode, Date birthDate,
+                String address, int mobilePhoneNumber, int phoneNumber, String company,
+                String jobTitle, String salary) {
         this.login = login;
         this.password = password;
+        this.accessLevel = accessLevel;
         this.fName = fName;
         this.lName = lName;
         this.gender = gender;
@@ -65,6 +67,14 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getAccessLevel() {
+        return accessLevel;
+    }
+
+    public void setAccessLevel(int accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
     public String getfName() {

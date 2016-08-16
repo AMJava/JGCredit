@@ -5,26 +5,18 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `JagCredit` DEFAULT CHARACTER SET utf8 ;
 USE JagCredit;
-DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS agreements;
 DROP TABLE IF EXISTS agreements_ext;
 DROP TABLE IF EXISTS communications;
 DROP TABLE IF EXISTS payments;
 
-CREATE SCHEMA IF NOT EXISTS `JagCredit` DEFAULT CHARACTER SET utf8 ;
-USE JagCredit;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS agreements;
-DROP TABLE IF EXISTS agreements_ext;
-DROP TABLE IF EXISTS communications;
-DROP TABLE IF EXISTS payments;
-
-CREATE TABLE customers (
+CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
   login CHAR(16) NOT NULL,
   login_pw CHAR(80) NOT NULL,
+  access_level INT(3) NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
   gender CHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
@@ -39,23 +31,6 @@ CREATE TABLE customers (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE employees (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  login CHAR(16) NOT NULL,
-  login_pw CHAR(80) NOT NULL,
-  first_name VARCHAR(25) NOT NULL,
-  last_name VARCHAR(25) NOT NULL,
-  gender CHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
-  personal_code VARCHAR(12) NOT NULL,
-  birth_date DATE NOT NULL,
-  address VARCHAR(100) NOT NULL,
-  m_phone_number VARCHAR(15) NOT NULL,
-  phone_number VARCHAR(15) NOT NULL,
-  company_name VARCHAR(50) DEFAULT 'JagCredit Latvia',
-  job_title VARCHAR(25)  NOT NULL,
-  photo CHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (id)
-);
 CREATE TABLE agreements (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
   loan_sum DECIMAL(10,2) NOT NULL,
@@ -69,7 +44,7 @@ CREATE TABLE agreements (
   user_id int(11),
   comments VARCHAR(250),
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES customers(id)
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 CREATE TABLE agreements_ext (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
