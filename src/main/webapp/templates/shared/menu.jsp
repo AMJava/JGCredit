@@ -14,11 +14,11 @@
     <div id="menu">
       <div id="menu_left"></div>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Loans</a></li>
-        <li><a href="#">Contacts</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#" class="last">Register</a></li>
+        <li><a href="/java2/home">Home</a></li>
+        <li><a href="/java2/agreement">Take a Loan</a></li>
+        <li><a href="/java2/contacts">Contacts</a></li>
+        <li><a href="/java2/about">About</a></li>
+        <li><a href="/java2/register" class="last">Register</a></li>
       </ul>
     </div>
   </div>

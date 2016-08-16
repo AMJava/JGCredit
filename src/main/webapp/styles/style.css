@@ -1,12 +1,8 @@
 
 #site_logo {
-  text-align: Right;
-  width: 300px;
-  height: 84px;
   font-size: 40px;
   color: blue;
-  margin-left: auto;
-  margin-right: auto
+  text-align:center
 }
 #menu {
   position: relative;
@@ -49,4 +45,21 @@
 
 #menu li a:hover, #menu li .current{
   color: #899fd7;
+}
+
+.header_02 {
+  clear: both;
+  font-size: 30px;
+  color: red;
+  text-align:center
+
+}
+
+table {
+  width: 300px; /* Ширина таблицы */
+  border: 1px solid green; /* Рамка вокруг таблицы */
+  margin: auto; /* Выравниваем таблицу по центру окна  */
+}
+td {
+  text-align: center; /* Выравниваем текст по центру ячейки */
 }

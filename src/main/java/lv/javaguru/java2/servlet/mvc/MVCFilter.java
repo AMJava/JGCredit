@@ -14,7 +14,11 @@ public class MVCFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
         controllers = new HashMap<String, MVCController>();
-        controllers.put("/hello", new HelloWorldController());
+        controllers.put("/agreement", new AgreementController());
+        controllers.put("/home", new HomeController());
+        controllers.put("/about", new AboutController());
+        controllers.put("/register", new RegisterController());
+        controllers.put("/contacts", new ContactsController());
     }
 
     public void doFilter(ServletRequest request,
