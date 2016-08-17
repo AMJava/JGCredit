@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>Take a loan</title>
-  <link href="styles/style.css" rel="stylesheet" type="text/css" />
-  <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../../styles/style.css" rel="stylesheet" type="text/css" />
+  <link href="../../libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<%@ include file="templates/shared/header.jsp" %>
+<%@ include file="../shared/header.jsp" %>
 <div id="agreement_wrapper">
         <div class="header_02"><%= request.getAttribute("model") %></div>
   <form method="POST" action="takealoan">
@@ -55,6 +55,6 @@
     </table>
   </form>
   </div>
-<script type=”text/javascript” src="libs/bootstrap.min.js"></script>
+<script type=”text/javascript” src="../../libs/bootstrap.min.js"></script>
 </body>
 </html>

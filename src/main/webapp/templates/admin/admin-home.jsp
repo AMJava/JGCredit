@@ -14,11 +14,10 @@
  <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<%@ include file="templates/shared/header.jsp" %>
+<%@ include file="../shared/header.jsp" %>
 <%--<div ui-view="header"></div>--%>
 <%--<div ui-view="content"></div>--%>
 <%--<div ui-view="footer"></div>--%>
-<%@ include file="templates/shared/footer.jsp" %>
 <script type=”text/javascript” src="libs/bootstrap.min.js"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by Arturs on 09.08.2016.
  */
-public class Agreement {
+public class Loan {
     private Long id;
     private float loanSum;
     private float interestRate;
@@ -16,10 +16,32 @@ public class Agreement {
     private String termUnit;
     private Date startDate;
     private Date endDate;
-    private String agreementStatus;
+    private String loanStatus;
     private String extendetFlag;
     private Long userId;
+    private Long employeeId;
+    private String bankAccountNumb;
     private String comments;
+
+    public Loan() {
+    }
+
+    public Loan(float loanSum, float interestRate, int term, String termUnit, Date startDate, Date endDate,
+                String loanStatus, String extendetFlag, Long userId, Long employeeId,
+                String bankAccountNumb, String comments) {
+        this.loanSum = loanSum;
+        this.interestRate = interestRate;
+        this.term = term;
+        this.termUnit = termUnit;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.loanStatus = loanStatus;
+        this.extendetFlag = extendetFlag;
+        this.userId = userId;
+        this.employeeId = employeeId;
+        this.bankAccountNumb = bankAccountNumb;
+        this.comments = comments;
+    }
 
     public Long getId() {
         return id;
@@ -77,12 +99,12 @@ public class Agreement {
         this.endDate = endDate;
     }
 
-    public String getAgreementStatus() {
-        return agreementStatus;
+    public String getLoanStatus() {
+        return loanStatus;
     }
 
-    public void setAgreementStatus(String agreementStatus) {
-        this.agreementStatus = agreementStatus;
+    public void setLoanStatus(String loanStatus) {
+        this.loanStatus = loanStatus;
     }
 
     public String getExtendetFlag() {
@@ -99,6 +121,22 @@ public class Agreement {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getBankAccountNumb() {
+        return bankAccountNumb;
+    }
+
+    public void setBankAccountNumb(String bankAccountNumb) {
+        this.bankAccountNumb = bankAccountNumb;
     }
 
     public String getComments() {

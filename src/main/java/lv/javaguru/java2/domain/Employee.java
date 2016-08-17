@@ -3,10 +3,9 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-public class User {
+public class Employee {
     private Long id;
     private String login;
     private String password;
@@ -21,14 +20,13 @@ public class User {
     private int phoneNumber;
     private String company;
     private String jobTitle;
-    private String salary;
 
-    public User() {
+    public Employee() {
     }
 
-    public User(String login, String password, String photo, String fName, String lName, String gender, String personalCode, Date birthDate,
-                String address, int mobilePhoneNumber, int phoneNumber, String company,
-                String jobTitle, String salary) {
+    public Employee(String login, String password, String photo, String fName, String lName, String gender, String personalCode, Date birthDate,
+                    String address, int mobilePhoneNumber, int phoneNumber, String company,
+                    String jobTitle) {
         this.login = login;
         this.password = password;
         this.photo = photo;
@@ -42,7 +40,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.company = company;
         this.jobTitle = jobTitle;
-        this.salary = salary;
     }
 
     public Long getId() {
@@ -155,14 +152,6 @@ public class User {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
-    }
-
-    public String getSalary() {
-        return salary;
-    }
-
-    public void setSalary(String salary) {
-        this.salary = salary;
     }
 
     @Override

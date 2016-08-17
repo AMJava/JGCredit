@@ -14,7 +14,7 @@ public class MVCFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
         controllers = new HashMap<String, MVCController>();
-        controllers.put("/agreement", new AgreementController());
+        controllers.put("/loan", new LoanController());
         controllers.put("/home", new HomeController());
         controllers.put("/about", new AboutController());
         controllers.put("/register", new RegisterController());

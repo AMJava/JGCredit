@@ -7,6 +7,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class HomeController implements MVCController {
     public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("", "/index.jsp");
+        return new MVCModel("", "/templates/user/user-home.jsp");
     }
 }
