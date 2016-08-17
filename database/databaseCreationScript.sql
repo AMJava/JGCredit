@@ -3,79 +3,97 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `JagCredit` DEFAULT CHARACTER SET utf8 ;
-USE JagCredit;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS agreements;
-DROP TABLE IF EXISTS agreements_ext;
-DROP TABLE IF EXISTS communications;
-DROP TABLE IF EXISTS payments;
+CREATE SCHEMA IF NOT EXISTS `JGInsuranceCRM` DEFAULT CHARACTER SET utf8 ;
+USE JGInsuranceCRM;
+DROP TABLE IF EXISTS JG_CONTACTS;
+DROP TABLE IF EXISTS JG_EMPLOYEES;
+DROP TABLE IF EXISTS JG_CLAIMS;
+DROP TABLE IF EXISTS JG_EVENTS;
+DROP TABLE IF EXISTS JG_COMMUNICATIONS;
+DROP TABLE IF EXISTS JG_PAYMENTS;
 
-CREATE TABLE users (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  login CHAR(16) NOT NULL,
-  login_pw CHAR(80) NOT NULL,
-  access_level INT(3) NOT NULL,
-  first_name VARCHAR(25) NOT NULL,
-  last_name VARCHAR(25) NOT NULL,
-  gender CHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
-  personal_code VARCHAR(12) NOT NULL,
-  birth_date DATE NOT NULL,
-  address VARCHAR(100) NOT NULL,
-  m_phone_number VARCHAR(15) NOT NULL,
-  phone_number VARCHAR(15) NOT NULL,
-  company_name VARCHAR(50) NOT NULL,
-  job_title VARCHAR(25)  NOT NULL,
-  salary VARCHAR(10) DEFAULT '0-500€' CHECK (salary IN ('<500€', '500-1000€', '1000-2000€', '>2000€')),
-  PRIMARY KEY (id)
-);
 
-CREATE TABLE agreements (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  loan_sum DECIMAL(10,2) NOT NULL,
-  interest_rate DECIMAL(6,2) NOT NULL,
-  term INT(3) DEFAULT 12,
-  term_unit VARCHAR(5) DEFAULT 'month' CHECK (term_unit IN('day', 'month')),
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
-  agreement_status CHAR(10) DEFAULT 'PROCESSING' CHECK (agreement_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
-  extendet_flag VARCHAR(1) DEFAULT 'N',
-  user_id int(11),
-  comments VARCHAR(250),
-  PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-CREATE TABLE agreements_ext (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  ext_type VARCHAR(12) DEFAULT 'Prolongation' CHECK (ext_type IN ('Prolongation', 'Penalty')),
-  ext_date DATE NOT NULL,
-  end_date DATE NOT NULL,
-  interest_rate DECIMAL(6,2),
-  comission DECIMAL(10,2) DEFAULT 1,
-  agreement_id INT(11) NOT NULL,
-  comments VARCHAR(250),
-  PRIMARY KEY (id),
-  FOREIGN KEY (agreement_id) REFERENCES agreements(id)
-    ON DELETE CASCADE
-);
-CREATE TABLE payments (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  payment_sum DECIMAL(10,2) NOT NULL,
-  payment_date DATETIME NOT NULL,
-  agreement_id INT(11) NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (agreement_id) REFERENCES agreements(id)
+CREATE TABLE JG_EMPLOYEES (
+  ID int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  LOGIN CHAR(16) NOT NULL,
+  PASSWORD CHAR(80) NOT NULL,
+  ACCESS_LEVEL INT(3) NOT NULL,
+  FIRST_NAME VARCHAR(25) NOT NULL,
+  LAST_NAME VARCHAR(25) NOT NULL,
+  GENDER CHAR(6) DEFAULT 'Male' CHECK (GEDER IN ('Male', 'Female')),
+  PERSONAL_CODE VARCHAR(12) NOT NULL,
+  BIRTH_DATE DATE NOT NULL,
+  ADDRESS VARCHAR(100) NOT NULL,
+  MOBILE_PHONE VARCHAR(15) NOT NULL,
+  PHONE_NUMBER VARCHAR(15) NOT NULL,
+  COMPANY_NAME VARCHAR(50) DEFAULT 'JGInsuranceCompany',
+  JOB_TITLE VARCHAR(25)  NOT NULL,
+  PRIMARY KEY (ID)
 );
 
-CREATE TABLE communications (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  body VARCHAR(250) NOT NULL,
-  sent_date DATETIME NOT NULL,
-  com_type VARCHAR(20) DEFAULT 'E-mail' CHECK (ext_type IN ('E-mail', 'SMS', 'Call')),
-  customer_id INT(11) NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (customer_id) REFERENCES customers(id)
+CREATE TABLE JG_CONTACTS (
+  ID int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  FIRST_AME VARCHAR(25) NOT NULL,
+  LAST_NAME VARCHAR(25) NOT NULL,
+  GEDER CHAR(6) DEFAULT 'Male' CHECK (GEDER IN ('Male', 'Female')),
+  PERSONAL_CODE VARCHAR(12) NOT NULL,
+  BIRTH_DATE DATE NOT NULL,
+  ADDRESS VARCHAR(100) NOT NULL,
+  MOBILE_PHONE VARCHAR(15) NOT NULL,
+  PHONE_NUMBER VARCHAR(15) NOT NULL,
+  COMPANY_NAME VARCHAR(50) NOT NULL,
+  JOB_TITLE VARCHAR(25)  NOT NULL,
+  SALARY VARCHAR(10) DEFAULT '0-500€' CHECK (SALARY IN ('<500€', '500-1000€', '1000-2000€', '>2000€')),
+  RESPONSIBLE_ID VARCHAR(25)  NOT NULL,
+  PRIMARY KEY (ID),
+  FOREIGN KEY (RESPONSIBLE_ID) REFERENCES JG_EMPLOYEES(ID)
+);
+
+CREATE TABLE JG_CLAIMS (
+  ID int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  TYPE VARCHAR(20) DEFAULT 'OSAGO' CHECK (TYPE IN ('OSAGO', 'KASKO')),
+  STATUS CHAR(10) DEFAULT 'Processing' CHECK (STATUS IN ('Cancelled', 'Approved', 'Processing', 'Closed', 'Paid')),
+  DECISION CHAR(10) DEFAULT '' CHECK (DECISION IN ('', 'Pay Compensation', 'Cancel', 'Get additional info', 'Reject')),
+  ACCIDENT_DATE DATE NOT NULL,
+  CARD_NUMBER VARCHAR(20) DEFAULT '0000000000',
+  ACCIDENT_TYPE CHAR(10) DEFAULT 'Road Accident' CHECK (ACCIDENT_TYPE IN ('Road Accident', 'Small car damages', 'Intentional damage by others')),
+  ACCIDENT_COVERAGES CHAR(200) DEFAULT 'Car coverage' CHECK (ACCIDENT_TYPE IN ('Car coverage', 'Health Coverage', 'Car and Health coverages')),
+  CAR_DMG CHAR(200),
+  HUMAN_DMG CHAR(200),
+  CONTACT_ID int(11),
+  COMMENTS VARCHAR(250),
+  PRIMARY KEY (ID),
+  FOREIGN KEY (CONTACT_ID) REFERENCES JG_CONTACTS(ID)
+);
+CREATE TABLE JG_EVENTS (
+  ID int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  NAME VARCHAR(12),
+  START_DATE DATE NOT NULL,
+  END_DATE DATE NOT NULL,
+  COMMENTS VARCHAR(250),
+  EMPLOYEE_ID int(11),
+  CLAIM_ID int(11),
+  PRIMARY KEY (ID),
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES JG_EMPLOYEES(ID)
+);
+
+CREATE TABLE JG_COMMUICATIONS (
+  ID int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  BODY VARCHAR(250) NOT NULL,
+  SENT_DATE DATETIME NOT NULL,
+  TYPE VARCHAR(20) DEFAULT 'E-mail' CHECK (TYPE IN ('E-mail', 'SMS', 'Call')),
+  CLAIM_ID INT(11) NOT NULL,
+  PRIMARY KEY (ID),
+  FOREIGN KEY (CLAIM_ID) REFERENCES JG_CLAIMS(ID)
+);
+
+CREATE TABLE JG_PAYMENTS (
+  ID int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  SUM DECIMAL(10,2) NOT NULL,
+  PAY_DATE DATETIME NOT NULL,
+  CLAIM_ID INT(11) NOT NULL,
+  PRIMARY KEY (ID),
+FOREIGN KEY (CLAIM_ID) REFERENCES JG_CLAIMS(ID)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 1002;
@@ -85,8 +103,10 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 /*Examples:*/
-insert into customers values (default,'AAA','password222','Antons', 'Antonovs','Male','3123-13',sysdate(),'jjhffj','+123123','+375434324','JagCredit Latvia','Operator','0-500€');
-insert into employees values (default,'AAA','password222','Antons', 'Antonovs','Male','3123-13',sysdate(),'jjhffj','+123123','+375434324','JagCredit Latvia','Operator',NULL);
-insert into agreements values (default,'250.00', '0.12',100,'days',sysdate(),sysdate(),'PROCESSING','Y',1,'TEST');
-insert into agreements_ext values (default,'Prolongation', sysdate(),sysdate(),'0.22','0.12',1,'TEST');
+insert into JG_EMPLOYEES values (default,'TEST','TEST','1', 'Arturs','Antonovs','Male','3123-13',sysdate(),'jjhffj','+123123','+375434324','JGInsuranceCompany','Operator');
+insert into JG_CONTACTS values (default, 'Antons', 'Antonovs','Male','3123-13',sysdate(),'jjhffj','+123123','+375434324','Samsung Latvia','CEO','>2000€',1);
+insert into JG_CLAIMS values (default,'KASKO', null,null, sysdate(),null,'Road Accident','Car coverage','Bamper','Left Hand',1,'TEST');
+insert into JG_EVENTS values (default,'Review Claim', sysdate(),sysdate(),'Need to Review Claim',1,1);
+insert into JG_COMMUICATIONS values (default,'Your claim was paid', sysdate(),'E-mail',1);
+insert into JG_PAYMENTS values (default,'100.2', sysdate(),1);
 
