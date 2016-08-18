@@ -1,5 +1,8 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.servlet.mvc.Controllers.*;
+import lv.javaguru.java2.servlet.mvc.Controllers.Admin.*;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +18,18 @@ public class MVCFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         controllers = new HashMap<String, MVCController>();
         controllers.put("/loan", new LoanController());
+        controllers.put("/loan/extend", new LoanExtController());
         controllers.put("/home", new HomeController());
         controllers.put("/about", new AboutController());
         controllers.put("/register", new RegisterController());
         controllers.put("/contacts", new ContactsController());
+        controllers.put("/login", new LoginController());
+        controllers.put("/admin/login", new AdminLoginController());
+        controllers.put("/admin/home", new AdminHomeController());
+        controllers.put("/admin/loans", new AdminLoansController());
+        controllers.put("/admin/loansExt", new AdminLoansExtController());
+        controllers.put("/admin/users", new AdminContactsController());
+        controllers.put("/admin/employees", new AdminEmployeesController());
     }
 
     public void doFilter(ServletRequest request,

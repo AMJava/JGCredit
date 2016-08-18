@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../admin-shared/admin-header.jsp" %>
 <div class="header_02"><%= request.getAttribute("model") %></div>
 </body>
 </html>

@@ -15,10 +15,10 @@
       <div id="menu_left"></div>
       <ul>
         <li><a href="/java2/admin/home">Home</a></li>
-        <li><a href="/java2/admin/loan">Take a Loan</a></li>
-        <li><a href="/java2/admin/contacts">Contacts</a></li>
-        <li><a href="/java2/admin/about">About</a></li>
-        <li><a href="/java2/admin/register" class="last">Register</a></li>
+        <li><a href="/java2/admin/loans">Loans</a></li>
+        <li><a href="/java2/admin/loansExt">Loans To Extend</a></li>
+        <li><a href="/java2/admin/users">Contacts</a></li>
+        <li><a href="/java2/admin/employees" class="last">Employees</a></li>
       </ul>
     </div>
   </div>

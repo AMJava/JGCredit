@@ -9,7 +9,7 @@
 <div id="header_wrapper">
   <div id="header">
 
-    <div id="site_logo"><br>JagCredit</div>
+    <div id="site_logo"><br>JGCredit</div>
 
     <div id="menu">
       <div id="menu_left"></div>

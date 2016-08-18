@@ -9,7 +9,7 @@
 <%--<html>--%>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>JagCreadit</title>
+  <title>JGCredit</title>
   <link href="styles/style.css" rel="stylesheet" type="text/css" />
   <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>

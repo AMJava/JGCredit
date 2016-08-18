@@ -14,7 +14,7 @@
  <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../admin-shared/admin-header.jsp" %>
 <%--<div ui-view="header"></div>--%>
 <%--<div ui-view="content"></div>--%>
 <%--<div ui-view="footer"></div>--%>
