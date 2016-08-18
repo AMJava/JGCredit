@@ -77,7 +77,7 @@ public class LoanExt {
         this.endDate = endDate;
     }
 
-    public Float geInterestRate() {
+    public Float getInterestRate() {
         return interestRate;
     }
 

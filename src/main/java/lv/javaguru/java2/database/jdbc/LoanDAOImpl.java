@@ -52,7 +52,7 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
     }
 
     @Override
-    public Loan getByUserId(Long id) throws DBException {
+    public Loan getLoanById(Long id) throws DBException {
         Connection connection = null;
 
         try {
@@ -79,7 +79,7 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
             }
             return loan;
         } catch (Throwable e) {
-            System.out.println("Exception while execute LoanDAOImpl.getByAgreementId()");
+            System.out.println("Exception while execute LoanDAOImpl.getByLoanId()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -97,7 +97,7 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute LoanDAOImpl.deleteAgreement()");
+            System.out.println("Exception while execute LoanDAOImpl.deleteLoan()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -115,12 +115,12 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-            .prepareStatement("update agreements set status = ? " +
+            .prepareStatement("update loans set status = ? " +
             "where ID = ?");
             preparedStatement.setString(1, status);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute LoanDAOImpl.updateAgreementStatus()");
+            System.out.println("Exception while execute LoanDAOImpl.updateLoanStatus()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -134,7 +134,7 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
         Connection connection = null;
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from customer where user_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from loans where user_id = ?");
             preparedStatement.setLong(1, userId);
            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -153,7 +153,7 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
                 loans.add(loan);
             }
         } catch (Throwable e) {
-            System.out.println("Exception while getting customer list LoanDAOImpl.getAllUserAgreements()");
+            System.out.println("Exception while getting loans list LoanDAOImpl.getAllUserLoans()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {

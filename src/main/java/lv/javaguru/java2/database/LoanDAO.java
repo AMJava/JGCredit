@@ -11,7 +11,7 @@ public interface LoanDAO {
 
     void createLoan(Loan loan) throws DBException;
 
-    Loan getByUserId(Long id) throws DBException;
+    Loan getLoanById(Long id) throws DBException;
 
     void deleteLoan(Long id) throws DBException;
 
