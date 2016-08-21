@@ -14,7 +14,6 @@
   <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<%@ include file="admin-menu.jsp" %>
 <%--<div ui-view="header"></div>--%>
 <%--<div ui-view="content"></div>--%>
 <%--<div ui-view="footer"></div>--%>

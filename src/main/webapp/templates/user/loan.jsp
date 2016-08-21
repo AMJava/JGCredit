@@ -9,7 +9,7 @@
 <%@ include file="../shared/header.jsp" %>
 <div id="agreement_wrapper">
         <div class="header_02"><%= request.getAttribute("model") %></div>
-  <form method="POST" action="takealoan">
+  <form method="POST" action="">
     <table>
       <tr>
         <td>Loan Sum:</td>
