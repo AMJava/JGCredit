@@ -3,11 +3,18 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+@Entity
+@Table(name = "loans")
 public class User {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
+
     private String login;
     private String password;
     private String photo;
