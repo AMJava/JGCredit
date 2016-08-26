@@ -3,18 +3,36 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by Arturs on 09.08.2016.
  */
+@Entity
+@Table(name = "communications")
 public class Communication {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", columnDefinition = "int")
     private Long id;
+
+    @Column(name = "body")
     private String body;
+
+    @Column(name = "sent_date")
     private Date sentDate;
+
+    @Column(name = "com_type")
     private String comType;
+
+    @Column(name = "user_id", columnDefinition = "int")
     private Long userId;
+
+    @Column(name = "loan_id", columnDefinition = "int")
     private Long loanId;
+
+    @Column(name = "loan_ext_id", columnDefinition = "int")
     private Long loanExtId;
 
     public Communication() {

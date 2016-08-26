@@ -3,19 +3,38 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by Arturs on 09.08.2016.
  */
+@Entity
+@Table(name = "payments")
 public class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", columnDefinition = "int")
     private Long id;
+
+    @Column(name = "payment_type")
     private String paymentType;
+
+    @Column(name = "payment_sum")
     private BigDecimal paymentSum;
+
+    @Column(name = "payment_date")
     private Date paymentDate;
+
+    @Column(name = "bank_acc_number")
     private String bankAccountNumb;
+
+
+    @Column(name = "loan_id", columnDefinition = "int")
     private Long loanId;
+
+    @Column(name = "loan_ext_id", columnDefinition = "int")
     private Long loanExtId;
 
     public Payment() {

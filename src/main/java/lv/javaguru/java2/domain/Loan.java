@@ -3,25 +3,55 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by Arturs on 09.08.2016.
  */
+@Entity
+@Table(name = "loans")
 public class Loan {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", columnDefinition = "int")
     private Long id;
+
+    @Column(name = "loan_sum")
     private BigDecimal loanSum;
+
+    @Column(name = "interest_rate")
     private BigDecimal interestRate;
+
+    @Column(name = "term")
     private int term;
+
+    @Column(name = "term_unit")
     private String termUnit;
+
+    @Column(name = "start_date")
     private Date startDate;
+
+    @Column(name = "end_date")
     private Date endDate;
+
+    @Column(name = "loan_status")
     private String loanStatus;
+
+    @Column(name = "extendet_flag")
     private String extendetFlag;
+
+    @Column(name = "user_id", columnDefinition = "int")
     private Long userId;
+
+    @Column(name = "employee_id", columnDefinition = "int")
     private Long employeeId;
+
+    @Column(name = "bank_acc_number")
     private String bankAccountNumb;
+
+    @Column(name = "comments")
     private String comments;
 
     public Loan() {

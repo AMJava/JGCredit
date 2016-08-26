@@ -3,29 +3,62 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "employees")
 public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", columnDefinition = "int")
     private Long id;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "login_pw")
     private String password;
-    private String photo;
+
+    @Column(name = "first_name")
     private String fName;
+
+    @Column(name = "last_name")
     private String lName;
+
+    @Column(name = "gender")
     private String gender;
+
+    @Column(name = "personal_code")
     private String personalCode;
+
+    @Column(name = "birth_date")
     private Date birthDate;
+
+    @Column(name = "address")
     private String address;
-    private int mobilePhoneNumber;
-    private int phoneNumber;
+
+    @Column(name = "m_phone_number")
+    private String mobilePhoneNumber;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "company_name")
     private String company;
+
+    @Column(name = "job_title")
     private String jobTitle;
+
+    @Column(name = "photo")
+    private String photo;
 
     public Employee() {
     }
 
     public Employee(String login, String password, String photo, String fName, String lName, String gender, String personalCode, Date birthDate,
-                    String address, int mobilePhoneNumber, int phoneNumber, String company,
+                    String address, String mobilePhoneNumber, String phoneNumber, String company,
                     String jobTitle) {
         this.login = login;
         this.password = password;
@@ -122,19 +155,19 @@ public class Employee {
         this.address = address;
     }
 
-    public int getMobilePhoneNumber() {
+    public String getMobilePhoneNumber() {
         return mobilePhoneNumber;
     }
 
-    public void setMobilePhoneNumber(int mobilePhoneNumber) {
+    public void setMobilePhoneNumber(String mobilePhoneNumber) {
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

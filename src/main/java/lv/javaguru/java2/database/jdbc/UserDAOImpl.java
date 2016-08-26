@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-@Component
+
+@Component("JDBC_UserDAO")
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     @Override
