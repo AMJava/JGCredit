@@ -28,8 +28,8 @@ public class LoanExtDAOImpl extends DAOImpl implements LoanExtDAO {
             preparedStatement.setString(2, loanExt.getExtStatus());
             preparedStatement.setDate(3, (java.sql.Date) loanExt.getExtDate());
             preparedStatement.setDate(4, (java.sql.Date) loanExt.getEndDate());
-            preparedStatement.setFloat(5, loanExt.getInterestRate());
-            preparedStatement.setFloat(6, loanExt.getCommision());
+            preparedStatement.setBigDecimal(5, loanExt.getInterestRate());
+            preparedStatement.setBigDecimal(6, loanExt.getCommision());
             preparedStatement.setLong(7, loanExt.getLoanId());
             preparedStatement.setString(8, loanExt.getBankAccountNumb());
             preparedStatement.setString(9, loanExt.getComments());
@@ -66,8 +66,8 @@ public class LoanExtDAOImpl extends DAOImpl implements LoanExtDAO {
                 loanExt.setExtStatus(resultSet.getString("ext_status"));
                 loanExt.setExtDate(resultSet.getDate("ext_date"));
                 loanExt.setEndDate(resultSet.getDate("end_date"));
-                loanExt.setInterestRate(resultSet.getFloat("interest_rate"));
-                loanExt.setCommision(resultSet.getFloat("comission"));
+                loanExt.setInterestRate(resultSet.getBigDecimal("interest_rate"));
+                loanExt.setCommision(resultSet.getBigDecimal("comission"));
                 loanExt.setLoanId(resultSet.getLong("loan_id"));
                 loanExt.setBankAccountNumb(resultSet.getString("bank_acc_number"));
                 loanExt.setComments(resultSet.getString("comments"));
@@ -139,8 +139,8 @@ public class LoanExtDAOImpl extends DAOImpl implements LoanExtDAO {
                 loanExt.setExtStatus(resultSet.getString("ext_status"));
                 loanExt.setExtDate(resultSet.getDate("ext_date"));
                 loanExt.setEndDate(resultSet.getDate("end_date"));
-                loanExt.setInterestRate(resultSet.getFloat("interest_rate"));
-                loanExt.setCommision(resultSet.getFloat("comission"));
+                loanExt.setInterestRate(resultSet.getBigDecimal("interest_rate"));
+                loanExt.setCommision(resultSet.getBigDecimal("comission"));
                 loanExt.setLoanId(resultSet.getLong("loan_id"));
                 loanExt.setBankAccountNumb(resultSet.getString("bank_acc_number"));
                 loanExt.setComments(resultSet.getString("comments"));

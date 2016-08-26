@@ -25,7 +25,7 @@ public class PaymentDAOImpl extends DAOImpl implements PaymentDAO {
             PreparedStatement preparedStatement =
             connection.prepareStatement("insert into payments values (default, ?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, payment.getPaymentType());
-            preparedStatement.setFloat(2, payment.getPaymentSum());
+            preparedStatement.setBigDecimal(2, payment.getPaymentSum());
             preparedStatement.setDate(3, (java.sql.Date) payment.getPaymentDate());
             preparedStatement.setString(4, payment.getBankAccountNumb());
             preparedStatement.setLong(5, payment.getLoanId());
@@ -60,7 +60,7 @@ public class PaymentDAOImpl extends DAOImpl implements PaymentDAO {
                 payment = new Payment();
                 payment.setId(resultSet.getLong("id"));
                 payment.setPaymentType(resultSet.getString("payment_type"));
-                payment.setPaymentSum(resultSet.getFloat("payment_sum"));
+                payment.setPaymentSum(resultSet.getBigDecimal("payment_sum"));
                 payment.setPaymentDate(resultSet.getDate("payment_date"));
                 payment.setBankAccountNumb(resultSet.getString("bank_acc_number"));
                 payment.setLoanId(resultSet.getLong("loan_id"));
@@ -115,7 +115,7 @@ public class PaymentDAOImpl extends DAOImpl implements PaymentDAO {
                 Payment payment = new Payment();
                 payment.setId(resultSet.getLong("id"));
                 payment.setPaymentType(resultSet.getString("payment_type"));
-                payment.setPaymentSum(resultSet.getFloat("payment_sum"));
+                payment.setPaymentSum(resultSet.getBigDecimal("payment_sum"));
                 payment.setPaymentDate(resultSet.getDate("payment_date"));
                 payment.setBankAccountNumb(resultSet.getString("bank_acc_number"));
                 payment.setLoanId(resultSet.getLong("loan_id"));

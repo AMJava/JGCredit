@@ -24,8 +24,8 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
             connection = getConnection();
             PreparedStatement preparedStatement =
             connection.prepareStatement("insert into loans values (default, ?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setFloat(1, loan.getLoanSum());
-            preparedStatement.setFloat(2, loan.getInterestRate());
+            preparedStatement.setBigDecimal(1, loan.getLoanSum());
+            preparedStatement.setBigDecimal(2, loan.getInterestRate());
             preparedStatement.setInt(3, loan.getTerm());
             preparedStatement.setString(4, loan.getTermUnit());
             preparedStatement.setDate(5, (java.sql.Date) loan.getStartDate());
@@ -65,8 +65,8 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
             if (resultSet.next()) {
                 loan = new Loan();
                 loan.setId(resultSet.getLong("id"));
-                loan.setLoanSum(resultSet.getFloat("loan_sum"));
-                loan.setInterestRate(resultSet.getFloat("interest_rate"));
+                loan.setLoanSum(resultSet.getBigDecimal("loan_sum"));
+                loan.setInterestRate(resultSet.getBigDecimal("interest_rate"));
                 loan.setTerm(resultSet.getInt("term"));
                 loan.setTermUnit(resultSet.getString("term_unit"));
                 loan.setStartDate(resultSet.getDate("start_date"));
@@ -140,8 +140,8 @@ public class LoanDAOImpl extends DAOImpl implements LoanDAO {
             while (resultSet.next()) {
                 Loan loan = new Loan();
                 loan.setId(resultSet.getLong("ID"));
-                loan.setLoanSum(resultSet.getFloat("loan_sum"));
-                loan.setInterestRate(resultSet.getFloat("interest_rate"));
+                loan.setLoanSum(resultSet.getBigDecimal("loan_sum"));
+                loan.setInterestRate(resultSet.getBigDecimal("interest_rate"));
                 loan.setTerm(resultSet.getInt("term"));
                 loan.setTermUnit(resultSet.getString("term_unit"));
                 loan.setStartDate(resultSet.getDate("start_date"));

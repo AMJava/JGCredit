@@ -3,6 +3,7 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -14,8 +15,8 @@ public class LoanExt {
     private String extStatus;
     private Date extDate;
     private Date endDate;
-    private Float interestRate;
-    private Float commision;
+    private BigDecimal interestRate;
+    private BigDecimal commision;
     private Long loanId;
     private String bankAccountNumb;
     private String comments;
@@ -24,7 +25,7 @@ public class LoanExt {
     }
 
     public LoanExt(String extType, String extStatus, Date extDate, Date endDate,
-                   Float interestRate, Float commision, Long loanId,
+                   BigDecimal interestRate, BigDecimal commision, Long loanId,
                    String bankAccountNumb, String comments) {
         this.extType = extType;
         this.extStatus = extStatus;
@@ -77,19 +78,19 @@ public class LoanExt {
         this.endDate = endDate;
     }
 
-    public Float getInterestRate() {
+    public BigDecimal getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(Float interestRate) {
+    public void setInterestRate(BigDecimal interestRate) {
         this.interestRate = interestRate;
     }
 
-    public Float getCommision() {
+    public BigDecimal getCommision() {
         return commision;
     }
 
-    public void setCommision(Float commision) {
+    public void setCommision(BigDecimal commision) {
         this.commision = commision;
     }
 

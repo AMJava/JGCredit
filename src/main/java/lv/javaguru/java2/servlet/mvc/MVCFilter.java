@@ -40,6 +40,7 @@ public class MVCFilter implements Filter {
         controllers.put("/register", getBean(RegisterController.class));
         controllers.put("/contacts", getBean(ContactsController.class));
         controllers.put("/login", getBean(LoginController.class));
+
         controllers.put("/admin/login", getBean(AdminLoginController.class));
         controllers.put("/admin/home", getBean(AdminHomeController.class));
         controllers.put("/admin/loans", getBean(AdminLoansController.class));

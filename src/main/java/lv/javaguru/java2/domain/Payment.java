@@ -3,6 +3,7 @@ package lv.javaguru.java2.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
 public class Payment {
     private Long id;
     private String paymentType;
-    private float paymentSum;
+    private BigDecimal paymentSum;
     private Date paymentDate;
     private String bankAccountNumb;
     private Long loanId;
@@ -20,7 +21,7 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(String paymentType, float paymentSum, Date paymentDate,
+    public Payment(String paymentType, BigDecimal paymentSum, Date paymentDate,
                    String bankAccountNumb, Long loanId, Long loanExtId) {
         this.paymentType = paymentType;
         this.paymentSum = paymentSum;
@@ -46,11 +47,11 @@ public class Payment {
         this.paymentType = paymentType;
     }
 
-    public Float getPaymentSum() {
+    public BigDecimal getPaymentSum() {
         return paymentSum;
     }
 
-    public void setPaymentSum(Float paymentSum) {
+    public void setPaymentSum(BigDecimal paymentSum) {
         this.paymentSum = paymentSum;
     }
 
