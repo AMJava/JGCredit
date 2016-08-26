@@ -24,7 +24,7 @@ public class UserBuilder {
     }
 
     public User buildPerson(String fName, String lName, String personalCode, Date birthDate,
-                            String address, int mobilePhoneNumber, int phoneNumber, String company,
+                            String address, String mobilePhoneNumber, String phoneNumber, String company,
                             String jobTitle) {
         User user = new User();
         user.setfName(fName);

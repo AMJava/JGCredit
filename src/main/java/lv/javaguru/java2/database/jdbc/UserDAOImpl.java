@@ -34,8 +34,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setString(6, user.getPersonalCode());
             preparedStatement.setDate(7, (java.sql.Date) user.getBirthDate());
             preparedStatement.setString(8, user.getAddress());
-            preparedStatement.setInt(9, user.getMobilePhoneNumber());
-            preparedStatement.setInt(10, user.getPhoneNumber());
+            preparedStatement.setString(9, user.getMobilePhoneNumber());
+            preparedStatement.setString(10, user.getPhoneNumber());
             preparedStatement.setString(11, user.getCompany());
             preparedStatement.setString(12, user.getJobTitle());
             preparedStatement.setString(13, user.getSalary());
@@ -77,8 +77,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setPersonalCode(resultSet.getString("personal_code"));
                 user.setBirthDate(resultSet.getDate("birth_date"));
                 user.setAddress(resultSet.getString("address"));
-                user.setPhoneNumber(resultSet.getInt("m_phone_number"));
-                user.setMobilePhoneNumber(resultSet.getInt("phone_number"));
+                user.setPhoneNumber(resultSet.getString("m_phone_number"));
+                user.setMobilePhoneNumber(resultSet.getString("phone_number"));
                 user.setCompany(resultSet.getString("company"));
                 user.setJobTitle(resultSet.getString("job_title"));
                 user.setSalary(resultSet.getString("salary"));
@@ -116,8 +116,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setPersonalCode(resultSet.getString("personal_code"));
                 user.setBirthDate(resultSet.getDate("birth_date"));
                 user.setAddress(resultSet.getString("address"));
-                user.setPhoneNumber(resultSet.getInt("m_phone_number"));
-                user.setMobilePhoneNumber(resultSet.getInt("phone_number"));
+                user.setPhoneNumber(resultSet.getString("m_phone_number"));
+                user.setMobilePhoneNumber(resultSet.getString("phone_number"));
                 user.setCompany(resultSet.getString("company"));
                 user.setJobTitle(resultSet.getString("job_title"));
                 user.setSalary(resultSet.getString("salary"));
@@ -153,8 +153,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setPersonalCode(resultSet.getString("personal_code"));
                 user.setBirthDate(resultSet.getDate("birth_date"));
                 user.setAddress(resultSet.getString("address"));
-                user.setPhoneNumber(resultSet.getInt("m_phone_number"));
-                user.setMobilePhoneNumber(resultSet.getInt("phone_number"));
+                user.setPhoneNumber(resultSet.getString("m_phone_number"));
+                user.setMobilePhoneNumber(resultSet.getString("phone_number"));
                 user.setCompany(resultSet.getString("company"));
                 user.setJobTitle(resultSet.getString("job_title"));
                 user.setSalary(resultSet.getString("salary"));

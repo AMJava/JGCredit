@@ -54,8 +54,8 @@ public class SpringConfig {
         properties.put("hibernate.format_sql", formatSql);
         properties.put("hibernate.hbm2ddl.auto", hbm2ddl);
         // Hibernate search
-        properties.put("hibernate.search.default.directory_provider", directoryProvider);
-        properties.put("hibernate.search.default.indexBase", indexBase);
+        //properties.put("hibernate.search.default.directory_provider", directoryProvider);
+       // properties.put("hibernate.search.default.indexBase", indexBase);
         return properties;
     }
 
@@ -71,6 +71,7 @@ public class SpringConfig {
         dataSource.setUsername(user);
         dataSource.setPassword(password);
         dataSource.setDefaultAutoCommit(false);
+        System.out.print(user);
         return dataSource;
     }
 

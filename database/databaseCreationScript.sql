@@ -14,11 +14,11 @@ DROP TABLE IF EXISTS payments;
 
 CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  login CHAR(16) NOT NULL,
-  login_pw CHAR(80) NOT NULL,
+  login VARCHAR(16) NOT NULL,
+  login_pw VARCHAR(80) NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
-  gender CHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
+  gender VARCHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
   personal_code VARCHAR(12) NOT NULL,
   birth_date DATE NOT NULL,
   address VARCHAR(100) NOT NULL,
@@ -33,11 +33,11 @@ CREATE TABLE users (
 
 CREATE TABLE employees (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  login CHAR(16) NOT NULL,
-  login_pw CHAR(80) NOT NULL,
+  login VARCHAR(16) NOT NULL,
+  login_pw VARCHAR(80) NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
-  gender CHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
+  gender VARCHAR(6) DEFAULT 'Male' CHECK (gender IN ('Male', 'Female')),
   personal_code VARCHAR(12) NOT NULL,
   birth_date DATE NOT NULL,
   address VARCHAR(100) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE loans (
   term_unit VARCHAR(5) DEFAULT 'month' CHECK (term_unit IN('day', 'month')),
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
-  loan_status CHAR(10) DEFAULT 'PROCESSING' CHECK (loan_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
+  loan_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (loan_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
   extendet_flag VARCHAR(1) DEFAULT 'N',
   user_id int(11),
   employee_id int(11),
@@ -69,7 +69,7 @@ CREATE TABLE loans (
 CREATE TABLE loans_ext (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
   ext_type VARCHAR(12) DEFAULT 'Prolongation' CHECK (ext_type IN ('Prolongation', 'Penalty')),
-  ext_status CHAR(10) DEFAULT 'PROCESSING' CHECK (ext_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
+  ext_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (ext_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
   ext_date DATE NOT NULL,
   end_date DATE NOT NULL,
   interest_rate DECIMAL(6,2),
