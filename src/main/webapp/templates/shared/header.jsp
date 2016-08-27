@@ -19,8 +19,8 @@
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <div class="top-header-left">
-            <a href="#">Sign Up</a>
-            <a href="#">Log In</a>
+            <a href="<%=request.getContextPath()%>/login">Sign Up</a>
+            <a href="<%=request.getContextPath()%>/login">Log In</a>
           </div> <!-- /.top-header-left -->
         </div> <!-- /.col-md-6 -->
       </div> <!-- /.row -->

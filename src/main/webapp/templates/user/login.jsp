@@ -1,17 +1,32 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Arturs
-  Date: 16.08.2016
-  Time: 20:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
 <head>
-    <title>Title</title>
+  <link href="images/icon.png" rel="icon" type="image/png" />
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <%@ include file="../shared/header.jsp" %>
-<div class="header_02"><%= request.getAttribute("model") %></div>
+
+<div class="content-section">
+  <div class="modal-dialog">
+      <div class="loginmodal-container">
+        <h1>Login</h1><br>
+        <form>
+          <input type="text" name="user" placeholder="Username">
+          <input type="password" name="pass" placeholder="Password">
+          <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+        </form>
+
+        <div class="login-help">
+          <a href="#">Register</a> - <a href="#">Forgot Password</a>
+        </div>
+      </div>
+  </div>
+</div> <!-- /.content-section -->
+
+<!--<script src="js/jquery.min.js"></script>-->
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/script.js"></script>
+<%@ include file="../shared/footer.jsp" %>
 </body>
 </html>
