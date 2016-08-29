@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class RegisterController implements MVCController {
 
-    public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("Register Member", "/templates/user/register.jsp");
+    public MVCModel executeGetRequest(HttpServletRequest request) {
+        return new MVCModel("Register Member", "/templates/user/register.jsp","");
     }
 
+    public MVCModel executePostRequest(HttpServletRequest request) {
+        return new MVCModel("Register Member", "/templates/user/register.jsp","");
+    }
 }

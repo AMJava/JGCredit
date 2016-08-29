@@ -1,67 +1,47 @@
-package lv.javaguru.java2.domain;
+package lv.javaguru.java2.dto;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
-@Entity
-@Table(name = "users")
-public class User {
+/**
+ * Created by Arturs on 29.08.2016.
+ */
+public class UserDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
     private Long id;
 
-    @Column(name = "login")
     private String login;
 
-    @Column(name = "login_pw")
     private String password;
 
-    @Column(name = "first_name")
     private String fName;
 
-    @Column(name = "last_name")
     private String lName;
 
-    @Column(name = "gender")
     private String gender;
 
-    @Column(name = "personal_code")
     private String personalCode;
 
-    @Column(name = "birth_date")
     private Date birthDate;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "m_phone_number")
     private String mobilePhoneNumber;
 
-    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "company_name")
     private String company;
 
-    @Column(name = "job_title")
     private String jobTitle;
 
-    @Column(name = "salary")
     private String salary;
 
-    @Column(name = "photo")
     private String photo;
 
-    public User() {
-    }
-
-    public User(Long id, String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
+    public UserDTO(Long id, String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String mobilePhoneNumber, String phoneNumber, String company,
                 String jobTitle, String salary, String photo) {
         this.id = id;
@@ -103,14 +83,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String accessLevel) {
-        this.photo = photo;
     }
 
     public String getFName() {
@@ -201,14 +173,11 @@ public class User {
         this.salary = salary;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o);
+    public String getPhoto() {
+        return photo;
     }
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
-
 }

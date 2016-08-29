@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class AboutController implements MVCController {
 
-    public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("About", "/templates/user/about.jsp");
+    public MVCModel executeGetRequest(HttpServletRequest request) {
+        return new MVCModel("About", "/templates/user/about.jsp","");
     }
 
+    public MVCModel executePostRequest(HttpServletRequest request) {
+        return new MVCModel("About", "/templates/user/about.jsp","");
+    }
 }

@@ -16,7 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController implements MVCController {
     @Autowired
     private UserDAO userDao;
-    public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("", "/templates/user/user-home.jsp");
+
+    public MVCModel executeGetRequest(HttpServletRequest request) {
+        return new MVCModel("", "/templates/user/user-home.jsp","");
+    }
+
+    public MVCModel executePostRequest(HttpServletRequest request) {
+        return new MVCModel("", "/templates/user/user-home.jsp","");
     }
 }

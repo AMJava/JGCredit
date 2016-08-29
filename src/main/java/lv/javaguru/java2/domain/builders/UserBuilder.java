@@ -16,7 +16,7 @@ public class UserBuilder {
 //    private String company;
 //    private String jobTitle;
 
-
+/*
     private UserBuilder() { }
 
     public static UserBuilder createBuilder() {
@@ -38,4 +38,5 @@ public class UserBuilder {
         user.setJobTitle(jobTitle);
         return user;
     }
+    */
 }

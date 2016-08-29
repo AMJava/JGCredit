@@ -11,11 +11,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 
-public class UserDAOImplTest {
-
+public class UserDAOJDBCImplTest {
+/*
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
-    private UserDAOImpl userDAO = new UserDAOImpl();
+    private UserDAOJDBCImpl userDAO = new UserDAOJDBCImpl();
 
 
     @Before
@@ -54,5 +54,5 @@ public class UserDAOImplTest {
         user.setLastName(lastName);
         return user;
     }
-
+*/
 }

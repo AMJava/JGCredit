@@ -1,3 +1,4 @@
+<%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<html>--%>
 <head>
@@ -20,8 +21,15 @@
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <div class="top-header-left">
-            <a href="/login">Sign Up</a>
-            <a href="/login">Log In</a>
+            <%
+              if (request.getAttribute("model") != null) {
+                MVCModel model = (MVCModel) request.getAttribute("model");
+            %>
+            <h3> <%=model.getMessage()%> </h3>
+            <%
+              }
+            %>
+            <a href="/login">Sign Out</a>
           </div> <!-- /.top-header-left -->
         </div> <!-- /.col-md-6 -->
       </div> <!-- /.row -->

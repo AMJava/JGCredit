@@ -10,6 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -56,18 +57,33 @@ public class MVCFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)response;
 
         String contextURI = req.getServletPath();
+        MVCModel model = null;
         MVCController controller = controllers.get(contextURI);
-        if (controller != null) {
-            MVCModel model = controller.execute(req);
-
-            req.setAttribute("model", model.getData());
-
+        if (controller != null)  {
+            if (req.getMethod().equals("POST")) {
+                try {
+                    model = controller.executePostRequest(req);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                try {
+                    model = controller.executeGetRequest(req);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                req.setAttribute("model", model.getData());
+                req.setAttribute("message", model.getMessage());
+            }
             ServletContext context = req.getServletContext();
             RequestDispatcher requestDispacher =
-                    context.getRequestDispatcher(model.getViewName());
+            context.getRequestDispatcher(model.getViewName());
             requestDispacher.forward(req, resp);
         }
-        else filterChain.doFilter(request,response);
+        else {
+            filterChain.doFilter(request,response);
+        }
     }
 
     public void destroy() {

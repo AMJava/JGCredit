@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class AdminLoginController implements MVCController {
 
-    public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp");
+    public MVCModel executeGetRequest(HttpServletRequest request) {
+        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp","");
     }
 
+    public MVCModel executePostRequest(HttpServletRequest request) {
+        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp","");
+    }
 }

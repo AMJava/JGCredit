@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class AdminLoansController implements MVCController {
 
-    public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("Admin Loans", "/templates/admin/admin-loans.jsp");
+    public MVCModel executeGetRequest(HttpServletRequest request) {
+        return new MVCModel("Admin Loans", "/templates/admin/admin-loans.jsp","");
     }
 
+    public MVCModel executePostRequest(HttpServletRequest request) {
+        return new MVCModel("Admin Loans", "/templates/admin/admin-loans.jsp","");
+    }
 }

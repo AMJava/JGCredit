@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class LoanController implements MVCController {
 
-    public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("Take a loan", "/templates/user/loan.jsp");
+    public MVCModel executeGetRequest(HttpServletRequest request) {
+        return new MVCModel("Take a loan", "/templates/user/loan.jsp","");
     }
 
+    public MVCModel executePostRequest(HttpServletRequest request) {
+        return new MVCModel("Take a loan", "/templates/user/loan.jsp","");
+    }
 }
