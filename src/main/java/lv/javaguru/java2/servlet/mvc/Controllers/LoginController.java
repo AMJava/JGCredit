@@ -22,7 +22,7 @@ public class LoginController implements MVCController {
     ConvertorDTO convertorDTO;
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Login", "/templates/user/login.jsp","");
+        return new MVCModel("Login", "/templates/user/login.jsp","AAA");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
@@ -37,7 +37,7 @@ public class LoginController implements MVCController {
         if (user != null && user.getPassword().equals(request.getParameter("pass"))) {
             UserDTO userDTO = convertorDTO.convertUserToDTO(user);
             request.getSession().setAttribute("userDTO", userDTO);
-            return new MVCModel(userDTO,"/templates/user/user-home.jsp", "Authorization successful: " + userDTO.getFName()+" "+userDTO.getLName());
+            return new MVCModel(userDTO,"/templates/user/home.jsp", "Authorization successful: " + userDTO.getFName()+" "+userDTO.getLName());
         }
         else {
             return  new MVCModel(null, "/templates/user/login.jsp", "Wrong login or password!");

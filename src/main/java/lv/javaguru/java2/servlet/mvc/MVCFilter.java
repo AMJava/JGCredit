@@ -73,9 +73,9 @@ public class MVCFilter implements Filter {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+            }
                 req.setAttribute("model", model.getData());
                 req.setAttribute("message", model.getMessage());
-            }
             ServletContext context = req.getServletContext();
             RequestDispatcher requestDispacher =
             context.getRequestDispatcher(model.getViewName());

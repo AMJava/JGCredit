@@ -1,6 +1,7 @@
 package lv.javaguru.java2.servlet.mvc.Controllers;
 
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.dto.UserDTO;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,15 @@ public class HomeController implements MVCController {
     private UserDAO userDao;
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("", "/templates/user/user-home.jsp","");
+        UserDTO userDTO = (UserDTO) request.getSession().getAttribute("userDTO");
+        if (userDTO == null) {
+            return new MVCModel(null,"/templates/user/home.jsp","Not login");
+        }
+
+        return new MVCModel(userDTO, "/templates/user/home.jsp","IN");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("", "/templates/user/user-home.jsp","");
+        return new MVCModel(null, "/templates/user/home.jsp","");
     }
 }

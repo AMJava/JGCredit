@@ -1,4 +1,5 @@
 <%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
+<%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<html>--%>
 <head>
@@ -22,10 +23,10 @@
         <div class="col-md-6 col-sm-6">
           <div class="top-header-left">
             <%
-              if (request.getAttribute("model") != null) {
-                MVCModel model = (MVCModel) request.getAttribute("model");
+              UserDTO user = (UserDTO) session.getAttribute("userDTO");
+              if (user != null) {
             %>
-            <h3> <%=model.getMessage()%> </h3>
+            <span> Hello <%=user.getFName()%> !!! </span>
             <%
               }
             %>
