@@ -31,8 +31,6 @@ public class UserDTO {
 
     private String address;
 
-    private String mobilePhoneNumber;
-
     private String phoneNumber;
 
     private String company;
@@ -44,7 +42,7 @@ public class UserDTO {
     private byte[] photo;
 
     public UserDTO(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
-                String address, String mobilePhoneNumber, String phoneNumber, String company,
+                String address, String phoneNumber, String company,
                 String jobTitle, String salary, byte[] photo) {
         this.id = id;
         this.login = login;
@@ -57,7 +55,6 @@ public class UserDTO {
         this.personalCode = personalCode;
         this.birthDate = birthDate;
         this.address = address;
-        this.mobilePhoneNumber = mobilePhoneNumber;
         this.phoneNumber = phoneNumber;
         this.company = company;
         this.jobTitle = jobTitle;
@@ -142,14 +139,6 @@ public class UserDTO {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getMobilePhoneNumber() {
-        return mobilePhoneNumber;
-    }
-
-    public void setMobilePhoneNumber(String mobilePhoneNumber) {
-        this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
     public String getPhoneNumber() {

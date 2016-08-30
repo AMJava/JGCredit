@@ -26,13 +26,26 @@
     <div class="form-group">
       <label for="firstName" class="col-sm-3 control-label">First Name</label>
       <div class="col-sm-9">
-        <input type="firstName" id="firstName" placeholder="First Name" class="form-control">
+        <input type="text" id="firstName" placeholder="First Name" class="form-control">
       </div>
     </div>
     <div class="form-group">
       <label for="lastName" class="col-sm-3 control-label">Last Name</label>
       <div class="col-sm-9">
-        <input type="firstName" id="lastName" placeholder="Last Name" class="form-control">
+        <input type="text" id="lastName" placeholder="Last Name" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="personalNumber" class="col-sm-3 control-label">Personal Number</label>
+      <div class="col-sm-9">
+        <input type="text" id="personalNumber" placeholder="Personal Number" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address" class="col-sm-3 control-label">Adress</label>
+      <div class="col-sm-9">
+        <input type="text" id="address" placeholder="Address" class="form-control">
+        <span class="help-block">Street name,house-flat number</span>
       </div>
     </div>
     <div class="form-group">
@@ -45,27 +58,41 @@
       <label for="password" class="col-sm-3 control-label">Password</label>
       <div class="col-sm-9">
         <input type="password" id="password" placeholder="Password" class="form-control">
-        <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
+        <span class="help-block">Use letters and numbers</span>
       </div>
     </div>
     <div class="form-group">
       <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
-      <div class="col-sm-9">
+      <div class="col-sm-5">
         <input type="date" id="birthDate" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label for="country" class="col-sm-3 control-label">Country</label>
+      <label for="phoneNumber" class="col-sm-3 control-label">Phone Number</label>
       <div class="col-sm-9">
-        <select id="country" class="form-control">
-          <option>Afghanistan</option>
-          <option>Bahamas</option>
-          <option>Cambodia</option>
-          <option>Denmark</option>
-          <option>Ecuador</option>
-          <option>Fiji</option>
-          <option>Gabon</option>
-          <option>Haiti</option>
+        <input type="text" id="phoneNumber" placeholder="Phone Number" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="companyNamy" class="col-sm-3 control-label">Company Name</label>
+      <div class="col-sm-9">
+        <input type="text" id="companyNamy" placeholder="Company Name" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="jobTitle" class="col-sm-3 control-label">Job Title</label>
+      <div class="col-sm-9">
+        <input type="text" id="jobTitle" placeholder="Job Title" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="salary" class="col-sm-3 control-label">Salary</label>
+      <div class="col-sm-4">
+        <select id="salary" class="form-control">
+          <option><500€</option>
+          <option>500-1000€</option>
+          <option>1000-2000€</option>
+          <option>>2000€</option>
         </select>
       </div>
     </div> <!-- /.form-group -->
@@ -83,26 +110,6 @@
               <input type="radio" id="maleRadio" value="Male">Male
             </label>
           </div>
-          <div class="col-sm-4">
-            <label class="radio-inline">
-              <input type="radio" id="uncknownRadio" value="Unknown">Unknown
-            </label>
-          </div>
-        </div>
-      </div>
-    </div> <!-- /.form-group -->
-    <div class="form-group">
-      <label class="control-label col-sm-3">Meal Preference</label>
-      <div class="col-sm-9">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="calorieCheckbox" value="Low calorie">Low calorie
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="saltCheckbox" value="Low salt">Low salt
-          </label>
         </div>
       </div>
     </div> <!-- /.form-group -->
@@ -110,13 +117,13 @@
       <div class="col-sm-9 col-sm-offset-3">
         <div class="checkbox">
           <label>
-            <input type="checkbox">I accept <a href="#">terms</a>
+            <input type="checkbox">I accept <a href="http://examples.yourdictionary.com/payment-terms-examples.html" target="_blank">terms</a>
           </label>
         </div>
       </div>
     </div> <!-- /.form-group -->
     <div class="form-group">
-      <div class="col-sm-9 col-sm-offset-3">
+      <div class="col-sm-6 col-sm-offset-3">
         <button type="submit" class="btn btn-primary btn-block">Register</button>
       </div>
     </div>

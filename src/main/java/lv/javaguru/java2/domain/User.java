@@ -43,9 +43,6 @@ public class User {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "m_phone_number")
-    private String mobilePhoneNumber;
-
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -65,7 +62,7 @@ public class User {
     }
 
     public User(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
-                String address, String mobilePhoneNumber, String phoneNumber, String company,
+                String address, String phoneNumber, String company,
                 String jobTitle, String salary, byte[] photo) {
         this.id = id;
         this.login = login;
@@ -78,7 +75,6 @@ public class User {
         this.personalCode = personalCode;
         this.birthDate = birthDate;
         this.address = address;
-        this.mobilePhoneNumber = mobilePhoneNumber;
         this.phoneNumber = phoneNumber;
         this.company = company;
         this.jobTitle = jobTitle;
@@ -171,14 +167,6 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getMobilePhoneNumber() {
-        return mobilePhoneNumber;
-    }
-
-    public void setMobilePhoneNumber(String mobilePhoneNumber) {
-        this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
     public String getPhoneNumber() {

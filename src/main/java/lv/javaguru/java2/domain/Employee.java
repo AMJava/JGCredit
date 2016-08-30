@@ -42,9 +42,6 @@ public class Employee {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "m_phone_number")
-    private String mobilePhoneNumber;
-
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -58,7 +55,7 @@ public class Employee {
     }
 
     public Employee(String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
-                    String address, String mobilePhoneNumber, String phoneNumber, String company,
+                    String address, String phoneNumber, String company,
                     String jobTitle) {
         this.login = login;
         this.password = password;
@@ -69,7 +66,6 @@ public class Employee {
         this.personalCode = personalCode;
         this.birthDate = birthDate;
         this.address = address;
-        this.mobilePhoneNumber = mobilePhoneNumber;
         this.phoneNumber = phoneNumber;
         this.company = company;
         this.jobTitle = jobTitle;
@@ -153,14 +149,6 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getMobilePhoneNumber() {
-        return mobilePhoneNumber;
-    }
-
-    public void setMobilePhoneNumber(String mobilePhoneNumber) {
-        this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
     public String getPhoneNumber() {
