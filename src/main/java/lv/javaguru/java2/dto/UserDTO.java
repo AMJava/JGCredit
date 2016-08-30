@@ -17,6 +17,8 @@ public class UserDTO {
 
     private String password;
 
+    private String email;
+
     private String fName;
 
     private String lName;
@@ -41,12 +43,13 @@ public class UserDTO {
 
     private byte[] photo;
 
-    public UserDTO(Long id, String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
+    public UserDTO(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String mobilePhoneNumber, String phoneNumber, String company,
                 String jobTitle, String salary, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.email = email;
         this.photo = photo;
         this.fName = fName;
         this.lName = lName;
@@ -83,6 +86,14 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFName() {

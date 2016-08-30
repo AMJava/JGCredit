@@ -22,6 +22,9 @@ public class User {
     @Column(name = "login_pw")
     private String password;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "first_name")
     private String fName;
 
@@ -61,12 +64,13 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
+    public User(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String mobilePhoneNumber, String phoneNumber, String company,
                 String jobTitle, String salary, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.email = email;
         this.photo = photo;
         this.fName = fName;
         this.lName = lName;
@@ -103,6 +107,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public byte[] getPhoto() {

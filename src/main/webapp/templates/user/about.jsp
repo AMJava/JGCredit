@@ -8,7 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <link href="images/icon.png" rel="icon" type="image/png" />
+    <link rel="stylesheet" href="styles/style.css">
+    <title>About</title>
 </head>
 <body>
 <%@ include file="../shared/header.jsp" %>

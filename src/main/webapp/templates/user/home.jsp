@@ -3,6 +3,7 @@
 <head>
   <link href="images/icon.png" rel="icon" type="image/png" />
   <link rel="stylesheet" href="styles/style.css">
+  <title>Home</title>
 </head>
 <body>
 <%@ include file="../shared/header.jsp" %>
