@@ -211,4 +211,24 @@ public class User {
         return HashCodeBuilder.reflectionHashCode(this);
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+        "\"Id\":" + "\"" + id + "\"" +
+        ", \"login\":" + "\"" + login + "\"" +
+        ", \"personalCode\":" + "\"" + personalCode + "\"" +
+        ", \"birthDate\":" + "\"" + birthDate + "\"" +
+        ", \"address\":" + "\"" + address + "\"" +
+        ", \"phoneNumber\":" + "\"" + phoneNumber + "\"" +
+        ", \"company\":" + "\"" + company + "\"" +
+        ", \"jobTitle\":" + "\"" + jobTitle + "\"" +
+        ", \"salary\":" + "\"" + salary + "\"" +
+        ", \"gender\":" + "\"" + gender + "\"" +
+        ", \"email\":" + "\"" + email + "\"" +
+        ", \"name\":" + "\"" + fName + "\"" +
+        ", \"phone\":" + "\"" + lName + "\"" +
+        ", \"password\":" + "\"" + password + "\"" +
+        ", \"photo\":" + "\"" + photo + "\"" +
+        '}';
+    }
 }

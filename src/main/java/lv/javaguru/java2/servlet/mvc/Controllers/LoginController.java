@@ -58,7 +58,7 @@ public class LoginController implements MVCController {
                 e.printStackTrace();
             }
             request.getSession().setAttribute("userDTO", userDTO);
-            return new MVCModel(userDTO,"/index.jsp", "Authorization successful: " + userDTO.getFName()+" "+userDTO.getLName());
+            return new MVCModel(userDTO,"/index.jsp", null);
         }
         else {
             return  new MVCModel(null, "/templates/user/login.jsp", "Wrong login or password!");

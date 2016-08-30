@@ -1,3 +1,4 @@
+<%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <head>
@@ -16,10 +17,17 @@
           <input type="text" name="user" placeholder="Username">
           <input type="password" name="pass" placeholder="Password">
           <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          <%
+            if (request.getAttribute("message") != null) {
+          %>
+            <h4 style="color:red"><%=request.getAttribute("message")%></h4>
+          <%
+            }
+          %>
         </form>
 
         <div class="login-help">
-          <a href="#">Register</a> - <a href="#">Forgot Password</a>
+          <a href="<%=request.getContextPath()%>/register">Register</a> - <a href="#">Forgot Password</a>
         </div>
       </div>
   </div>
