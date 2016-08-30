@@ -34,13 +34,18 @@ public class MVCFilter implements Filter {
             logger.log(Level.INFO, "Spring context failed to start", e);
         }
         controllers = new HashMap<String, MVCController>();
-        controllers.put("/login", getBean(LoginController.class));
-        controllers.put("/loan", getBean(LoanController.class));
-        controllers.put("/loan/extend", getBean(LoanExtController.class));
         controllers.put("/home", getBean(HomeController.class));
+        controllers.put("/operations", getBean(OperationController.class));
         controllers.put("/about", getBean(AboutController.class));
-        controllers.put("/register", getBean(RegisterController.class));
         controllers.put("/contacts", getBean(ContactsController.class));
+
+        controllers.put("/login", getBean(LoginController.class));
+        controllers.put("/logout", getBean(LogoutController.class));
+        controllers.put("/register", getBean(RegisterController.class));
+
+        controllers.put("/profile", getBean(ProfileController.class));
+        controllers.put("/loans", getBean(LoanController.class));
+        controllers.put("/loans/extend", getBean(LoanExtController.class));
 
         controllers.put("/admin/login", getBean(AdminLoginController.class));
         controllers.put("/admin/home", getBean(AdminHomeController.class));

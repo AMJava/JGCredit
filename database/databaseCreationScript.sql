@@ -27,7 +27,7 @@ CREATE TABLE users (
   company_name VARCHAR(50) NOT NULL,
   job_title VARCHAR(25)  NOT NULL,
   salary VARCHAR(10) DEFAULT '0-500€' CHECK (salary IN ('<500€', '500-1000€', '1000-2000€', '>2000€')),
-  photo VARCHAR(255) NULL DEFAULT NULL,
+  photo longblob,
   PRIMARY KEY (id)
 );
 
@@ -44,8 +44,7 @@ CREATE TABLE employees (
   m_phone_number VARCHAR(15) NOT NULL,
   phone_number VARCHAR(15) NOT NULL,
   company_name VARCHAR(50) DEFAULT 'JagCredit Latvia',
-  job_title VARCHAR(25)  NOT NULL,
-  photo VARCHAR(255) NULL DEFAULT NULL,
+  job_title VARCHAR(25)  NOT NULL
   PRIMARY KEY (id)
 );
 CREATE TABLE loans (

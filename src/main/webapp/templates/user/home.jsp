@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-<%@ include file="../user-shared/user-header.jsp" %>
+<%@ include file="../shared/header.jsp" %>
 
 <div class="content-section">
   <div class="container">
@@ -126,6 +126,6 @@
 <!--<script src="js/jquery.min.js"></script>-->
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/script.js"></script>
-<%@ include file="../user-shared/user-footer.jsp" %>
+<%@ include file="../shared/footer.jsp" %>
 </body>
 </html>

@@ -56,5 +56,6 @@
   </form>
   </div>
 <script type=”text/javascript” src="../../libs/bootstrap.min.js"></script>
+<%@ include file="../shared/footer.jsp" %>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
+<%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <footer class="site-footer">
   <div class="main-footer">
@@ -32,7 +34,20 @@
             <div class="newsletter">
               <form action="#" method="post">
                 <p>Register and take your first loan with 0% interest.</p>
+                <%
+                  UserDTO user2 = (UserDTO) session.getAttribute("userDTO");
+                  if (user2 != null) {
+                %>
+                <input type="submit" class="s-button" value="Take Loan" name="Submit">
+                <%
+                }
+                else
+                {
+                %>
                 <input type="submit" class="s-button" value="Register" name="Submit">
+                <%
+                  }
+                %>
               </form>
             </div> <!-- /.newsletter -->
           </div> <!-- /.footer-widget -->

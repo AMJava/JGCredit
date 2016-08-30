@@ -13,5 +13,6 @@
 <body>
 <%@ include file="../shared/header.jsp" %>
 <div class="header_02"><%= request.getAttribute("model") %></div>
+<%@ include file="../shared/footer.jsp" %>
 </body>
 </html>

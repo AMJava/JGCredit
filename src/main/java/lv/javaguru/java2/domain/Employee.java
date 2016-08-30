@@ -51,18 +51,14 @@ public class Employee {
     @Column(name = "job_title")
     private String jobTitle;
 
-    @Column(name = "photo")
-    private String photo;
-
     public Employee() {
     }
 
-    public Employee(String login, String password, String photo, String fName, String lName, String gender, String personalCode, Date birthDate,
+    public Employee(String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
                     String address, String mobilePhoneNumber, String phoneNumber, String company,
                     String jobTitle) {
         this.login = login;
         this.password = password;
-        this.photo = photo;
         this.fName = fName;
         this.lName = lName;
         this.gender = gender;
@@ -97,14 +93,6 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String accessLevel) {
-        this.photo = photo;
     }
 
     public String getfName() {

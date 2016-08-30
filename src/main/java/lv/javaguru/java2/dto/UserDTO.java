@@ -39,11 +39,11 @@ public class UserDTO {
 
     private String salary;
 
-    private String photo;
+    private byte[] photo;
 
     public UserDTO(Long id, String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String mobilePhoneNumber, String phoneNumber, String company,
-                String jobTitle, String salary, String photo) {
+                String jobTitle, String salary, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -173,11 +173,11 @@ public class UserDTO {
         this.salary = salary;
     }
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 }

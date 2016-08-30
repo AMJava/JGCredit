@@ -1,3 +1,5 @@
+<%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
+<%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<html>--%>
 <head>
@@ -19,8 +21,25 @@
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <div class="top-header-left">
-            <a href="<%=request.getContextPath()%>/login">Sign Up</a>
+            <%
+              UserDTO user = (UserDTO) session.getAttribute("userDTO");
+              if (user != null) {
+            %>
+
+            <a href="<%=request.getContextPath()%>/profile">
+              <img class="img-cicle" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=30" />
+              Hello <%=user.getFName()%> <%=user.getLName()%>!!!   </a>
+            <a href="<%=request.getContextPath()%>/logout">Sign Out</a>
+            <%
+              }
+              else
+              {
+            %>
+            <a href="<%=request.getContextPath()%>/register">Sign Up</a>
             <a href="<%=request.getContextPath()%>/login">Log In</a>
+            <%
+              }
+            %>
           </div> <!-- /.top-header-left -->
         </div> <!-- /.col-md-6 -->
       </div> <!-- /.row -->
@@ -40,8 +59,21 @@
               <i class="fa fa-bars"></i>
             </a>
             <ul class="menu">
-              <li><a href="#">Sign Up</a></li>
-              <li><a href="#">Log In</a></li>
+              <%
+                if (user != null) {
+              %>
+              <li><a href="<%=request.getContextPath()%>/profile">My Account</a></li>
+              <li><a href="<%=request.getContextPath()%>/loans">My Loans</a></li>
+              <%
+                }
+                else
+                {
+              %>
+              <li><a href="<%=request.getContextPath()%>/register">Sign Up</a></li>
+              <li><a href="<%=request.getContextPath()%>/login">Log In</a></li>
+              <%
+                }
+              %>
             </ul>
           </div> <!-- /.main-menu -->
         </div> <!-- /.col-md-8 -->
@@ -54,10 +86,10 @@
         <div class="col-md-6 col-sm-7">
           <div class="list-menu">
             <ul>
-              <li><a href="/java2/home">Home</a></li>
-              <li><a href="product-detail.html">Operations</a></li>
-              <li><a href="product-detail.html">About</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="<%=request.getContextPath()%>/home">Home</a></li>
+              <li><a href="<%=request.getContextPath()%>/operations">Operations</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About</a></li>
+              <li><a href="<%=request.getContextPath()%>/contacts">Contact</a></li>
             </ul>
           </div> <!-- /.list-menu -->
         </div> <!-- /.col-md-6 -->

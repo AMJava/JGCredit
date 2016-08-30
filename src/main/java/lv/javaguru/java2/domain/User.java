@@ -55,15 +55,15 @@ public class User {
     @Column(name = "salary")
     private String salary;
 
-    @Column(name = "photo")
-    private String photo;
+    @Column(name = "photo", columnDefinition = "longblob")
+    private byte[] photo;
 
     public User() {
     }
 
     public User(Long id, String login, String password, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String mobilePhoneNumber, String phoneNumber, String company,
-                String jobTitle, String salary, String photo) {
+                String jobTitle, String salary, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -105,11 +105,11 @@ public class User {
         this.password = password;
     }
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String accessLevel) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 
