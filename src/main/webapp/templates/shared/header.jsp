@@ -26,7 +26,7 @@
             %>
 
             <a href="<%=request.getContextPath()%>/profile">
-              <img class="img-cicle" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=30" />
+              <img class="img-cicle" src="images/profile.jpg" style="width:25px;height:25px;"/>
               Hello <%=user.getFName()%> <%=user.getLName()%>!!!   </a>
             <a href="<%=request.getContextPath()%>/logout">Sign Out</a>
             <%
