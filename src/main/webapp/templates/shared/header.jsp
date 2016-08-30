@@ -5,7 +5,6 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>JGCredit</title>
-  <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="styles/bootstrap.css" rel="stylesheet" type="text/css" />
   <link href="styles/normalize.min.css" rel="stylesheet" type="text/css" />
   <link href="styles/font-awesome.min.css" rel="stylesheet" type="text/css" />

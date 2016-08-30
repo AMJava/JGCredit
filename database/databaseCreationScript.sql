@@ -44,7 +44,7 @@ CREATE TABLE employees (
   address VARCHAR(100) NOT NULL,
   phone_number VARCHAR(15) NOT NULL,
   company_name VARCHAR(50) DEFAULT 'JagCredit Latvia',
-  job_title VARCHAR(25)  NOT NULL
+  job_title VARCHAR(25)  NOT NULL,
   PRIMARY KEY (id)
 );
 CREATE TABLE loans (
@@ -95,10 +95,14 @@ CREATE TABLE payments (
 
 CREATE TABLE communications (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  subj VARCHAR(250) NOT NULL,
   body VARCHAR(250) NOT NULL,
   sent_date DATETIME NOT NULL,
-  com_type VARCHAR(20) DEFAULT 'E-mail' CHECK (ext_type IN ('E-mail', 'SMS', 'Call')),
-  user_id INT(11) NOT NULL,
+  direction_type VARCHAR(20) NOT NULL DEFAULT 'Outbound' CHECK (direction_type IN ('Outbound', 'Inbound')),
+  com_type VARCHAR(20) NOT NULL DEFAULT 'E-mail' CHECK (ext_type IN ('E-mail', 'SMS', 'Call')),
+  destination VARCHAR(250),
+  user_name VARCHAR(250),
+  user_id INT(11),
   loan_id INT(11),
   loan_ext_id INT(11),
   PRIMARY KEY (id),
@@ -114,8 +118,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 /*Examples:*/
-insert into users values (default,'user','111','asda@inbox.lv','Antons', 'Antonovs','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€',null);
-insert into employees values (default,'employee','222','232131@inbox.lv','Antons', 'Vasiljevs','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator',NULL);
+insert into users values (default,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€',null);
+insert into employees values (default,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
 insert into loans values (default,'250.00', '0.12',100,'days',sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
 insert into loans_ext values (default,'Prolongation', 'PROCESSING',sysdate(),sysdate(),'0.22','0.12',1,'123213213','TEST');
 insert into payments values (default,'Outcome', '100',sysdate(),'12312312',1,null);

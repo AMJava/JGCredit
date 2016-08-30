@@ -17,14 +17,26 @@ public class Communication {
     @Column(name="id", columnDefinition = "int")
     private Long id;
 
+    @Column(name = "subj")
+    private String subj;
+
     @Column(name = "body")
     private String body;
 
     @Column(name = "sent_date")
     private Date sentDate;
 
+    @Column(name = "direction_type")
+    private String directionType;
+
     @Column(name = "com_type")
     private String comType;
+
+    @Column(name = "destination")
+    private String destination;
+
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "user_id", columnDefinition = "int")
     private Long userId;
@@ -38,13 +50,49 @@ public class Communication {
     public Communication() {
     }
 
-    public Communication(String body, Date sentDate, String comType, Long userId, Long loanId, Long loanExtId) {
+    public Communication(String subj, String body, Date sentDate, String directionType, String comType, String destination, String userName, Long userId, Long loanId, Long loanExtId) {
         this.body = body;
         this.sentDate = sentDate;
+        this.directionType = directionType;
         this.comType = comType;
+        this.destination = destination;
+        this.userName = userName;
         this.userId = userId;
         this.loanExtId = loanExtId;
         this.loanId = loanId;
+        this.subj = subj;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getSubj() {
+        return subj;
+    }
+
+    public void setSubj(String subj) {
+        this.subj = subj;
+    }
+
+    public String getDirectionType() {
+        return directionType;
+    }
+
+    public void setDirectionType(String directionType) {
+        this.directionType = directionType;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public Long getId() {
