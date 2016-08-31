@@ -17,60 +17,53 @@
 <div class="container">
   <form class="form-horizontal" role="form" method="post">
     <h2>Registration Form</h2>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="login" class="col-sm-3 control-label">Login</label>
       <div class="col-sm-9">
-        <input type="text" name="login" id="login" placeholder="Login" class="form-control" autofocus>
+        <input type="text" name="login" id="login" placeholder="Login" required="required" class="form-control" autofocus>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="firstName" class="col-sm-3 control-label">First Name</label>
       <div class="col-sm-9">
-        <input type="text" name="fName" id="firstName" placeholder="First Name" class="form-control">
+        <input type="text" name="fName" id="firstName" placeholder="First Name" required="required" class="form-control">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="lastName" class="col-sm-3 control-label">Last Name</label>
       <div class="col-sm-9">
-        <input type="text" name="lName" id="lastName" placeholder="Last Name" class="form-control">
+        <input type="text" name="lName" id="lastName" placeholder="Last Name" required="required" class="form-control">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="personalNumber" class="col-sm-3 control-label">Personal Number</label>
       <div class="col-sm-9">
-        <input type="text" name="personalNumber" id="personalNumber" placeholder="Personal Number" class="form-control">
+        <input type="text" name="personalNumber" id="personalNumber" required="required" placeholder="Personal Number" class="form-control">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="address" class="col-sm-3 control-label">Adress</label>
       <div class="col-sm-9">
-        <input type="text" name="address" id="address" placeholder="Address" class="form-control">
+        <input type="text" name="address" id="address" placeholder="Address" required="required" class="form-control">
         <span class="help-block">Street name,house-flat number</span>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="email" class="col-sm-3 control-label">Email</label>
       <div class="col-sm-9">
-        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+        <input type="email" name="email" id="email" placeholder="Email" required="required" class="form-control">
       </div>
     </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label">Password</label>
-      <div class="col-sm-9">
-        <input type="password" name="password" id="password" placeholder="Password" class="form-control">
-        <span class="help-block">Use letters and numbers</span>
-      </div>
-    </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
       <div class="col-sm-5">
-        <input type="date" name="birthDate" id="birthDate" class="form-control">
+        <input type="date" name="birthDate" id="birthDate" required="required" class="form-control">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group required">
       <label for="phoneNumber" class="col-sm-3 control-label">Phone Number</label>
       <div class="col-sm-9">
-        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" class="form-control">
+        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" required="required" class="form-control">
       </div>
     </div>
     <div class="form-group">
@@ -96,28 +89,61 @@
         </select>
       </div>
     </div> <!-- /.form-group -->
-    <div class="form-group">
+    <div class="form-group required">
       <label class="control-label col-sm-3">Gender</label>
       <div class="col-sm-6">
         <div class="row">
           <div class="col-sm-4">
             <label class="radio-inline">
-              <input type="radio" name="gender" id="femaleRadio" value="Female">Female
+              <input type="radio" name="gender" id="femaleRadio" required="required" value="Female">Female
             </label>
           </div>
           <div class="col-sm-4">
             <label class="radio-inline">
-              <input type="radio" name="gender" id="maleRadio" value="Male">Male
+              <input type="radio" name="gender" id="maleRadio" required="required" value="Male">Male
             </label>
           </div>
         </div>
       </div>
     </div> <!-- /.form-group -->
-    <div class="form-group">
+    <div class="form-group required">
+      <label for="qestion" class="col-sm-3 control-label">Secret Qeastion</label>
+      <div class="col-sm-6">
+        <select id="qestion" name="qestion" required="required" class="form-control">
+          <option>Best childhood friend</option>
+          <option>Name of first pet</option>
+          <option>Favorite teacher</option>
+          <option>Favorite historical person</option>
+        </select>
+        <span class="help-block">Secret question when password is forgotten</span>
+      </div>
+    </div> <!-- /.form-group -->
+    <div class="form-group required">
+      <label for="answer" class="col-sm-3 control-label">Secret Answer</label>
+      <div class="col-sm-9">
+        <input type="text" name="answer" id="answer" placeholder="Secret Answer" required="required" class="form-control">
+        <span class="help-block">Secret answer when password is forgotten</span>
+      </div>
+    </div>
+    <div class="form-group required">
+      <label for="password" class="col-sm-3 control-label">Password</label>
+      <div class="col-sm-9">
+        <input type="password" name="password" id="password" placeholder="Password" required="required" class="form-control">
+        <span class="help-block">Use letters and numbers</span>
+      </div>
+    </div>
+    <div class="form-group required">
+      <label for="password2" class="col-sm-3 control-label">Confirm Password</label>
+      <div class="col-sm-9">
+        <input type="password" name="password2" id="password2" placeholder="Password" required="required" class="form-control">
+        <span class="help-block">Use letters and numbers</span>
+      </div>
+    </div>
+    <div class="form-group required">
       <div class="col-sm-9 col-sm-offset-3">
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="accept">I accept <a href="http://examples.yourdictionary.com/payment-terms-examples.html" target="_blank">terms</a>
+            <input type="checkbox" name="accept">I accept <a href="http://examples.yourdictionary.com/payment-terms-examples.html" target="_blank" >terms</a>
           </label>
         </div>
       </div>

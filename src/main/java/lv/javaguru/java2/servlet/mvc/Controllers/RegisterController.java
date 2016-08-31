@@ -58,6 +58,8 @@ public class RegisterController implements MVCController {
         request.getParameter("companyName"),
         request.getParameter("jobTitle"),
         request.getParameter("salary"),
+        request.getParameter("question"),
+        request.getParameter("answer"),
         null
         );
         System.out.print(user.toString());

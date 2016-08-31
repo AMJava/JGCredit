@@ -55,6 +55,12 @@ public class User {
     @Column(name = "salary")
     private String salary;
 
+    @Column(name = "secret_qeastion")
+    private String question;
+
+    @Column(name = "secret_answer")
+    private String answer;
+
     @Column(name = "photo", columnDefinition = "longblob")
     private byte[] photo;
 
@@ -63,7 +69,7 @@ public class User {
 
     public User(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String phoneNumber, String company,
-                String jobTitle, String salary, byte[] photo) {
+                String jobTitle, String salary, String question, String answer, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -79,6 +85,24 @@ public class User {
         this.company = company;
         this.jobTitle = jobTitle;
         this.salary = salary;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public Long getId() {

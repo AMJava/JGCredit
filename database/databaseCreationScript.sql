@@ -24,8 +24,10 @@ CREATE TABLE users (
   birth_date DATE NOT NULL,
   address VARCHAR(100) NOT NULL,
   phone_number VARCHAR(15) NOT NULL,
-  company_name VARCHAR(50) NOT NULL,
-  job_title VARCHAR(25)  NOT NULL,
+  company_name VARCHAR(50),
+  job_title VARCHAR(25),
+  secret_qeastion VARCHAR(100) NOT NULL DEFAULT 'Best childhood friend' CHECK (secret_qeastion IN ('Best childhood friend', 'Name of first pet', 'Favorite teacher', 'Favorite historical person')),
+  secret_answer VARCHAR(100) NOT NULL,
   salary VARCHAR(10) DEFAULT '0-500€' CHECK (salary IN ('<500€', '500-1000€', '1000-2000€', '>2000€')),
   photo longblob,
   PRIMARY KEY (id)
@@ -118,7 +120,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 /*Examples:*/
-insert into users values (default,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€',null);
+insert into users values (default,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null);
 insert into employees values (default,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
 insert into loans values (default,'250.00', '0.12',100,'days',sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
 insert into loans_ext values (default,'Prolongation', 'PROCESSING',sysdate(),sysdate(),'0.22','0.12',1,'123213213','TEST');

@@ -39,11 +39,15 @@ public class UserDTO {
 
     private String salary;
 
+    private String question;
+
+    private String answer;
+
     private byte[] photo;
 
     public UserDTO(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String phoneNumber, String company,
-                String jobTitle, String salary, byte[] photo) {
+                String jobTitle, String salary, String question, String answer, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -59,6 +63,24 @@ public class UserDTO {
         this.company = company;
         this.jobTitle = jobTitle;
         this.salary = salary;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public Long getId() {

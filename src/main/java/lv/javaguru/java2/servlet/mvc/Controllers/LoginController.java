@@ -1,5 +1,7 @@
 package lv.javaguru.java2.servlet.mvc.Controllers;
 
+import lv.javaguru.java2.businesslogic.Services.UserServiceImpl;
+import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
@@ -16,14 +18,11 @@ import java.sql.SQLException;
 @Component
 public class LoginController implements MVCController {
 
-//    @Autowired
-//    UserLoginServiceImpl userLoginServiceImpl;
+    @Autowired
+    UserService userService;
 
     @Autowired
     ConvertorDTO convertorDTO;
-
-    @Autowired
-    private UserDAO userDAO;
 
     @Override
     public MVCModel executeGetRequest(HttpServletRequest request) {
@@ -33,17 +32,9 @@ public class LoginController implements MVCController {
     @Override
     public MVCModel executePostRequest(HttpServletRequest request) {
 
-       // User user = userLoginServiceImpl.CheckAuthorization(
-       // request.getParameter("user"),
-       // request.getParameter("pass"));
-
-        User user = null;
-        try{
-            user = userDAO.getByLogin(request.getParameter("user"));
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+        User user = userService.CheckAuthorization(
+        request.getParameter("user"),
+        request.getParameter("pass"));
 
         if (user != null && user.getPassword().equals(request.getParameter("pass"))) {
             UserDTO userDTO = convertorDTO.convertUserToDTO(user);
