@@ -247,6 +247,8 @@ public class User {
         ", \"company\":" + "\"" + company + "\"" +
         ", \"jobTitle\":" + "\"" + jobTitle + "\"" +
         ", \"salary\":" + "\"" + salary + "\"" +
+        ", \"quastion\":" + "\"" + question + "\"" +
+        ", \"answer\":" + "\"" + answer + "\"" +
         ", \"gender\":" + "\"" + gender + "\"" +
         ", \"email\":" + "\"" + email + "\"" +
         ", \"name\":" + "\"" + fName + "\"" +

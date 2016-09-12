@@ -19,6 +19,7 @@ public class ConvertorDTO {
             user.getId(),
             user.getLogin(),
             user.getPassword(),
+            user.getPassword(),
             user.getEmail(),
             user.getFName(),
             user.getLName(),

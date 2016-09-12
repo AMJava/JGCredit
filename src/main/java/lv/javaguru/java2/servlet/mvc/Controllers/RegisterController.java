@@ -1,8 +1,10 @@
 package lv.javaguru.java2.servlet.mvc.Controllers;
 
+import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
+import lv.javaguru.java2.dto.UserDTO;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class RegisterController implements MVCController {
@@ -24,14 +27,14 @@ public class RegisterController implements MVCController {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    UserService userService;
+
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Register Member", "/templates/user/register.jsp","");
+        return new MVCModel("Register Member", "/templates/user/register.jsp","",null);
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        // User user = userLoginServiceImpl.CheckAuthorization(
-        // request.getParameter("user"),
-        // request.getParameter("pass"));
         Date date = null;
         if(request.getParameter("birthDate") != null && request.getParameter("birthDate")!="")
         {
@@ -43,10 +46,11 @@ public class RegisterController implements MVCController {
                 e.printStackTrace();
             }
         }
-        User user = new User(
+        UserDTO userDTO = new UserDTO(
         (long)0,
         request.getParameter("login"),
         request.getParameter("password"),
+        request.getParameter("password2"),
         request.getParameter("email"),
         request.getParameter("fName"),
         request.getParameter("lName"),
@@ -62,14 +66,21 @@ public class RegisterController implements MVCController {
         request.getParameter("answer"),
         null
         );
-        System.out.print(user.toString());
+        System.out.println("UserDTO:"+userDTO.toString());
 
-        try{
-            user = userDAO.getByLogin(request.getParameter("user"));
-        }
-        catch (SQLException e) {
+        List<String> errorMessages = null;
+        try {
+            errorMessages = userService.create(userDTO);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new MVCModel("Register Member", "/templates/user/register.jsp","");
+
+        if (errorMessages != null)
+        {
+            request.getSession().setAttribute("userDTO", userDTO);
+            return new MVCModel(userDTO,"/redirect.jsp", "/java2",null);
+        }else{
+            return new MVCModel(userDTO,"/templates/user/register.jsp", null,errorMessages);
+        }
     }
 }

@@ -107,9 +107,9 @@
       </div>
     </div> <!-- /.form-group -->
     <div class="form-group required">
-      <label for="qestion" class="col-sm-3 control-label">Secret Qeastion</label>
+      <label for="question" class="col-sm-3 control-label">Secret Qeastion</label>
       <div class="col-sm-6">
-        <select id="qestion" name="qestion" required="required" class="form-control">
+        <select id="question" name="question" required="required" class="form-control">
           <option>Best childhood friend</option>
           <option>Name of first pet</option>
           <option>Favorite teacher</option>

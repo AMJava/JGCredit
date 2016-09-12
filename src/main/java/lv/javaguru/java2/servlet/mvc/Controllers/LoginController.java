@@ -26,13 +26,13 @@ public class LoginController implements MVCController {
 
     @Override
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("", "/templates/user/login.jsp","");
+        return new MVCModel("", "/templates/user/login.jsp","",null);
     }
 
     @Override
     public MVCModel executePostRequest(HttpServletRequest request) {
 
-        User user = userService.CheckAuthorization(
+        User user = userService.checkAuthorization(
         request.getParameter("user"),
         request.getParameter("pass"));
 
@@ -49,10 +49,10 @@ public class LoginController implements MVCController {
                 e.printStackTrace();
             }
             request.getSession().setAttribute("userDTO", userDTO);
-            return new MVCModel(userDTO,"/index.jsp", null);
+            return new MVCModel(userDTO,"/redirect.jsp", "/java2",null);
         }
         else {
-            return  new MVCModel(null, "/templates/user/login.jsp", "Wrong login or password!");
+            return  new MVCModel(null, "/templates/user/login.jsp", "Wrong login or password!",null);
         }
     }
 }

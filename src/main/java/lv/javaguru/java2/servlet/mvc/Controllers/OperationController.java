@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 public class OperationController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Operations", "/templates/user/operations.jsp","");
+        return new MVCModel("Operations", "/templates/user/operations.jsp","",null);
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Operations", "/templates/user/operations.jsp","");
+        return new MVCModel("Operations", "/templates/user/operations.jsp","",null);
     }
 }

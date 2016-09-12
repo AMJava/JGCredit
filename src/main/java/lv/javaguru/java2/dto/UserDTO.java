@@ -17,6 +17,8 @@ public class UserDTO {
 
     private String password;
 
+    private String password2;
+
     private String email;
 
     private String fName;
@@ -45,12 +47,13 @@ public class UserDTO {
 
     private byte[] photo;
 
-    public UserDTO(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
+    public UserDTO(Long id, String login, String password, String password2, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String phoneNumber, String company,
                 String jobTitle, String salary, String question, String answer, byte[] photo) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.password2 = password2;
         this.email = email;
         this.photo = photo;
         this.fName = fName;
@@ -105,6 +108,14 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 
     public String getEmail() {
@@ -201,5 +212,29 @@ public class UserDTO {
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+        "\"Id\":" + "\"" + id + "\"" +
+        ", \"login\":" + "\"" + login + "\"" +
+        ", \"personalCode\":" + "\"" + personalCode + "\"" +
+        ", \"birthDate\":" + "\"" + birthDate + "\"" +
+        ", \"address\":" + "\"" + address + "\"" +
+        ", \"phoneNumber\":" + "\"" + phoneNumber + "\"" +
+        ", \"company\":" + "\"" + company + "\"" +
+        ", \"jobTitle\":" + "\"" + jobTitle + "\"" +
+        ", \"salary\":" + "\"" + salary + "\"" +
+        ", \"quastion\":" + "\"" + question + "\"" +
+        ", \"answer\":" + "\"" + answer + "\"" +
+        ", \"gender\":" + "\"" + gender + "\"" +
+        ", \"email\":" + "\"" + email + "\"" +
+        ", \"name\":" + "\"" + fName + "\"" +
+        ", \"phone\":" + "\"" + lName + "\"" +
+        ", \"password\":" + "\"" + password + "\"" +
+        ", \"password2\":" + "\"" + password2 + "\"" +
+        ", \"photo\":" + "\"" + photo + "\"" +
+        '}';
     }
 }
