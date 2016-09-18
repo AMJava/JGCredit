@@ -14,7 +14,83 @@
 </head>
 <body>
 <%@ include file="../shared/header.jsp" %>
-<div class="header_02"><%= request.getAttribute("model") %></div>
+<%
+  UserDTO editUser = (UserDTO) session.getAttribute("userDTO");
+%>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%=editUser.getFName()%> <%=editUser.getLName()%></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="images/profile.jpg" class="img-circle img-responsive"> </div>
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td>First Name:</td>
+                  <td><%=editUser.getFName()%></td>
+                </tr>
+                <tr>
+                  <td>Last Name:</td>
+                  <td><%=editUser.getLName()%></td>
+                </tr>
+                <tr>
+                  <td>Personal Code:</td>
+                  <td><%=editUser.getPersonalCode()%></td>
+                </tr>
+                <tr>
+                  <td>Birth date:</td>
+                  <td><%=editUser.getBirthDate()%></td>
+                </tr>
+                <tr>
+                  <td>Address</td>
+                  <td><%=editUser.getAddress()%></td>
+                </tr>
+
+                <tr>
+                <tr>
+                  <td>Phone Number</td>
+                  <td><%=editUser.getPhoneNumber()%></td>
+                </tr>
+                <tr>
+                  <td>Company Name</td>
+                  <td><%=editUser.getCompany()%></td>
+                </tr>
+                <tr>
+                  <td>Job Title</td>
+                  <td><%=editUser.getJobTitle()%></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td><a href="mailto:info@support.com"><%=editUser.getEmail()%></a></td>
+                </tr>
+                <td>Salary</td>
+                <td><%=editUser.getSalary()%></td>
+                </tr>
+                </tbody>
+              </table>
+
+              <a href="#" class="btn btn-primary">My Operations</a>
+              <a href="#" class="btn btn-primary">Change Password</a>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+          <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 <%@ include file="../shared/footer.jsp" %>
 </body>
 </html>
