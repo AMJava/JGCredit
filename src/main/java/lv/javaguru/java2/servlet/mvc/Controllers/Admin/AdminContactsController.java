@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminContactsController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Contacts", "/templates/admin/admin-users.jsp","");
+        return new MVCModel("Contacts", "/templates/admin/admin-users.jsp","",null);
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Contacts", "/templates/admin/admin-users.jsp","");
+        return new MVCModel("Contacts", "/templates/admin/admin-users.jsp","",null);
     }
 }

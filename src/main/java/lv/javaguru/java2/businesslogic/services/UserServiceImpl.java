@@ -2,6 +2,7 @@ package lv.javaguru.java2.businesslogic.services;
 
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.UserValidator;
+import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
@@ -31,13 +32,13 @@ public class UserServiceImpl implements UserService {
     PasswordEncoder passwordEncoder;
 
     @Transactional
-    public List<String> create(UserDTO userDTO) throws SQLException{
+    public User create(UserDTO userDTO) throws SQLException, ServiceException {
 
         User user = convertorDTO.convertUserFromDTO(userDTO);
-        List<String> registerErrors = userValidator.validateUser(user,userDTO.getPassword2());
-        if (registerErrors.size() > 0) {
-            return registerErrors;
-        } else {
+        if(user == null)
+            throw new ServiceException("Please Contact Second Line Support");
+        boolean isVaalid = userValidator.validateUser(user,userDTO.getPassword2());
+        if (isVaalid) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userDAO.create(user);
         }
@@ -51,20 +52,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public User checkAuthorization(String login, String password) {
+    public User checkAuthorization(String login, String password) throws SQLException, ServiceException {
 
-        User user = null;
-        try {
-            user = findByLogin(login);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(login.equals("")){
+            throw new ServiceException("Login cannot be null or empty");
         }
 
-        if (user != null) {
+        if(password.equals("")){
+            throw new ServiceException("Password cannot be null or empty");
+        }
+
+        User user = null;
+        user = findByLogin(login);
+        if(user == null)
+            throw new ServiceException("Wrong Login");
+        else{
             if (passwordEncoder.matches(password, user.getPassword())) {
                 return user;
             }
+            else{
+                throw new ServiceException("Wrong Password");
+            }
         }
-        return null;
     }
 }

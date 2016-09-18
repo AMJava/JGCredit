@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS payments;
 
 CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
   login VARCHAR(16) NOT NULL,
   login_pw VARCHAR(80) NOT NULL,
   first_name VARCHAR(25) NOT NULL,
@@ -36,6 +37,7 @@ CREATE TABLE users (
 
 CREATE TABLE employees (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
   login VARCHAR(16) NOT NULL,
   login_pw VARCHAR(80) NOT NULL,
   first_name VARCHAR(25) NOT NULL,
@@ -52,6 +54,7 @@ CREATE TABLE employees (
 );
 CREATE TABLE loans (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
   loan_sum DECIMAL(10,2) NOT NULL,
   interest_rate DECIMAL(6,2) NOT NULL,
   term INT(3) DEFAULT 12,
@@ -70,6 +73,7 @@ CREATE TABLE loans (
 );
 CREATE TABLE loans_ext (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
   ext_type VARCHAR(12) DEFAULT 'Prolongation' CHECK (ext_type IN ('Prolongation', 'Penalty')),
   ext_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (ext_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
   ext_date DATE NOT NULL,
@@ -85,6 +89,7 @@ CREATE TABLE loans_ext (
 );
 CREATE TABLE payments (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
   payment_type VARCHAR(20) DEFAULT 'Outcome' CHECK (payment_type IN ('Outcome', 'Income')),
   payment_sum DECIMAL(10,2) NOT NULL,
   payment_date DATETIME NOT NULL,
@@ -98,6 +103,7 @@ CREATE TABLE payments (
 
 CREATE TABLE communications (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
   subj VARCHAR(250) NOT NULL,
   body VARCHAR(250) NOT NULL,
   sent_date DATETIME NOT NULL,
@@ -121,9 +127,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 /*Examples:*/
-insert into users values (default,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null,'Y');
-insert into employees values (default,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
-insert into loans values (default,'250.00', '0.12',100,'days',sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
-insert into loans_ext values (default,'Prolongation', 'PROCESSING',sysdate(),sysdate(),'0.22','0.12',1,'123213213','TEST');
-insert into payments values (default,'Outcome', '100',sysdate(),'12312312',1,null);
-insert into payments values (default,'Outcome', '100',sysdate(),'123213132',null,1);
+insert into users values (default,0,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null,'Y');
+insert into employees values (default,0,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
+insert into loans values (default,0,'250.00', '0.12',100,'days',sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
+insert into loans_ext values (default,0,'Prolongation', 'PROCESSING',sysdate(),sysdate(),'0.22','0.12',1,'123213213','TEST');
+insert into payments values (default,0,'Outcome', '100',sysdate(),'12312312',1,null);
+insert into payments values (default,0,'Outcome', '100',sysdate(),'123213132',null,1);
+
+select * from users

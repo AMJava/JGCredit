@@ -1,5 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.servlet.mvc.Controllers.*;
 import lv.javaguru.java2.servlet.mvc.Controllers.Admin.*;
 import org.springframework.beans.BeansException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -42,6 +44,7 @@ public class MVCFilter implements Filter {
         controllers.put("/login", getBean(LoginController.class));
         controllers.put("/logout", getBean(LogoutController.class));
         controllers.put("/register", getBean(RegisterController.class));
+        controllers.put("/error", getBean(ErrorController.class));
 
         controllers.put("/profile", getBean(ProfileController.class));
         controllers.put("/loans", getBean(LoanController.class));
@@ -70,6 +73,10 @@ public class MVCFilter implements Filter {
                     model = controller.executePostRequest(req);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } catch (ServiceException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             }
             else {
@@ -81,6 +88,7 @@ public class MVCFilter implements Filter {
             }
                 req.setAttribute("model", model.getData());
                 req.setAttribute("message", model.getMessage());
+                req.setAttribute("error", model.getError());
             ServletContext context = req.getServletContext();
             RequestDispatcher requestDispacher =
             context.getRequestDispatcher(model.getViewName());

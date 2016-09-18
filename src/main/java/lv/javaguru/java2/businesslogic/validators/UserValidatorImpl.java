@@ -2,6 +2,7 @@ package lv.javaguru.java2.businesslogic.validators;
 
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.UserValidator;
+import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
@@ -24,43 +25,40 @@ public class UserValidatorImpl implements UserValidator {
     @Autowired
     private UserDAO userDAO;
 
-    public List<String> validateUser(User user, String Password2) throws SQLException {
-
-        List<String> errors = new ArrayList<String>();
+    public boolean validateUser(User user, String Password2) throws SQLException, ServiceException {
 
         User existingUser = null;
         if (user == null){
-            errors.add("Tehnical error, please contact 2 line support");
-            return errors;
+            throw new ServiceException("Please Contact Second Line Support.");
         }
 
         existingUser = userDAO.getByLogin(user.getLogin());
         if (existingUser != null) {
-            errors.add("User with same login already exist");
-            return errors;
+            throw new ServiceException("User with same login already exist.");
         }
 
         existingUser = userDAO.getByEmail(user.getEmail());
         if (existingUser != null) {
-            errors.add("User with same email already exist");
-            return errors;
+            throw new ServiceException("User with same email already exist.");
         }
 
-        if(!user.getPassword().equals(Password2)){
-                errors.add("Your password and confirmation password do not match.");}
-
+        if(!user.getPassword().equals(Password2)) {
+            throw new ServiceException("Your password and confirmation password do not match.");
+        }
         if(user.getTerm() == null || user.getTerm().equals("N")){
-            errors.add("Check that you have read and agree to the terms of the JGCredit");}
+            throw new ServiceException("Check that you have read and agree to the terms of the JGCredit.");
+        }
+
 
         if(!validatePassword(user.getPassword())){
-            errors.add("Password must contain at least 8 characters including 1 uppercase letter, 1 lowercase letter and 1 alphanumeric characters");
+            throw new ServiceException("Password must contain at least 8 characters including 1 uppercase letter, 1 lowercase letter and 1 alphanumeric characters.");
         }
 
         if(!validateAge(user.getBirthDate())){
-            errors.add("A person must be 18 years old");
+            throw new ServiceException("A person must be 18 years old.");
         }
 
-        return errors;
+        return true;
     }
 
     public boolean validatePassword(String password){

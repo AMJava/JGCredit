@@ -5,11 +5,13 @@ public class MVCModel {
     private Object data;
     private String viewName;
     private String message;
+    private Object error;
 
-    public MVCModel(Object data, String viewName, String message) {
+    public MVCModel(Object data, String viewName, String message, Object error) {
         this.data = data;
         this.viewName = viewName;
         this.message = message;
+        this.error = error;
     }
 
     public Object getData() {
@@ -22,6 +24,10 @@ public class MVCModel {
 
     public String getMessage() {
         return message;
+    }
+
+    public Object getError() {
+        return error;
     }
 
 }

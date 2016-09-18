@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 public class AboutController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("About", "/templates/user/about.jsp","");
+        return new MVCModel("About", "/templates/user/about.jsp","",null);
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("About", "/templates/user/about.jsp","");
+        return new MVCModel("About", "/templates/user/about.jsp","",null);
     }
 }

@@ -30,7 +30,7 @@ public class LogoutController implements MVCController {
         if (request.getSession().getAttribute("userDTO") != null) {
             request.getSession().removeAttribute("userDTO");
         }
-        return new MVCModel(null, "/index.jsp", "");
+        return new MVCModel(null, "/index.jsp", "",null);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class LogoutController implements MVCController {
         if (request.getSession().getAttribute("userDTO") != null) {
             request.getSession().removeAttribute("userDTO");
         }
-        return new MVCModel(null, "/index.jsp", "");
+        return new MVCModel(null, "/index.jsp", "",null);
     }
     }
 

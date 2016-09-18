@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 public class LoanExtController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Extend the loan", "/templates/user/loanExt.jsp","");
+        return new MVCModel("Extend the loan", "/templates/user/loanExt.jsp","",null);
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Extend the loan", "/templates/user/loanExt.jsp","");
+        return new MVCModel("Extend the loan", "/templates/user/loanExt.jsp","",null);
     }
 }

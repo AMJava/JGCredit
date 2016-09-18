@@ -8,6 +8,7 @@
 <%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
 <%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -255,13 +256,11 @@
       </div>
     </div> <!-- /.form-group -->
     <%
-      List<String>  userErrors = (List<String>) session.getAttribute("userErrors");
-      if (userErrors != null) {
-        for (int i=0; i<userErrors.size(); i++) {
+      if (request.getAttribute("error") != null) {
+      ErrorResponse error = (ErrorResponse) request.getAttribute("error");
     %>
-    <h5 style="color:red"><%=userErrors.get(i)%>.</h5>
+    <h5 style="color:red"><%=error.getMessage()%>.</h5>
     <%
-      }
       }
     %>
     <div class="form-group">

@@ -1,4 +1,5 @@
 <%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
+<%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <head>
@@ -18,9 +19,10 @@
           <input type="password" name="pass" placeholder="Password">
           <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           <%
-            if (request.getAttribute("message") != null) {
+            if (request.getAttribute("error") != null) {
+              ErrorResponse error = (ErrorResponse) request.getAttribute("error");
           %>
-            <h4 style="color:red"><%=request.getAttribute("message")%></h4>
+            <h4 style="color:red"><%=error.getMessage()%></h4>
           <%
             }
           %>

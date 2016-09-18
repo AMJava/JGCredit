@@ -1,5 +1,6 @@
 package lv.javaguru.java2.businesslogic;
 
+import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface UserValidator {
 
-    List<String> validateUser(User User, String password2) throws SQLException;
+    boolean validateUser(User User, String password2) throws SQLException, ServiceException;
 
     boolean validatePassword(String password);
 
