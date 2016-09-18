@@ -11,11 +11,6 @@ import java.util.Date;
 @Table(name = "employees")
 public class Employee extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
-    private Long id;
-
     @Column(name = "login")
     private String login;
 

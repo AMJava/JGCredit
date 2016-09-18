@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-8">
           <div class="logo">
-            <h1><a href="#">JGCREDIT.LV</a></h1>
+            <h1><a href="<%=request.getContextPath()%>/home">JGCREDIT.LV</a></h1>
           </div> <!-- /.logo -->
         </div> <!-- /.col-md-4 -->
         <div class="col-md-8 col-sm-6 col-xs-4">

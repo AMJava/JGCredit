@@ -14,10 +14,6 @@ import java.util.Date;
 @Entity
 @Table(name = "payments")
 public class Payment extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
-    private Long id;
 
     @Column(name = "payment_type")
     private String paymentType;

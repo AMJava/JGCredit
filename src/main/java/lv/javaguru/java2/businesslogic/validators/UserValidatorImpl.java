@@ -29,7 +29,7 @@ public class UserValidatorImpl implements UserValidator {
 
         User existingUser = null;
         if (user == null){
-            throw new ServiceException("Please Contact Second Line Support.");
+            throw new ServiceException("Please Contact Second Line Support.User is null in validateUser method");
         }
 
         existingUser = userDAO.getByLogin(user.getLogin());

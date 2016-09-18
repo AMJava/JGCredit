@@ -13,11 +13,20 @@
 <div class="content-section">
   <div class="modal-dialog">
       <div class="loginmodal-container">
-        <h1>Login</h1><br>
+        <h1>Restore Password</h1><br>
         <form method="post">
           <input type="text" name="user" placeholder="Username">
-          <input type="password" name="pass" placeholder="Password">
-          <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+            <select id="question" name="question" class="form-control">
+              <option>Select Question</option>
+              <option>Best childhood friend</option>
+              <option>Name of first pet</option>
+              <option>Favorite teacher</option>
+              <option>Favorite historical person</option>
+            </select>
+          <span class="help-block"></span>
+          <input type="text" name="answer" placeholder="Secret Answer">
+          <input type="submit" name="restore" class="login loginmodal-submit" value="Restore">
+          <span class="help-block">Password will be changed and sent to user E-mail.</span>
           <%
             if (request.getAttribute("error") != null) {
               ErrorResponse error = (ErrorResponse) request.getAttribute("error");
@@ -27,10 +36,6 @@
             }
           %>
         </form>
-
-        <div class="login-help">
-          <a href="<%=request.getContextPath()%>/register">Register</a> - <a href="<%=request.getContextPath()%>/restorePassword">Forgot Password</a>
-        </div>
       </div>
   </div>
 </div> <!-- /.content-section -->

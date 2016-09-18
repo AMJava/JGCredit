@@ -16,8 +16,6 @@ public interface BaseDAO<T> {
 
     T getById(long id) throws SQLException;
 
-    T getByLogin(String login) throws SQLException;
-
     List<T> getAll() throws SQLException;
 
 }

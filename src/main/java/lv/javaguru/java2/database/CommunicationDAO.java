@@ -1,17 +1,12 @@
 package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.domain.Communication;
+import lv.javaguru.java2.domain.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public interface CommunicationDAO {
+public interface CommunicationDAO extends BaseDAO<Communication>  {
 
-    void createCommunication(Communication communication) throws DBException;
-
-    Communication getCommunicationById(Long id) throws DBException;
-
-    void deleteCommunication(Long id) throws DBException;
-
-    List<Communication> getAllLoanCommunications(Long LoanId, Long LoanExtId) throws DBException;
-
+    Communication getByUserId(Long id) throws DBException, SQLException;
 }

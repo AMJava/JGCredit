@@ -22,9 +22,9 @@
           <div class="footer-widget">
             <h3 class="widget-title">Useful Links</h3>
             <ul>
-              <li><a href="#">Operations</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="<%=request.getContextPath()%>/operations">Operations</a></li>
+              <li><a href="<%=request.getContextPath()%>/about">About Us</a></li>
+              <li><a href="<%=request.getContextPath()%>/contacts">Contact</a></li>
             </ul>
           </div> <!-- /.footer-widget -->
         </div> <!-- /.col-md-2 -->
@@ -44,7 +44,7 @@
                 else
                 {
                 %>
-                <input type="submit" class="s-button" value="Register" name="Submit">
+                <input type="submit" class="s-button" value="Register" name="Register">
                 <%
                   }
                 %>

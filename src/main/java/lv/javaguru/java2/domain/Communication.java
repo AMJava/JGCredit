@@ -13,10 +13,6 @@ import java.util.Date;
 @Entity
 @Table(name = "communications")
 public class Communication extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
-    private Long id;
 
     @Column(name = "subj")
     private String subj;
@@ -36,9 +32,6 @@ public class Communication extends BaseEntity {
     @Column(name = "destination")
     private String destination;
 
-    @Column(name = "user_name")
-    private String userName;
-
     @Column(name = "user_id", columnDefinition = "int")
     private Long userId;
 
@@ -51,26 +44,18 @@ public class Communication extends BaseEntity {
     public Communication() {
     }
 
-    public Communication(String subj, String body, Date sentDate, String directionType, String comType, String destination, String userName, Long userId, Long loanId, Long loanExtId) {
+    public Communication(String subj, String body, Date sentDate, String directionType, String comType, String destination, Long userId, Long loanId, Long loanExtId) {
         this.body = body;
         this.sentDate = sentDate;
         this.directionType = directionType;
         this.comType = comType;
         this.destination = destination;
-        this.userName = userName;
         this.userId = userId;
         this.loanExtId = loanExtId;
         this.loanId = loanId;
         this.subj = subj;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getSubj() {
         return subj;

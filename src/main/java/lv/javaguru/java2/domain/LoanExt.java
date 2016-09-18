@@ -14,10 +14,6 @@ import java.util.Date;
 @Entity
 @Table(name = "loans_ext")
 public class LoanExt extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
-    private Long id;
 
     @Column(name = "ext_type")
     private String extType;

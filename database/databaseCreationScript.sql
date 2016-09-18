@@ -110,7 +110,6 @@ CREATE TABLE communications (
   direction_type VARCHAR(20) NOT NULL DEFAULT 'Outbound' CHECK (direction_type IN ('Outbound', 'Inbound')),
   com_type VARCHAR(20) NOT NULL DEFAULT 'E-mail' CHECK (ext_type IN ('E-mail', 'SMS', 'Call')),
   destination VARCHAR(250),
-  user_name VARCHAR(250),
   user_id INT(11),
   loan_id INT(11),
   loan_ext_id INT(11),

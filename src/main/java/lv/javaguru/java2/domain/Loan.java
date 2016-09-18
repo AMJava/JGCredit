@@ -14,10 +14,6 @@ import java.util.Date;
 @Entity
 @Table(name = "loans")
 public class Loan extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
-    private Long id;
 
     @Column(name = "loan_sum")
     private BigDecimal loanSum;
