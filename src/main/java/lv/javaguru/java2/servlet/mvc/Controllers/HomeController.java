@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel(null, "/index.jsp", "",null);
+        return new MVCModel(null, "/index.jsp", "");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel(null, "/index.jsp","",null);
+        return new MVCModel(null, "/index.jsp","");
     }
 }

@@ -14,6 +14,4 @@ public interface UserService {
 
     User checkAuthorization(String login, String password);
 
-    List<String> validateUser(User User, String Password2);
-
 }

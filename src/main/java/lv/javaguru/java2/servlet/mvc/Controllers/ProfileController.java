@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 public class ProfileController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Profile", "/templates/user/profile.jsp","",null);
+        return new MVCModel("Profile", "/templates/user/profile.jsp","");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Profile", "/templates/user/profile.jsp","",null);
+        return new MVCModel("Profile", "/templates/user/profile.jsp","");
     }
 }

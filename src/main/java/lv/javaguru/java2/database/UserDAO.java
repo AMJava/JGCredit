@@ -9,4 +9,5 @@ public interface UserDAO extends BaseDAO<User> {
 
     User getByLogin(String login) throws SQLException;
 
+    User getByEmail(String email) throws SQLException;
 }

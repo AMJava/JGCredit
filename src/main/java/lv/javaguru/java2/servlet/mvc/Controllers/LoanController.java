@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 public class LoanController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Take a loan", "/templates/user/loan.jsp","",null);
+        return new MVCModel("Take a loan", "/templates/user/loan.jsp","");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Take a loan", "/templates/user/loan.jsp","",null);
+        return new MVCModel("Take a loan", "/templates/user/loan.jsp","");
     }
 }

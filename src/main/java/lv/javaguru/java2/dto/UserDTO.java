@@ -47,9 +47,11 @@ public class UserDTO {
 
     private byte[] photo;
 
+    private String term;
+
     public UserDTO(Long id, String login, String password, String password2, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String phoneNumber, String company,
-                String jobTitle, String salary, String question, String answer, byte[] photo) {
+                String jobTitle, String salary, String question, String answer, byte[] photo, String term) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -68,6 +70,7 @@ public class UserDTO {
         this.salary = salary;
         this.question = question;
         this.answer = answer;
+        this.term = term;
     }
 
     public String getQuestion() {
@@ -214,6 +217,13 @@ public class UserDTO {
         this.photo = photo;
     }
 
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
     @Override
     public String toString() {
         return "{" +
@@ -235,6 +245,7 @@ public class UserDTO {
         ", \"password\":" + "\"" + password + "\"" +
         ", \"password2\":" + "\"" + password2 + "\"" +
         ", \"photo\":" + "\"" + photo + "\"" +
+        ", \"term\":" + "\"" + term + "\"" +
         '}';
     }
 }

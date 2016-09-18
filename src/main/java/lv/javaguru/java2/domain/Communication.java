@@ -1,5 +1,6 @@
 package lv.javaguru.java2.domain;
 
+import lv.javaguru.java2.domain.Base.BaseEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "communications")
-public class Communication {
+public class Communication extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", columnDefinition = "int")

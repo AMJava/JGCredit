@@ -31,16 +31,17 @@ public class RegisterController implements MVCController {
     UserService userService;
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Register Member", "/templates/user/register.jsp","",null);
+        return new MVCModel("Register Member", "/templates/user/register.jsp","");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
         Date date = null;
-        if(request.getParameter("birthDate") != null && request.getParameter("birthDate")!="")
+        String BirthDate = request.getParameter("birthDate");
+        if(BirthDate != null && BirthDate !="")
         {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                date = dateFormat.parse(request.getParameter("birthDate"));
+                date = dateFormat.parse(BirthDate);
                 System.out.print(date.toString());
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -64,7 +65,8 @@ public class RegisterController implements MVCController {
         request.getParameter("salary"),
         request.getParameter("question"),
         request.getParameter("answer"),
-        null
+        null,
+        request.getParameter("term")
         );
         System.out.println("UserDTO:"+userDTO.toString());
 
@@ -75,12 +77,17 @@ public class RegisterController implements MVCController {
             e.printStackTrace();
         }
 
-        if (errorMessages != null)
+        if (errorMessages == null)
         {
+            System.out.print("TEST1");
+            request.getSession().setAttribute("userErrorDTO", null);
             request.getSession().setAttribute("userDTO", userDTO);
-            return new MVCModel(userDTO,"/redirect.jsp", "/java2",null);
+            return new MVCModel(userDTO,"/redirect.jsp", "/java2");
         }else{
-            return new MVCModel(userDTO,"/templates/user/register.jsp", null,errorMessages);
+            System.out.print("TEST2");
+            request.getSession().setAttribute("userErrorDTO", userDTO);
+            request.getSession().setAttribute("userErrors", errorMessages);
+            return new MVCModel(null,"/templates/user/register.jsp", null);
         }
     }
 }

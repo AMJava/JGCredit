@@ -27,4 +27,10 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
         Criteria criteria = session.createCriteria(User.class);
         return (User) criteria.add(Restrictions.eq("login", login)).uniqueResult();
     }
+
+    public User getByEmail(String email) throws SQLException {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(User.class);
+        return (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+    }
 }

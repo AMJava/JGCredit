@@ -1,5 +1,6 @@
 package lv.javaguru.java2.domain;
 
+import lv.javaguru.java2.domain.Base.BaseEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -8,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

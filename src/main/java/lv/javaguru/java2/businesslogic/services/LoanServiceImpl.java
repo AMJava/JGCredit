@@ -1,4 +1,4 @@
-package lv.javaguru.java2.businesslogic.Services;
+package lv.javaguru.java2.businesslogic.services;
 
 import lv.javaguru.java2.businesslogic.LoanService;
 

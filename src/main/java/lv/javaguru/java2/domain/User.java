@@ -1,5 +1,6 @@
 package lv.javaguru.java2.domain;
 
+import lv.javaguru.java2.domain.Base.BaseEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -9,12 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "int")
-    private Long id;
+public class User extends BaseEntity{
 
     @Column(name = "login")
     private String login;
@@ -64,12 +60,15 @@ public class User {
     @Column(name = "photo", columnDefinition = "longblob")
     private byte[] photo;
 
+    @Column(name = "term", columnDefinition = "char")
+    private String term;
+
     public User() {
     }
 
     public User(Long id, String login, String password, String email, String fName, String lName, String gender, String personalCode, Date birthDate,
                 String address, String phoneNumber, String company,
-                String jobTitle, String salary, String question, String answer, byte[] photo) {
+                String jobTitle, String salary, String question, String answer, byte[] photo, String term) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -87,6 +86,7 @@ public class User {
         this.salary = salary;
         this.question = question;
         this.answer = answer;
+        this.term = term;
     }
 
     public String getQuestion() {
@@ -225,6 +225,13 @@ public class User {
         this.salary = salary;
     }
 
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -255,6 +262,7 @@ public class User {
         ", \"phone\":" + "\"" + lName + "\"" +
         ", \"password\":" + "\"" + password + "\"" +
         ", \"photo\":" + "\"" + photo + "\"" +
+        ", \"term\":" + "\"" + term + "\"" +
         '}';
     }
 }

@@ -33,7 +33,8 @@ public class ConvertorDTO {
             user.getSalary(),
             user.getQuestion(),
             user.getAnswer(),
-            user.getPhoto());
+            user.getPhoto(),
+            user.getTerm());
         }
         return null;
     }
@@ -58,7 +59,8 @@ public class ConvertorDTO {
             userDTO.getSalary(),
             userDTO.getQuestion(),
             userDTO.getAnswer(),
-            userDTO.getPhoto());
+            userDTO.getPhoto(),
+            userDTO.getTerm());
         }
         return null;
     }

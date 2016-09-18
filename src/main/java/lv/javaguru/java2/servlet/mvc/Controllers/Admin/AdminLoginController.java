@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminLoginController implements MVCController {
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp","",null);
+        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp","");
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp","",null);
+        return new MVCModel("Admin Login", "/templates/admin/admin-login.jsp","");
     }
 }
