@@ -24,13 +24,13 @@ public class ProfileController implements MVCController {
     ErrorResponse errorResponse;
 
     public MVCModel executeGetRequest(HttpServletRequest request) {
-      //  try {
-           // userService.checkAuthorization();
+        try {
+            userService.checkAuthorization();
             return new MVCModel("Profile", "/templates/user/profile.jsp","",null);
-      //  } catch (UnAuthorizedUserException e) {
-     //       errorResponse.setMessage(e.getMessage());
-      //      return  new MVCModel(null, "/templates/user/login.jsp", "",errorResponse);
-      //  }
+        } catch (UnAuthorizedUserException e) {
+            errorResponse.setMessage(e.getMessage());
+            return  new MVCModel(null, "/templates/user/login.jsp", "",errorResponse);
+        }
     }
 
     public MVCModel executePostRequest(HttpServletRequest request) {

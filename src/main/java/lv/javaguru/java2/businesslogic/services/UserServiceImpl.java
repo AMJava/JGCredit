@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void checkAuthorization() throws UnAuthorizedUserException {
         if (!sessionUserDTOService.authorized())
-            throw new UnAuthorizedUserException();
+            throw new UnAuthorizedUserException("Please Log In");
     }
 
     @Transactional

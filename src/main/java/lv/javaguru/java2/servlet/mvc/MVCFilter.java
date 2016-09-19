@@ -6,6 +6,7 @@ import lv.javaguru.java2.servlet.mvc.Controllers.Admin.*;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -22,18 +23,17 @@ public class MVCFilter implements Filter {
 
     private static final Logger logger = Logger.getLogger(MVCFilter.class.getName());
     private Map<String, MVCController> controllers;
-    private ApplicationContext springContext;
+    private AnnotationConfigWebApplicationContext springContext;
     private MVCController getBean(Class clazz){
         return (MVCController) springContext.getBean(clazz);
     }
 
-//, sozdtj luboj class, naprimer SpringConfig
     public void init(FilterConfig filterConfig) throws ServletException {
         try {
-            springContext =
-            new AnnotationConfigApplicationContext(SpringConfig.class);
+            springContext = new AnnotationConfigWebApplicationContext();
+            springContext.register(SpringConfig.class);
+            springContext.refresh();
         } catch (BeansException e) {
-            logger.log(Level.INFO, "Spring context failed to start", e);
         }
         controllers = new HashMap<String, MVCController>();
         controllers.put("/home", getBean(HomeController.class));
