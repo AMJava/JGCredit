@@ -32,7 +32,7 @@
                 <tbody>
                 <tr>
                   <td>First Name:</td>
-                  <td><%=editUser.getFName()%></td>
+                  <td ><%=editUser.getFName()%></td>
                 </tr>
                 <tr>
                   <td>Last Name:</td>
@@ -40,29 +40,29 @@
                 </tr>
                 <tr>
                   <td>Personal Code:</td>
-                  <td><%=editUser.getPersonalCode()%></td>
+                  <td><input type="text" name="personalNumber" value='<%=editUser.getPersonalCode() %>'></td>
                 </tr>
                 <tr>
                   <td>Birth date:</td>
-                  <td><%=editUser.getBirthDate()%></td>
+                  <td><%=editUser.getBirthDate().toString().substring(0,10)%></td>
                 </tr>
                 <tr>
                   <td>Address</td>
-                  <td><%=editUser.getAddress()%></td>
+                  <td><input type="text" name="personalNumber" value='<%=editUser.getAddress() %>'></td>
                 </tr>
 
                 <tr>
                 <tr>
                   <td>Phone Number</td>
-                  <td><%=editUser.getPhoneNumber()%></td>
+                  <td><input type="text" name="personalNumber" value='<%=editUser.getPhoneNumber() %>'></td>
                 </tr>
                 <tr>
                   <td>Company Name</td>
-                  <td><%=editUser.getCompany()%></td>
+                  <td><input type="text" name="personalNumber" value='<%=editUser.getCompany() %>'></td>
                 </tr>
                 <tr>
                   <td>Job Title</td>
-                  <td><%=editUser.getJobTitle()%></td>
+                  <td><input type="text" name="personalNumber" value='<%=editUser.getJobTitle() %>'></td>
                 </tr>
                 <tr>
                   <td>Email</td>
@@ -73,18 +73,10 @@
                 </tr>
                 </tbody>
               </table>
-
-              <a href="#" class="btn btn-primary">My Operations</a>
-              <a href="#" class="btn btn-primary">Change Password</a>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+              <a href="<%=request.getContextPath()%>/profile" class="btn btn-primary">Cancel</a>
             </div>
           </div>
-        </div>
-        <div class="panel-footer">
-          <a href="<%=request.getContextPath()%>/contacts" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-          <span class="pull-right">
-                            <a href="<%=request.getContextPath()%>/editProfile" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="<%=request.getContextPath()%>/logout" data-original-title="Log Out" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
         </div>
 
       </div>

@@ -51,6 +51,7 @@ public class LoginController implements MVCController {
                 fos.write(userDTO.getPhoto());
                 fos.close();
             }
+           // userService.login(userDTO);
             request.getSession().setAttribute("userDTO", userDTO);
             return new MVCModel(userDTO,"/redirect.jsp", "/java2",null);
         }

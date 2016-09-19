@@ -1,10 +1,12 @@
 package lv.javaguru.java2.businesslogic.services;
 
 import lv.javaguru.java2.businesslogic.CommunicationService;
+import lv.javaguru.java2.businesslogic.SessionUserDTOService;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.UserValidator;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
+import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
@@ -18,8 +20,6 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     CommunicationService communicationService;
+
+    @Autowired
+    SessionUserDTOService sessionUserDTOService;
 
     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?";
 
@@ -60,6 +63,12 @@ public class UserServiceImpl implements UserService {
     public User findByLogin(String login) throws SQLException {
 
         return userDAO.getByLogin(login);
+    }
+
+    @Transactional
+    public void checkAuthorization() throws UnAuthorizedUserException {
+        if (!sessionUserDTOService.authorized())
+            throw new UnAuthorizedUserException();
     }
 
     @Transactional
@@ -91,6 +100,11 @@ public class UserServiceImpl implements UserService {
                 throw new ServiceException("Wrong Password");
             }
         }
+    }
+
+    @Transactional
+    public void login(UserDTO userDTO) {
+        sessionUserDTOService.setUser(userDTO);
     }
 
     @Transactional

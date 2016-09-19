@@ -48,6 +48,7 @@ public class MVCFilter implements Filter {
         controllers.put("/error", getBean(ErrorController.class));
 
         controllers.put("/profile", getBean(ProfileController.class));
+        controllers.put("/editProfile", getBean(EditProfileController.class));
         controllers.put("/loans", getBean(LoanController.class));
         controllers.put("/loans/extend", getBean(LoanExtController.class));
 
