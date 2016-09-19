@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <html>
 <head>
   <link href="images/icon.png" rel="icon" type="image/png" />
@@ -21,12 +22,32 @@
         <h3 class="widget-title">Contact Us</h3>
         <div class="contact-form">
           <form name="contactform" id="contactform" action="#" method="post">
+            <%
+              UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
+              if (userDTO != null) {
+            %>
+              <p>
+                <input name="login" type="text" id="login" value="<%=userDTO.getLogin()%>" readonly>
+              </p>
+              <p>
+                <input name="name" type="text" id="name" value="<%=userDTO.getFName()%> <%=user.getLName()%>" readonly>
+              </p>
+            <p>
+              <input name="email" type="text" id="email" value="<%=userDTO.getEmail()%>" readonly>
+            </p>
+            <%
+              }
+              else{
+            %>
             <p>
               <input name="name" type="text" id="name" placeholder="Your Name">
             </p>
             <p>
               <input name="email" type="text" id="email" placeholder="Your Email">
             </p>
+            <%
+              }
+            %>
             <p>
               <input name="subject" type="text" id="subject" placeholder="Subject">
             </p>

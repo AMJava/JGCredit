@@ -16,7 +16,9 @@ public interface UserService {
 
     User findByLogin(String login) throws SQLException;
 
-    void update(User User) throws SQLException;
+    void update(User user) throws SQLException;
+
+    UserDTO updateEditable(UserDTO userDTO) throws SQLException, ServiceException;
 
     User checkAuthorization(String login, String password) throws SQLException, ServiceException;
 
@@ -25,4 +27,6 @@ public interface UserService {
     void restorePass(String login, String question, String answer) throws SQLException, ServiceException, MessagingException, CommunicationException;
 
     void login(UserDTO userDTO);
+
+    UserDTO gerSessionUserDTO();
 }

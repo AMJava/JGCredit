@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                   <td>Personal Code:</td>
-                  <td><%=editUser.getPersonalCode()%></td>
+                  <td><%=editUser.getBirthDate().toString().substring(0,10)%></td>
                 </tr>
                 <tr>
                   <td>Birth date:</td>
@@ -74,8 +74,8 @@
                 </tbody>
               </table>
 
-              <a href="#" class="btn btn-primary">My Operations</a>
-              <a href="#" class="btn btn-primary">Change Password</a>
+              <a href="<%=request.getContextPath()%>/operations" class="btn btn-primary">My Operations</a>
+              <a href="<%=request.getContextPath()%>/changePassword" class="btn btn-primary">Change Password</a>
             </div>
           </div>
         </div>

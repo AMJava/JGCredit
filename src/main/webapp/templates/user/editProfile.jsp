@@ -1,4 +1,4 @@
-<%--
+<%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %><%--
   Created by IntelliJ IDEA.
   User: Arturs
   Date: 16.08.2016
@@ -28,6 +28,7 @@
           <div class="row">
             <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="images/profile.jpg" class="img-circle img-responsive"> </div>
             <div class=" col-md-9 col-lg-9 ">
+              <form method="post">
               <table class="table table-user-information">
                 <tbody>
                 <tr>
@@ -40,7 +41,7 @@
                 </tr>
                 <tr>
                   <td>Personal Code:</td>
-                  <td><input type="text" name="personalNumber" value='<%=editUser.getPersonalCode() %>'></td>
+                  <td><%=editUser.getPersonalCode()%></td>
                 </tr>
                 <tr>
                   <td>Birth date:</td>
@@ -48,21 +49,21 @@
                 </tr>
                 <tr>
                   <td>Address</td>
-                  <td><input type="text" name="personalNumber" value='<%=editUser.getAddress() %>'></td>
+                  <td><input type="text1" name="address" id="address" value='<%=editUser.getAddress() %>'></td>
                 </tr>
 
                 <tr>
                 <tr>
                   <td>Phone Number</td>
-                  <td><input type="text" name="personalNumber" value='<%=editUser.getPhoneNumber() %>'></td>
+                  <td><input type="text1" name="phoneNumber" id="phoneNumber" value='<%=editUser.getPhoneNumber() %>'></td>
                 </tr>
                 <tr>
                   <td>Company Name</td>
-                  <td><input type="text" name="personalNumber" value='<%=editUser.getCompany() %>'></td>
+                  <td><input type="text1" name="companyName" id="companyName" value='<%=editUser.getCompany() %>'></td>
                 </tr>
                 <tr>
                   <td>Job Title</td>
-                  <td><input type="text" name="personalNumber" value='<%=editUser.getJobTitle() %>'></td>
+                  <td><input type="text1" name="jobTitle" id="jobTitle" value='<%=editUser.getJobTitle() %>'></td>
                 </tr>
                 <tr>
                   <td>Email</td>
@@ -73,8 +74,17 @@
                 </tr>
                 </tbody>
               </table>
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-              <a href="<%=request.getContextPath()%>/profile" class="btn btn-primary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="<%=request.getContextPath()%>/profile" class="btn btn-primary">Cancel</a>
+                <%
+                  if (request.getAttribute("error") != null) {
+                    ErrorResponse error = (ErrorResponse) request.getAttribute("error");
+                %>
+                <h4 style="color:red"><%=error.getMessage()%></h4>
+                <%
+                  }
+                %>
+              </form>
             </div>
           </div>
         </div>

@@ -4,19 +4,16 @@ import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
-import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
-import lv.javaguru.java2.dto.UserDTO;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileOutputStream;
 
 @Component
-public class RestorePassController implements MVCController {
+public class ChangePassController implements MVCController {
 
     @Autowired
     UserService userService;
@@ -29,7 +26,7 @@ public class RestorePassController implements MVCController {
 
     @Override
     public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel(null, "/templates/user/restorePass.jsp","",null);
+        return new MVCModel(null, "/templates/user/changePass.jsp","",null);
     }
 
     @Override
@@ -37,18 +34,15 @@ public class RestorePassController implements MVCController {
 
         try{
             userService.restorePass(
-            request.getParameter("user"),
-            request.getParameter("question"),
-            request.getParameter("answer"));
+            request.getParameter("password"),
+            request.getParameter("newPassword"),
+            request.getParameter("newPassword2"));
 
-            return new MVCModel(null,"/redirect.jsp", "/java2",null);
+            return new MVCModel(null,"/redirect.jsp", "/java2/profile",null);
         }
         catch(ServiceException e) {
             errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/templates/user/restorePass.jsp", "",errorResponse);
-        } catch(CommunicationException e) {
-            errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/templates/user/restorePass.jsp", "",errorResponse);
+            return  new MVCModel(null, "/templates/user/changePass.jsp", "",errorResponse);
         }  catch (Exception e) {
             errorResponse.setMessage(e.getMessage());
             return  new MVCModel(null, "/error.jsp", "",errorResponse);

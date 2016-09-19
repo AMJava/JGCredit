@@ -78,6 +78,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
+    public UserDTO updateEditable(UserDTO userDTO) throws SQLException, ServiceException {
+        if (userDTO.getAddress().equals("") || userDTO.getAddress() == null){
+            throw new ServiceException("Address cannot be null or empty");
+        }
+
+        if (userDTO.getPhoneNumber().equals("") || userDTO.getPhoneNumber() == null){
+            throw new ServiceException("Phone Number cannot be null or empty");
+        }
+        User user = findByLogin(userDTO.getLogin());
+        user.setAddress(userDTO.getAddress());
+        user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setCompany(userDTO.getCompany());
+        user.setJobTitle(userDTO.getJobTitle());
+        userDAO.update(user);
+        return convertorDTO.convertUserToDTO(user);
+    }
+
+    @Transactional
     public User checkAuthorization(String login, String password) throws SQLException, ServiceException {
 
         if(login.equals("")){
@@ -137,5 +155,9 @@ public class UserServiceImpl implements UserService {
                 communicationService.sendRestoreEmail(user, newPassword);
             }
         }
+    }
+
+    public UserDTO gerSessionUserDTO(){
+        return sessionUserDTOService.getUserDTO();
     }
 }

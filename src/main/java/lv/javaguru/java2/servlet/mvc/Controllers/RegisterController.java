@@ -58,6 +58,7 @@ public class RegisterController implements MVCController {
             );
 
             userDTO = userService.create(userDTO);
+            userService.login(userDTO);
             request.getSession().setAttribute("userErrorDTO", null);
             request.getSession().setAttribute("userDTO", userDTO);
             return new MVCModel(null, "/redirect.jsp", "/java2", null);

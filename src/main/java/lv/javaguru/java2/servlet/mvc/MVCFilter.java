@@ -45,6 +45,8 @@ public class MVCFilter implements Filter {
         controllers.put("/logout", getBean(LogoutController.class));
         controllers.put("/register", getBean(RegisterController.class));
         controllers.put("/restorePassword", getBean(RestorePassController.class));
+        controllers.put("/changePassword", getBean(ChangePassController.class));
+
         controllers.put("/error", getBean(ErrorController.class));
 
         controllers.put("/profile", getBean(ProfileController.class));
