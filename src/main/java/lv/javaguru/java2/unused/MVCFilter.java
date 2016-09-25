@@ -1,26 +1,7 @@
-package lv.javaguru.java2.servlet.mvc;
+package lv.javaguru.java2.unused;
 
-import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
-import lv.javaguru.java2.servlet.mvc.Controllers.*;
-import lv.javaguru.java2.servlet.mvc.Controllers.Admin.*;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-public class MVCFilter implements Filter {
-
+public class MVCFilter{
+/*
     private static final Logger logger = Logger.getLogger(MVCFilter.class.getName());
     private Map<String, MVCController> controllers;
     private AnnotationConfigWebApplicationContext springContext;
@@ -53,13 +34,6 @@ public class MVCFilter implements Filter {
         controllers.put("/editProfile", getBean(EditProfileController.class));
         controllers.put("/loans", getBean(LoanController.class));
         controllers.put("/loans/extend", getBean(LoanExtController.class));
-
-        controllers.put("/admin/login", getBean(AdminLoginController.class));
-        controllers.put("/admin/home", getBean(AdminHomeController.class));
-        controllers.put("/admin/loans", getBean(AdminLoansController.class));
-        controllers.put("/admin/loansExt", getBean(AdminLoansExtController.class));
-        controllers.put("/admin/users", getBean(AdminContactsController.class));
-        controllers.put("/admin/employees", getBean(AdminEmployeesController.class));
     }
 
     public void doFilter(ServletRequest request,
@@ -106,5 +80,5 @@ public class MVCFilter implements Filter {
     public void destroy() {
 
     }
-
+*/
 }

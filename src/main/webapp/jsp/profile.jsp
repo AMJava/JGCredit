@@ -1,4 +1,4 @@
-<%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Arturs
   Date: 16.08.2016
@@ -13,7 +13,7 @@
   <title>Profile</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 <%
   UserDTO editUser = (UserDTO) session.getAttribute("userDTO");
 %>
@@ -28,12 +28,11 @@
           <div class="row">
             <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="images/profile.jpg" class="img-circle img-responsive"> </div>
             <div class=" col-md-9 col-lg-9 ">
-              <form method="post">
               <table class="table table-user-information">
                 <tbody>
                 <tr>
                   <td>First Name:</td>
-                  <td ><%=editUser.getFName()%></td>
+                  <td><%=editUser.getFName()%></td>
                 </tr>
                 <tr>
                   <td>Last Name:</td>
@@ -41,29 +40,29 @@
                 </tr>
                 <tr>
                   <td>Personal Code:</td>
-                  <td><%=editUser.getPersonalCode()%></td>
-                </tr>
-                <tr>
-                  <td>Birth date:</td>
                   <td><%=editUser.getBirthDate().toString().substring(0,10)%></td>
                 </tr>
                 <tr>
+                  <td>Birth date:</td>
+                  <td><%=editUser.getBirthDate()%></td>
+                </tr>
+                <tr>
                   <td>Address</td>
-                  <td><input type="text1" name="address" id="address" value='<%=editUser.getAddress() %>'></td>
+                  <td><%=editUser.getAddress()%></td>
                 </tr>
 
                 <tr>
                 <tr>
                   <td>Phone Number</td>
-                  <td><input type="text1" name="phoneNumber" id="phoneNumber" value='<%=editUser.getPhoneNumber() %>'></td>
+                  <td><%=editUser.getPhoneNumber()%></td>
                 </tr>
                 <tr>
                   <td>Company Name</td>
-                  <td><input type="text1" name="companyName" id="companyName" value='<%=editUser.getCompany() %>'></td>
+                  <td><%=editUser.getCompany()%></td>
                 </tr>
                 <tr>
                   <td>Job Title</td>
-                  <td><input type="text1" name="jobTitle" id="jobTitle" value='<%=editUser.getJobTitle() %>'></td>
+                  <td><%=editUser.getJobTitle()%></td>
                 </tr>
                 <tr>
                   <td>Email</td>
@@ -74,25 +73,24 @@
                 </tr>
                 </tbody>
               </table>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-                <a href="<%=request.getContextPath()%>/profile" class="btn btn-primary">Cancel</a>
-                <%
-                  if (request.getAttribute("error") != null) {
-                    ErrorResponse error = (ErrorResponse) request.getAttribute("error");
-                %>
-                <h4 style="color:red"><%=error.getMessage()%></h4>
-                <%
-                  }
-                %>
-              </form>
+
+              <a href="<%=request.getContextPath()%>/operations" class="btn btn-primary">My Operations</a>
+              <a href="<%=request.getContextPath()%>/changePassword" class="btn btn-primary">Change Password</a>
             </div>
           </div>
+        </div>
+        <div class="panel-footer">
+          <a href="<%=request.getContextPath()%>/contacts" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+          <span class="pull-right">
+                            <a href="<%=request.getContextPath()%>/editProfile" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="<%=request.getContextPath()%>/logout" data-original-title="Log Out" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
         </div>
 
       </div>
     </div>
   </div>
 </div>
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

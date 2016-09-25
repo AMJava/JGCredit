@@ -1,19 +1,24 @@
 package lv.javaguru.java2.servlet.mvc.Controllers;
 
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Component
-public class OperationController implements MVCController {
+@Controller
+public class OperationController{
 
-    public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Operations", "/templates/user/operations.jsp","",null);
+    @RequestMapping(value = "operations", method = {RequestMethod.GET})
+    public ModelAndView executeGetRequest(HttpServletRequest request) {
+        return new ModelAndView("operations", "model", null);
     }
 
-    public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Operations", "/templates/user/operations.jsp","",null);
+    @RequestMapping(value = "operations", method = {RequestMethod.POST})
+    public ModelAndView executePostRequest(HttpServletRequest request) {
+        return new ModelAndView("operations", "model", null);
     }
 }

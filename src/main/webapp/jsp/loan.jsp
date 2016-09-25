@@ -6,7 +6,7 @@
   <title>Take Loan</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 <div id="agreement_wrapper">
         <div class="header_02"><%= request.getAttribute("model") %></div>
   <form method="POST" action="">
@@ -56,6 +56,6 @@
   </form>
   </div>
 <script type=”text/javascript” src="../../libs/bootstrap.min.js"></script>
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

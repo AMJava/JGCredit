@@ -1,19 +1,24 @@
 package lv.javaguru.java2.servlet.mvc.Controllers;
 
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Component
-public class LoanController implements MVCController {
+@Controller
+public class LoanController{
 
-    public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel("Take a loan", "/templates/user/loan.jsp","",null);
+    @RequestMapping(value = "loan", method = {RequestMethod.GET})
+    public ModelAndView executeGetRequest(HttpServletRequest request) {
+        return new ModelAndView("loan", "model", null);
     }
 
-    public MVCModel executePostRequest(HttpServletRequest request) {
-        return new MVCModel("Take a loan", "/templates/user/loan.jsp","",null);
+    @RequestMapping(value = "loan", method = {RequestMethod.POST})
+    public ModelAndView executePostRequest(HttpServletRequest request) {
+        return new ModelAndView("loan", "model", null);
     }
 }

@@ -14,7 +14,7 @@
   <title>Contacts</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 <div class="content-section">
   <div class="container">
     <div class="row">
@@ -65,7 +65,7 @@
     </div>
   </div>
 </div> <!-- /.content-section -->
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 
 <!-- Google Map -->
 <script src="http://maps.google.com/maps/api/js?sensor=true&key=AIzaSyBsFoATu7RVPDssbj_U3fsB_qawnmJrbuM"></script>

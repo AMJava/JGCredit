@@ -13,7 +13,7 @@
     <title>About</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 <div class="content-section">
   <div class="container">
     <div class="row">
@@ -40,6 +40,6 @@
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- /.content-section -->
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

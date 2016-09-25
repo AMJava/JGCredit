@@ -17,7 +17,7 @@
     <title>Register</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 <%
   UserDTO errorUser = (UserDTO) session.getAttribute("userErrorDTO");
 %>
@@ -256,10 +256,11 @@
       </div>
     </div> <!-- /.form-group -->
     <%
-      if (request.getAttribute("error") != null) {
-      ErrorResponse error = (ErrorResponse) request.getAttribute("error");
+      MVCModel data = (MVCModel)request.getAttribute("model");
+      if (data != null) {
+        ErrorResponse error = (ErrorResponse)data.getError();
     %>
-    <h5 style="color:red"><%=error.getMessage()%>.</h5>
+    <h4 style="color:red"><%=error.getMessage()%></h4>
     <%
       }
     %>
@@ -270,6 +271,6 @@
     </div>
   </form> <!-- /form -->
 </div> <!-- ./container -->
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

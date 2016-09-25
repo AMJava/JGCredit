@@ -118,6 +118,13 @@
         <artifactId>commons-lang3</artifactId>
         <version>3.4</version>
       </dependency>
+
+      <!-- Spring MVC -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>4.1.4.RELEASE</version>
+      </dependency>
     </dependencies>
 
 

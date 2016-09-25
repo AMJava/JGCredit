@@ -8,29 +8,27 @@
   <title>Login</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 
 <div class="content-section">
   <div class="modal-dialog">
       <div class="loginmodal-container">
-        <h1>Login</h1><br>
+        <h1>Change Password</h1><br>
         <form method="post">
-          <input type="text" name="user" placeholder="Username">
-          <input type="password" name="pass" placeholder="Password">
-          <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          <input type="password" name="password" placeholder="Password">
+          <input type="password" name="newPassword" placeholder="New Password">
+          <input type="password" name="newPassword2" placeholder="Repeat New Password">
+          <input type="submit" name="change" class="login loginmodal-submit" value="Change Password">
           <%
-            if (request.getAttribute("error") != null) {
-              ErrorResponse error = (ErrorResponse) request.getAttribute("error");
+            MVCModel data = (MVCModel)request.getAttribute("model");
+            if (data != null) {
+              ErrorResponse error = (ErrorResponse)data.getError();
           %>
-            <h4 style="color:red"><%=error.getMessage()%></h4>
+          <h4 style="color:red"><%=error.getMessage()%></h4>
           <%
             }
           %>
         </form>
-
-        <div class="login-help">
-          <a href="<%=request.getContextPath()%>/register">Register</a> - <a href="<%=request.getContextPath()%>/restorePassword">Forgot Password</a>
-        </div>
       </div>
   </div>
 </div> <!-- /.content-section -->
@@ -38,6 +36,6 @@
 <!--<script src="js/jquery.min.js"></script>-->
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/script.js"></script>
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

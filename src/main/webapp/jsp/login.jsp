@@ -8,34 +8,30 @@
   <title>Login</title>
 </head>
 <body>
-<%@ include file="../shared/header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 
 <div class="content-section">
   <div class="modal-dialog">
       <div class="loginmodal-container">
-        <h1>Restore Password</h1><br>
+        <h1>Login</h1><br>
         <form method="post">
           <input type="text" name="user" placeholder="Username">
-            <select id="question" name="question" class="form-control">
-              <option>Select Question</option>
-              <option>Best childhood friend</option>
-              <option>Name of first pet</option>
-              <option>Favorite teacher</option>
-              <option>Favorite historical person</option>
-            </select>
-          <span class="help-block"></span>
-          <input type="text" name="answer" placeholder="Secret Answer">
-          <input type="submit" name="restore" class="login loginmodal-submit" value="Restore">
-          <span class="help-block">Password will be changed and sent to user E-mail.</span>
+          <input type="password" name="pass" placeholder="Password">
+          <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           <%
-            if (request.getAttribute("error") != null) {
-              ErrorResponse error = (ErrorResponse) request.getAttribute("error");
+            MVCModel data = (MVCModel)request.getAttribute("model");
+            if (data != null) {
+              ErrorResponse error = (ErrorResponse)data.getError();
           %>
             <h4 style="color:red"><%=error.getMessage()%></h4>
           <%
             }
           %>
         </form>
+
+        <div class="login-help">
+          <a href="<%=request.getContextPath()%>/register">Register</a> - <a href="<%=request.getContextPath()%>/restorePassword">Forgot Password</a>
+        </div>
       </div>
   </div>
 </div> <!-- /.content-section -->
@@ -43,6 +39,6 @@
 <!--<script src="js/jquery.min.js"></script>-->
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/script.js"></script>
-<%@ include file="../shared/footer.jsp" %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

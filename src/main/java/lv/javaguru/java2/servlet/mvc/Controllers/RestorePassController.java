@@ -4,19 +4,19 @@ import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
-import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
-import lv.javaguru.java2.dto.UserDTO;
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileOutputStream;
 
-@Component
-public class RestorePassController implements MVCController {
+@Controller
+public class RestorePassController{
 
     @Autowired
     UserService userService;
@@ -27,13 +27,14 @@ public class RestorePassController implements MVCController {
     @Autowired
     ErrorResponse errorResponse;
 
-    @Override
-    public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel(null, "/templates/user/restorePass.jsp","",null);
+    @RequestMapping(value = "restorePassword", method = {RequestMethod.GET})
+    public ModelAndView executeGetRequest(HttpServletRequest request) {
+        return new ModelAndView("restorePass", "model", null);
     }
 
-    @Override
-    public MVCModel executePostRequest(HttpServletRequest request) {
+
+    @RequestMapping(value = "restorePassword", method = {RequestMethod.POST})
+    public ModelAndView executePostRequest(HttpServletRequest request) {
 
         try{
             userService.restorePass(
@@ -41,17 +42,17 @@ public class RestorePassController implements MVCController {
             request.getParameter("question"),
             request.getParameter("answer"));
 
-            return new MVCModel(null,"/redirect.jsp", "/java2",null);
+            return new ModelAndView("redirect", "model", new MVCModel("/java2",null));
         }
         catch(ServiceException e) {
             errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/templates/user/restorePass.jsp", "",errorResponse);
+            return  new ModelAndView("restorePass","model",new MVCModel(null,errorResponse));
         } catch(CommunicationException e) {
             errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/templates/user/restorePass.jsp", "",errorResponse);
+            return  new ModelAndView("restorePass","model",new MVCModel(null,errorResponse));
         }  catch (Exception e) {
             errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/error.jsp", "",errorResponse);
+            return  new ModelAndView("error","model",new MVCModel(null,errorResponse));
         }
     }
 }

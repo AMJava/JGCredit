@@ -6,19 +6,18 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
 import lv.javaguru.java2.dto.ConvertorDTO;
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.SQLException;
 
-@Component
-public class LoginController implements MVCController {
+@Controller
+public class LoginController{
 
     @Autowired
     UserService userService;
@@ -29,13 +28,13 @@ public class LoginController implements MVCController {
     @Autowired
     ErrorResponse errorResponse;
 
-    @Override
-    public MVCModel executeGetRequest(HttpServletRequest request) {
-        return new MVCModel(null, "/templates/user/login.jsp","",null);
+    @RequestMapping(value = "login", method = {RequestMethod.GET})
+    public ModelAndView executeGetRequest(HttpServletRequest request) {
+        return new ModelAndView("login", "model", null);
     }
 
-    @Override
-    public MVCModel executePostRequest(HttpServletRequest request) {
+    @RequestMapping(value = "login", method = {RequestMethod.POST})
+    public ModelAndView executePostRequest(HttpServletRequest request) {
 
         try{
 
@@ -53,14 +52,14 @@ public class LoginController implements MVCController {
             }
             userService.login(userDTO);
             request.getSession().setAttribute("userDTO", userDTO);
-            return new MVCModel(userDTO,"/redirect.jsp", "/java2",null);
+            return new ModelAndView("redirect", "model", new MVCModel("/java2",null));
         }
         catch(ServiceException e) {
             errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/templates/user/login.jsp", "",errorResponse);
+            return new ModelAndView("login", "model", new MVCModel(null,errorResponse));
         } catch (Exception e) {
             errorResponse.setMessage(e.getMessage());
-            return  new MVCModel(null, "/error.jsp", "",errorResponse);
+            return new ModelAndView("login", "model", new MVCModel(null,errorResponse));
         }
     }
 }

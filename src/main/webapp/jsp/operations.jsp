@@ -2,16 +2,19 @@
   Created by IntelliJ IDEA.
   User: Arturs
   Date: 16.08.2016
-  Time: 20:46
+  Time: 20:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+  <link href="images/icon.png" rel="icon" type="image/png" />
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Operations</title>
 </head>
 <body>
-<%@ include file="../admin-shared/admin-header.jsp" %>
+<%@ include file="../jsp/shared/header.jsp" %>
 <div class="header_02"><%= request.getAttribute("model") %></div>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

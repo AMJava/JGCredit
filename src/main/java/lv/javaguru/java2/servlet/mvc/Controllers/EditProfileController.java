@@ -6,19 +6,19 @@ import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.dto.UserDTO;
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-@Component
-public class EditProfileController implements MVCController {
+@Controller
+public class EditProfileController{
 
     @Autowired
     SessionUserDTOService sessionUserDTOService;
@@ -29,17 +29,19 @@ public class EditProfileController implements MVCController {
     @Autowired
     ErrorResponse errorResponse;
 
-    public MVCModel executeGetRequest(HttpServletRequest request) {
+    @RequestMapping(value = "editProfile", method = {RequestMethod.GET})
+    public ModelAndView executeGetRequest(HttpServletRequest request) {
         try {
             userService.checkAuthorization();
-            return new MVCModel("Profile", "/templates/user/editProfile.jsp", "", null);
+            return new ModelAndView("editProfile", "model", null);
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
-            return new MVCModel(null, "/templates/user/login.jsp", "", errorResponse);
+            return  new ModelAndView("login","model",new MVCModel(null,errorResponse));
         }
     }
 
-    public MVCModel executePostRequest(HttpServletRequest request) throws SQLException {
+    @RequestMapping(value = "editProfile", method = {RequestMethod.POST})
+    public ModelAndView executePostRequest(HttpServletRequest request) throws SQLException {
         UserDTO userDTO = null;
         try {
             userDTO = userService.gerSessionUserDTO();
@@ -50,14 +52,14 @@ public class EditProfileController implements MVCController {
             userDTO = userService.updateEditable(userDTO);
             userService.login(userDTO);
             request.getSession().setAttribute("userDTO", userDTO);
-            return new MVCModel(userDTO, "/redirect.jsp", "/java2/profile", null);
+            return new ModelAndView("redirect", "model", new MVCModel("/java2/profile",null));
         } catch(ServiceException e) {
                 errorResponse.setMessage(e.getMessage());
-                return  new MVCModel(null, "/templates/user/editProfile.jsp", "",errorResponse);
+            return  new ModelAndView("editProfile","model",new MVCModel(null,errorResponse));
             }
           catch (Exception e) {
             errorResponse.setMessage(e.getMessage());
-            return new MVCModel(null, "/error.jsp", "", errorResponse);
+              return  new ModelAndView("error","model",new MVCModel(null,errorResponse));
         }
     }
 }
