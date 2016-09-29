@@ -1,8 +1,5 @@
-package lv.javaguru.java2.servlet.mvc.Controllers;
+package lv.javaguru.java2.controllers;
 
-import lv.javaguru.java2.unused.MVCController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

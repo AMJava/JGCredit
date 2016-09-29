@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlet.mvc.Controllers;
+package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
@@ -6,7 +6,7 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
 import lv.javaguru.java2.dto.ConvertorDTO;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
+import lv.javaguru.java2.dto.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,5 @@
 package lv.javaguru.java2.config;
 
-import lv.javaguru.java2.servlet.mvc.SpringConfig;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;

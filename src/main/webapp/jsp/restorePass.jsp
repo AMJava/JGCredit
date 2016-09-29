@@ -1,4 +1,4 @@
-<%@ page import="lv.javaguru.java2.servlet.mvc.MVCModel" %>
+<%@ page import="lv.javaguru.java2.dto.MVCModel" %>
 <%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
