@@ -5,7 +5,7 @@
   Time: 20:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="lv.javaguru.java2.dto.MVCModel" %>
+<%@ page import="lv.javaguru.java2.controllers.MVCModel" %>
 <%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
@@ -19,7 +19,11 @@
 <body>
 <%@ include file="../jsp/shared/header.jsp" %>
 <%
-  UserDTO errorUser = (UserDTO) session.getAttribute("userErrorDTO");
+  MVCModel data = (MVCModel)request.getAttribute("model");
+  UserDTO errorUser = null;
+  if (data != null) {
+    errorUser = (UserDTO) data.getData();
+  }
 %>
 <div class="container">
   <form class="form-horizontal" role="form" method="post">
@@ -256,7 +260,6 @@
       </div>
     </div> <!-- /.form-group -->
     <%
-      MVCModel data = (MVCModel)request.getAttribute("model");
       if (data != null) {
         ErrorResponse error = (ErrorResponse)data.getError();
     %>

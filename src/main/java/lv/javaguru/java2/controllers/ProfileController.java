@@ -4,7 +4,6 @@ import lv.javaguru.java2.businesslogic.SessionUserDTOService;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
-import lv.javaguru.java2.dto.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

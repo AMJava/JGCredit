@@ -1,5 +1,5 @@
 <%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
-<%@ page import="lv.javaguru.java2.dto.MVCModel" %><%--
+<%@ page import="lv.javaguru.java2.controllers.MVCModel" %><%--
   Created by IntelliJ IDEA.
   User: Arturs
   Date: 16.08.2016

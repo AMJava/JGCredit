@@ -6,7 +6,6 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
 import lv.javaguru.java2.dto.ConvertorDTO;
-import lv.javaguru.java2.dto.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

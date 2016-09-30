@@ -1,4 +1,4 @@
-package lv.javaguru.java2.dto;
+package lv.javaguru.java2.controllers;
 
 public class MVCModel {
 

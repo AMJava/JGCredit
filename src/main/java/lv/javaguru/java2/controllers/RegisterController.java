@@ -5,7 +5,6 @@ import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.dto.ConvertorDTO;
 import lv.javaguru.java2.dto.UserDTO;
-import lv.javaguru.java2.dto.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,17 +57,14 @@ public class RegisterController{
 
             userDTO = userService.create(userDTO);
             userService.login(userDTO);
-            request.getSession().setAttribute("userErrorDTO", null);
             request.getSession().setAttribute("userDTO", userDTO);
             return new ModelAndView("redirect", "model", new MVCModel("/java2",null));
         } catch (ServiceException e) {
             errorResponse.setMessage(e.getMessage());
-            System.out.print(errorResponse.getMessage());
-            request.getSession().setAttribute("userErrorDTO", userDTO);
-            return  new ModelAndView("register","model",new MVCModel(null,errorResponse));
+            return  new ModelAndView("register","model",new MVCModel(userDTO,errorResponse));
         } catch (Exception e) {
             errorResponse.setMessage(e.getMessage());
-            return  new ModelAndView("error","model",new MVCModel(null,errorResponse));
+            return  new ModelAndView("error","model",new MVCModel(userDTO,errorResponse));
         }
     }
 }

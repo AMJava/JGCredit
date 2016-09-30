@@ -125,6 +125,19 @@
         <artifactId>spring-webmvc</artifactId>
         <version>4.1.4.RELEASE</version>
       </dependency>
+
+      <!-- Spring Security -->
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>3.2.6.RELEASE</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>3.2.6.RELEASE</version>
+      </dependency>
     </dependencies>
 
 
