@@ -1,4 +1,4 @@
-<%@ page import="lv.javaguru.java2.controllers.MVCModel" %>
+<%@ page import="lv.javaguru.java2.domain.MVCModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <head>

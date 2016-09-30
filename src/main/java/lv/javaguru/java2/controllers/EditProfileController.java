@@ -5,6 +5,7 @@ import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
+import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

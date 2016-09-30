@@ -5,7 +5,7 @@
   Time: 20:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="lv.javaguru.java2.controllers.MVCModel" %>
+<%@ page import="lv.javaguru.java2.domain.MVCModel" %>
 <%@ page import="lv.javaguru.java2.dto.UserDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
