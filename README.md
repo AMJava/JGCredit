@@ -1,2 +1,2 @@
 # jagcredit
-java 2 course
+Test Project in Spring MVC, Hibernate...
