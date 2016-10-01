@@ -1,7 +1,9 @@
 package lv.javaguru.java2.controllers;
 
+import lv.javaguru.java2.businesslogic.CommunicationService;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
+import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
 import org.slf4j.Logger;
@@ -32,12 +34,27 @@ public class ContactsController extends ErrorHandlingController{
             return new ModelAndView("contacts", "model", null);
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
-            return  new ModelAndView("login","model",new MVCModel(null,errorResponse));
+            return new ModelAndView("redirect", "model", new MVCModel("/java2/login",null));
         }
     }
 
     @RequestMapping(value = "contacts", method = {RequestMethod.POST})
     public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
-        return new ModelAndView("contacts", "model", null);
+
+        try{
+            userService.createUserMessage(
+            request.getParameter("login"),
+            request.getParameter("name"),
+            request.getParameter("email"),
+            request.getParameter("subject"),
+            request.getParameter("message")
+            );
+
+            return new ModelAndView("redirect", "model", new MVCModel("/java2/home",null));
+        }
+        catch(ServiceException e) {
+            errorResponse.setMessage(e.getMessage());
+            return  new ModelAndView("contacts","model",new MVCModel(null,errorResponse));
+        }
     }
 }

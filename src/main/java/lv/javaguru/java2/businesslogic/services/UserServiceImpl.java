@@ -8,6 +8,7 @@ import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.Communication;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorDTO;
 import lv.javaguru.java2.dto.UserDTO;
@@ -20,6 +21,7 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -194,6 +196,30 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+
+    @Transactional
+    public void createUserMessage(String login, String name, String email, String subject, String message) throws SQLException, ServiceException, CommunicationException, UnAuthorizedUserException, MessagingException {
+
+        if(subject.equals("")){
+            throw new ServiceException("Subject cannot be null or empty");
+        }
+
+        if(message.equals("")){
+            throw new ServiceException("Message cannot be null or empty");
+        }
+
+        UserDTO userDTO = sessionUserDTOService.getUserDTO();
+        if(userDTO == null)
+            throw new UnAuthorizedUserException("Please Login");
+
+        User user = null;
+        user = findByLogin(login);
+        if(user == null)
+            throw new ServiceException("User not found, Please try again later");
+        else{
+                communicationService.createUserMessage(user,subject,message);
+            }
+        }
 
     public UserDTO gerSessionUserDTO(){
         return sessionUserDTOService.getUserDTO();

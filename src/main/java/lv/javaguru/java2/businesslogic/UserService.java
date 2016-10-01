@@ -30,5 +30,7 @@ public interface UserService {
 
     void login(UserDTO userDTO);
 
+    void createUserMessage(String login, String name, String email, String subject, String message) throws SQLException, ServiceException, CommunicationException, UnAuthorizedUserException, MessagingException;
+
     UserDTO gerSessionUserDTO();
 }

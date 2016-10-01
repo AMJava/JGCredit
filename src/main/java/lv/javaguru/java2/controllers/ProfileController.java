@@ -36,7 +36,7 @@ public class ProfileController extends ErrorHandlingController{
             return new ModelAndView("profile", "model", null);
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
-            return  new ModelAndView("login","model",new MVCModel(null,errorResponse));
+            return new ModelAndView("redirect", "model", new MVCModel("/java2/login",null));
         }
     }
 

@@ -13,6 +13,8 @@ public interface CommunicationService {
 
     Long create(Communication communication) throws SQLException, ServiceException, CommunicationException;
 
+    void createUserMessage(User user, String subject, String message) throws SQLException, ServiceException, CommunicationException, MessagingException;
+
     void sendRestoreEmail(User user, String password) throws SQLException, MessagingException, CommunicationException;
 
     void sendChangeEmail(User user) throws SQLException, MessagingException, CommunicationException;

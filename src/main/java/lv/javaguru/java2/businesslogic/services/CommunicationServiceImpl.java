@@ -45,6 +45,15 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Transactional
+    public void createUserMessage(User user, String subject, String message) throws SQLException, ServiceException, CommunicationException, MessagingException {
+        String sBody = "Our manager will contact you soon";
+        Date today = new Date();
+        generateAndSendEmail(sBody,user.getEmail(),"Thank You for your question on JGCredit.lv");
+        Communication communication = new Communication(subject, message, today, "Inbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Long CommunicationId = create(communication);
+    }
+
+    @Transactional
     public void sendRestoreEmail(User user, String password) throws SQLException, MessagingException, CommunicationException {
         String sBody = "Your password for "+user.getLogin()+" is: "+password;
         Date today = new Date();
