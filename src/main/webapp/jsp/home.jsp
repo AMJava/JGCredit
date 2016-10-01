@@ -60,7 +60,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-6">
-                  <label for="amount_amirol" class="control-label">Annually ($): </label>
+                  <label for="amount_amirol" class="control-label">Annually (€): </label>
                   <span class="help-text">Amount that you need to pay</span>
                 </div>
                 <div class="col-sm-6">
@@ -73,7 +73,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-6">
-                  <label for="amount_amirol" class="control-label">Monthly ($): </label>
+                  <label for="amount_amirol" class="control-label">Monthly (€): </label>
                   <span class="help-text">Amount that you need to pay</span>
                 </div>
                 <div class="col-sm-6">
@@ -86,7 +86,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-6">
-                  <label for="amount_amirol" class="control-label">Weekly ($): </label>
+                  <label for="amount_amirol" class="control-label">Weekly (€): </label>
                   <span class="help-text">Amount that you need to pay</span>
                 </div>
                 <div class="col-sm-6">

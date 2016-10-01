@@ -22,7 +22,7 @@
           <div class="footer-widget">
             <h3 class="widget-title">Useful Links</h3>
             <ul>
-              <li><a href="<%=request.getContextPath()%>/operations">Operations</a></li>
+              <li><a href="<%=request.getContextPath()%>/home">Take Loan</a></li>
               <li><a href="<%=request.getContextPath()%>/about">About Us</a></li>
               <li><a href="<%=request.getContextPath()%>/contacts">Contact</a></li>
             </ul>
@@ -30,28 +30,12 @@
         </div> <!-- /.col-md-2 -->
         <div class="col-md-4">
           <div class="footer-widget">
-            <h3 class="widget-title">Special Offers</h3>
-            <div class="newsletter">
-              <form action="#" method="post">
-                <p>Register and take your first loan with 0% interest.</p>
-                <%
-                  UserDTO user2 = (UserDTO) session.getAttribute("userDTO");
-                  if (user2 != null) {
-                %>
-                <input type="submit" class="s-button" value="Take Loan" name="Submit">
-                <%
-                }
-                else
-                {
-                %>
-                <input type="submit" class="s-button" value="Register" name="Register">
-                <%
-                  }
-                %>
-              </form>
-            </div> <!-- /.newsletter -->
+            <h3 class="widget-title">Special Offers only for You</h3>
+            <ul>
+              <li><a href="<%=request.getContextPath()%>/register">Register and take your first loan with 0% interest.</a></li>
+            </ul>
           </div> <!-- /.footer-widget -->
-        </div> <!-- /.col-md-4 -->
+        </div> <!-- /.col-md-2 -->
       </div> <!-- /.row -->
     </div> <!-- /.container -->
   </div> <!-- /.main-footer -->

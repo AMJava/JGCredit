@@ -86,7 +86,6 @@
           <div class="list-menu">
             <ul>
               <li><a href="<%=request.getContextPath()%>/home">Home</a></li>
-              <li><a href="<%=request.getContextPath()%>/takeLoan">Take Loan</a></li>
               <li><a href="<%=request.getContextPath()%>/about">About</a></li>
               <li><a href="<%=request.getContextPath()%>/contacts">Contact</a></li>
             </ul>

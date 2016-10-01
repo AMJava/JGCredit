@@ -3,6 +3,7 @@ package lv.javaguru.java2.controllers;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
+import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.dto.ConvertorDTO;
 import lv.javaguru.java2.dto.UserDTO;
@@ -35,7 +36,13 @@ public class RegisterController extends ErrorHandlingController{
 
     @RequestMapping(value = "register", method = {RequestMethod.GET})
     public ModelAndView executeGetRequest(HttpServletRequest request) {
-        return new ModelAndView("register", "model", null);
+        try {
+            userService.checkAuthorization();
+            return new ModelAndView("profile", "model", null);
+        } catch (UnAuthorizedUserException e) {
+            errorResponse.setMessage(e.getMessage());
+            return new ModelAndView("register", "model", null);
+        }
     }
 
     @RequestMapping(value = "register", method = {RequestMethod.POST})
