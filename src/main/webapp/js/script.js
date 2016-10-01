@@ -1,163 +1,177 @@
 // JavaScript Document
 var p = {
 
-    0: "100K",
-    1: "150K",
-    2: "200K",
-    3: "250K",
-    4: "300K",
-    5: "350K",
-    6: "400K",
-    7: "450K",
-    8: "500K",
-    9: "550K",
-    10: "600K",
-    11: "650K",
-    12: "700K",
-    13: "750K",
-    14: "800K",
-    15: "850K",
-    16: "900K",
-    17: "950K",
-    18: "1,000K",
-    19: "1,100K",
-    20: "1,200K",
-    21: "1,300K",
-    22: "1,400K",
-    23: "1,500K",
-    24: "1,600K",
-    25: "1,700K",
-    26: "1,800K",
-    27: "19,00K",
-    28: "2,000K",
+  0: "1K",
+  1: "1.5K",
+  2: "2K",
+  3: "2.5K",
+  4: "3K",
+  5: "3.5K",
+  6: "4K",
+  7: "4.5K",
+  8: "5K",
+  9: "5.5K",
+  10: "6K",
+  11: "6.5K",
+  12: "7K",
+  13: "7.5K",
+  14: "8K",
+  15: "8.5K",
+  16: "9K",
+  17: "9.5K",
+  18: "10K",
+
 };
 
 var t = {
 
-    0: "100000",
-    1: "150000",
-    2: "200000",
-    3: "250000",
-    4: "300000",
-    5: "350000",
-    6: "400000",
-    7: "450000",
-    8: "500000",
-    9: "550000",
-    10: "600000",
-    11: "650000",
-    12: "700000",
-    13: "750000",
-    14: "800000",
-    15: "850000",
-    16: "900000",
-    17: "950000",
-    18: "1000000",
-    19: "1100000",
-    20: "1200000",
-    21: "1300000",
-    22: "1400000",
-    23: "1500000",
-    24: "1600000",
-    25: "1700000",
-    26: "1800000",
-    27: "1900000",
-    28: "2000000",
+  0: "1000",
+  1: "1500",
+  2: "2000",
+  3: "2500",
+  4: "3000",
+  5: "3500",
+  6: "4000",
+  7: "4500",
+  8: "5000",
+  9: "5500",
+  10: "6000",
+  11: "6500",
+  12: "7000",
+  13: "7500",
+  14: "8000",
+  15: "8500",
+  16: "9000",
+  17: "9500",
+  18: "10000",
+
 
 }
 
 var obj = {
-    '24month' : {
-        'quarterly' : '1.41',
-        'monthly' : '1.28',
-        'weekly' : '1.2'
-    },
-    '18month' : {
-        'quarterly' : '1.38',
-        'monthly' : '1.25',
-        'weekly' : '1.8'
-    },
-    '12month' : {
+  '24month' : {
+    'quarterly' : '1.41',
+    'monthly' : '1.28',
+    'weekly' : '1.2'
+  },
+  '18month' : {
+    'quarterly' : '1.38',
+    'monthly' : '1.25',
+    'weekly' : '1.8'
+  },
+  '12month' : {
 
-        'quarterly' : '1.35',
-        'monthly' : '1.225',
-        'weekly' : '1.15'
-    }
+    'quarterly' : '1.35',
+    'monthly' : '1.225',
+    'weekly' : '1.15'
+  }
 };
 
 $(document).ready(function() {
 
-    $("#total").val("10000");
+  $("#total").val("1000");
 
-    
 
-    $("#slider_amirol").slider({
-        range: "min",
-        animate: true,
 
-        min: 0,
-        max: 28,
-        step: 1,
-        slide: 
-            function(event, ui) 
-            {
-                update(1,ui.value); //changed
-                calcualtePrice(ui.value);
-            }
-    });
+  $("#slider_amirol").slider({
+    range: "min",
+    animate: true,
 
-    $('.month').on('click',function(event) {
-        var id = $(this).attr('id');
+    min: 0,
+    max: 18,
+    step: 1,
+    slide:
+      function(event, ui)
+      {
+        update(1,ui.value); //changed
+        calcualtePrice(ui.value);
+      }
+  });
 
-        $('.month').removeClass('selected-month');
-        $(this).addClass('selected-month');
-        $(".month").removeClass("active-month");
-        $(this).addClass("active-month");
+  $('.month').on('click',function(event) {
+    var id = $(this).attr('id');
 
-        $('#month').val(id);
+    $('.month').removeClass('selected-month');
+    $(this).addClass('selected-month');
+    $(".month").removeClass("active-month");
+    $(this).addClass("active-month");
 
-        calcualtePrice()
-    });
+    $('#month').val(id);
 
-    $('.term').on('click',function(event) {
-        var id = $(this).attr('id');
+    calcualtePrice()
+  });
 
-        $('.term').removeClass('selected-term');
-        $(this).addClass('selected-term');
-        $(".term").removeClass("active-term");
-        $(this).addClass("active-term");
-        $('#term').val(id);
+  $('.term').on('click',function(event) {
+    var id = $(this).attr('id');
 
-        calcualtePrice()
-    });
+    $('.term').removeClass('selected-term');
+    $(this).addClass('selected-term');
+    $(".term").removeClass("active-term");
+    $(this).addClass("active-term");
+    $('#term').val(id);
 
-    update();
-    calcualtePrice();
+    calcualtePrice()
+  });
+
+  update();
+  calcualtePrice();
 });
-        
 
-        
+
+
 function update(slider,val) {
 
-    if(undefined === val) val = 0;
-    var amount = p[val];
+  if(undefined === val) val = 0;
+  var amount = p[val];
 
-    $('#sliderVal').val(val);
+  $('#sliderVal').val(val);
 
-    $('#slider_amirol a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+  $('#slider_amirol a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
 }
 
+$.postJSON = function(url, data, callback) {
+  return jQuery.ajax({
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    'type': 'POST',
+    'url': url,
+    'data': JSON.stringify(data),
+    'dataType': 'json',
+    'success': callback
+  });
+};
+
 function calcualtePrice(val){
-    
-    if(undefined === val)
-        val = $('#sliderVal').val();
 
-    var month = $('#month').val();
-    var term = obj[month][$('#term').val()];
+  if(undefined === val)
+    val = $('#sliderVal').val();
 
-    var totalPrice = t[val]*term;
+  var month = $('#month').val();
+  var term = $('#term').val();
 
-    $("#total").val(totalPrice.toFixed(2));
-    $("#total12").val(Math.round((totalPrice)/12).toFixed(2));
-    $("#total52").val(Math.round((totalPrice)/52).toFixed(2));
+  if(month == "24month"){
+    month = 24;
+  }
+  else if(month == "18month"){
+    month = 18;
+  }
+  else{
+    month =12;
+  }
+  var totalPrice = t[val]*term;
+
+  var url = 'http://localhost:8080/java2/api/calculateLoan';
+  var data = {
+    amount: Number(t[val]),
+    duration: month,
+    term: term
+  };
+
+  $.postJSON(url, data, function (data, status) {
+    $("#total").val(Number(data.total).toFixed(2));
+    $("#total12").val((Number(data.total)/12).toFixed(2));
+    $("#total52").val((Number(data.total)/52).toFixed(2));
+  });
 }

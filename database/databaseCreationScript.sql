@@ -121,6 +121,16 @@ CREATE TABLE communications (
   ENGINE = InnoDB
   AUTO_INCREMENT = 1002;
 
+CREATE TABLE rates (
+  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
+  version bigint(11),
+  duration int(2) NOT NULL,
+  term VARCHAR(250) NOT NULL,
+  rate DECIMAL(10,3) NOT NULL
+)
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 1002;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -133,4 +143,10 @@ insert into loans_ext values (default,0,'Prolongation', 'PROCESSING',sysdate(),s
 insert into payments values (default,0,'Outcome', '100',sysdate(),'12312312',1,null);
 insert into payments values (default,0,'Outcome', '100',sysdate(),'123213132',null,1);
 
-select * from users
+insert into rates values (default,0,12, 'monthly','1.225');
+insert into rates values (default,0,12, 'weekly','1.15');
+insert into rates values (default,0,18, 'monthly','1.25');
+insert into rates values (default,0,18, 'weekly','1.8');
+insert into rates values (default,0,24, 'monthly','1.28');
+insert into rates values (default,0,24, 'weekly','1.2');
+

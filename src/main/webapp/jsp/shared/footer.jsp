@@ -22,7 +22,7 @@
           <div class="footer-widget">
             <h3 class="widget-title">Useful Links</h3>
             <ul>
-              <li><a href="<%=request.getContextPath()%>/takeLoan">Take Loan</a></li>
+              <li><a href="<%=request.getContextPath()%>/operations">Operations</a></li>
               <li><a href="<%=request.getContextPath()%>/about">About Us</a></li>
               <li><a href="<%=request.getContextPath()%>/contacts">Contact</a></li>
             </ul>

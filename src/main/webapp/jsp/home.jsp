@@ -16,8 +16,8 @@
           <form class="form-horizontal form-pricing" role="form">
 
             <div class="price-slider">
-              <h4 clasl="great">Amount</h4>
-              <span>Minimum $100K is required</span>
+              <h4 class="great">Amount</h4>
+              <span>Minimum €1k is required</span>
               <div class="col-sm-12">
                 <div id="slider_amirol"></div>
               </div>
@@ -42,11 +42,8 @@
               <span>Please choose one</span>
               <input name="sliderVal" type="hidden" id="sliderVal" value='0' readonly="readonly" />
               <input name="month" type="hidden" id="month" value='24month' readonly="readonly" />
-              <input name="term" type="hidden" id="term" value='quarterly' readonly="readonly" />
+              <input name="term" type="hidden" id="term" value='monthly' readonly="readonly" />
               <div class="btn-group btn-group-justified">
-                <div class="btn-group btn-group-lg">
-                  <button type="button" class="btn btn-primary btn-lg btn-block term active-term selected-term" id='quarterly'>Quarterly</button>
-                </div>
                 <div class="btn-group btn-group-lg">
                   <button type="button" class="btn btn-primary btn-lg btn-block term" id='monthly'>Monthly</button>
                 </div>

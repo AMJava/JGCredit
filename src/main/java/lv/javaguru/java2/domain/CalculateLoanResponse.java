@@ -7,37 +7,14 @@ import lv.javaguru.java2.domain.User;
 
 public class CalculateLoanResponse {
 
- //   @JsonView(Views.Public.class)
-    String msg;
+    private Double total;
 
- //   @JsonView(Views.Public.class)
-    String code;
-
-  //  @JsonView(Views.Public.class)
-    List<User> result;
-
-    public String getMsg() {
-        return msg;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public List<User> getResult() {
-        return result;
-    }
-
-    public void setResult(List<User> result) {
-        this.result = result;
-    }
-//getters and setters
 }
