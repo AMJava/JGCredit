@@ -38,20 +38,16 @@ public class Communication extends BaseEntity {
     @Column(name = "loan_id", columnDefinition = "int")
     private Long loanId;
 
-    @Column(name = "loan_ext_id", columnDefinition = "int")
-    private Long loanExtId;
-
     public Communication() {
     }
 
-    public Communication(String subj, String body, Date sentDate, String directionType, String comType, String destination, Long userId, Long loanId, Long loanExtId) {
+    public Communication(String subj, String body, Date sentDate, String directionType, String comType, String destination, Long userId, Long loanId) {
         this.body = body;
         this.sentDate = sentDate;
         this.directionType = directionType;
         this.comType = comType;
         this.destination = destination;
         this.userId = userId;
-        this.loanExtId = loanExtId;
         this.loanId = loanId;
         this.subj = subj;
     }
@@ -119,14 +115,6 @@ public class Communication extends BaseEntity {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getLoanExtId() {
-        return loanExtId;
-    }
-
-    public void setLoanExtId(Long loanExtId) {
-        this.loanExtId = loanExtId;
     }
 
     public String getComType() {

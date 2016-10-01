@@ -21,11 +21,11 @@ public class Loan extends BaseEntity {
     @Column(name = "interest_rate")
     private BigDecimal interestRate;
 
-    @Column(name = "term")
-    private int term;
+    @Column(name = "duration")
+    private int duration;
 
-    @Column(name = "term_unit")
-    private String termUnit;
+    @Column(name = "term")
+    private String term;
 
     @Column(name = "start_date")
     private Date startDate;
@@ -33,11 +33,14 @@ public class Loan extends BaseEntity {
     @Column(name = "end_date")
     private Date endDate;
 
+    @Column(name = "extended_date")
+    private Date extendedDate;
+
     @Column(name = "loan_status")
     private String loanStatus;
 
-    @Column(name = "extendet_flag")
-    private String extendetFlag;
+    @Column(name = "extended_flag")
+    private String extendedFlag;
 
     @Column(name = "user_id", columnDefinition = "int")
     private Long userId;
@@ -54,29 +57,20 @@ public class Loan extends BaseEntity {
     public Loan() {
     }
 
-    public Loan(BigDecimal loanSum, BigDecimal interestRate, int term, String termUnit, Date startDate, Date endDate,
-                String loanStatus, String extendetFlag, Long userId, Long employeeId,
-                String bankAccountNumb, String comments) {
+    public Loan(BigDecimal loanSum, BigDecimal interestRate, int duration, String term, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
         this.loanSum = loanSum;
         this.interestRate = interestRate;
+        this.duration = duration;
         this.term = term;
-        this.termUnit = termUnit;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.extendedDate = extendedDate;
         this.loanStatus = loanStatus;
-        this.extendetFlag = extendetFlag;
+        this.extendedFlag = extendedFlag;
         this.userId = userId;
         this.employeeId = employeeId;
         this.bankAccountNumb = bankAccountNumb;
         this.comments = comments;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public BigDecimal getLoanSum() {
@@ -95,20 +89,20 @@ public class Loan extends BaseEntity {
         this.interestRate = interestRate;
     }
 
-    public Integer getTerm() {
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getTerm() {
         return term;
     }
 
-    public void setTerm(Integer term) {
+    public void setTerm(String term) {
         this.term = term;
-    }
-
-    public String getTermUnit() {
-        return termUnit;
-    }
-
-    public void setTermUnit(String termUnit) {
-        this.termUnit = termUnit;
     }
 
     public Date getStartDate() {
@@ -127,6 +121,14 @@ public class Loan extends BaseEntity {
         this.endDate = endDate;
     }
 
+    public Date getExtendedDate() {
+        return extendedDate;
+    }
+
+    public void setExtendedDate(Date extendedDate) {
+        this.extendedDate = extendedDate;
+    }
+
     public String getLoanStatus() {
         return loanStatus;
     }
@@ -135,12 +137,12 @@ public class Loan extends BaseEntity {
         this.loanStatus = loanStatus;
     }
 
-    public String getExtendetFlag() {
-        return extendetFlag;
+    public String getExtendedFlag() {
+        return extendedFlag;
     }
 
-    public void setExtendetFlag(String extendetFlag) {
-        this.extendetFlag = extendetFlag;
+    public void setExtendedFlag(String extendedFlag) {
+        this.extendedFlag = extendedFlag;
     }
 
     public Long getUserId() {

@@ -49,7 +49,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         String sBody = "Our manager will contact you soon";
         Date today = new Date();
         generateAndSendEmail(sBody,user.getEmail(),"Thank You for your question on JGCredit.lv");
-        Communication communication = new Communication(subject, message, today, "Inbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Communication communication = new Communication(subject, message, today, "Inbound", "E-mail", user.getEmail(), user.getId(), null);
         Long CommunicationId = create(communication);
     }
 
@@ -58,7 +58,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         String sBody = "Your password for "+user.getLogin()+" is: "+password;
         Date today = new Date();
         generateAndSendEmail(sBody,user.getEmail(),"Password restored.");
-        Communication communication = new Communication("Password restored.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Communication communication = new Communication("Password restored.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null);
         Long CommunicationId = create(communication);
     }
 
@@ -67,7 +67,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         String sBody = "Welcome to JG Credit";
         Date today = new Date();
         generateAndSendEmail(sBody,user.getEmail(),"Welcome to JG Credit.");
-        Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null);
         Long CommunicationId = create(communication);
     }
 
@@ -76,7 +76,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         String sBody = "Password for your account was changed";
         Date today = new Date();
         generateAndSendEmail(sBody,user.getEmail(),"Password changed.");
-        Communication communication = new Communication("Password changed.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Communication communication = new Communication("Password changed.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null);
         Long CommunicationId = create(communication);
     }
 

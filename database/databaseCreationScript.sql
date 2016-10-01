@@ -8,9 +8,7 @@ USE JGCredit;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS loans;
-DROP TABLE IF EXISTS loans_ext;
 DROP TABLE IF EXISTS communications;
-DROP TABLE IF EXISTS payments;
 
 CREATE TABLE users (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
@@ -56,13 +54,14 @@ CREATE TABLE loans (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
   version bigint(11),
   loan_sum DECIMAL(10,2) NOT NULL,
-  interest_rate DECIMAL(6,2) NOT NULL,
-  term INT(3) DEFAULT 12,
-  term_unit VARCHAR(5) DEFAULT 'month' CHECK (term_unit IN('day', 'month')),
+  interest_rate DECIMAL(10,3) NOT NULL,
+  duration INT(2) DEFAULT 12,
+  term VARCHAR(250) DEFAULT 'monthly' CHECK (term_unit IN('weekly', 'monthly')),
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
+  extended_date DATE,
   loan_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (loan_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
-  extendet_flag VARCHAR(1) DEFAULT 'N',
+  extended_flag VARCHAR(1) DEFAULT 'N',
   user_id int(11),
   employee_id int(11),
   bank_acc_number VARCHAR(50),
@@ -70,35 +69,6 @@ CREATE TABLE loans (
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (employee_id) REFERENCES employees(id)
-);
-CREATE TABLE loans_ext (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  version bigint(11),
-  ext_type VARCHAR(12) DEFAULT 'Prolongation' CHECK (ext_type IN ('Prolongation', 'Penalty')),
-  ext_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (ext_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
-  ext_date DATE NOT NULL,
-  end_date DATE NOT NULL,
-  interest_rate DECIMAL(6,2),
-  comission DECIMAL(10,2) DEFAULT 1,
-  loan_id INT(11) NOT NULL,
-  bank_acc_number VARCHAR(50),
-  comments VARCHAR(250),
-  PRIMARY KEY (id),
-  FOREIGN KEY (loan_id) REFERENCES loans(id)
-    ON DELETE CASCADE
-);
-CREATE TABLE payments (
-  id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
-  version bigint(11),
-  payment_type VARCHAR(20) DEFAULT 'Outcome' CHECK (payment_type IN ('Outcome', 'Income')),
-  payment_sum DECIMAL(10,2) NOT NULL,
-  payment_date DATETIME NOT NULL,
-  bank_acc_number VARCHAR(50),
-  loan_id INT(11),
-  loan_ext_id INT(11),
-  PRIMARY KEY (id),
-  FOREIGN KEY (loan_id) REFERENCES loans(id),
-  FOREIGN KEY (loan_ext_id) REFERENCES loans_ext(id)
 );
 
 CREATE TABLE communications (
@@ -112,11 +82,9 @@ CREATE TABLE communications (
   destination VARCHAR(250),
   user_id INT(11),
   loan_id INT(11),
-  loan_ext_id INT(11),
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (loan_id) REFERENCES loans(id),
-  FOREIGN KEY (loan_ext_id) REFERENCES loans_ext(id)
+  FOREIGN KEY (loan_id) REFERENCES loans(id)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 1002;
@@ -138,10 +106,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 /*Examples:*/
 insert into users values (default,0,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null,'Y');
 insert into employees values (default,0,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
-insert into loans values (default,0,'250.00', '0.12',100,'days',sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
-insert into loans_ext values (default,0,'Prolongation', 'PROCESSING',sysdate(),sysdate(),'0.22','0.12',1,'123213213','TEST');
-insert into payments values (default,0,'Outcome', '100',sysdate(),'12312312',1,null);
-insert into payments values (default,0,'Outcome', '100',sysdate(),'123213132',null,1);
+insert into loans values (default,0,'250.00', '0.12',12,'monthly',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
 
 insert into rates values (default,0,12, 'monthly','1.225');
 insert into rates values (default,0,12, 'weekly','1.15');
@@ -149,4 +114,3 @@ insert into rates values (default,0,18, 'monthly','1.25');
 insert into rates values (default,0,18, 'weekly','1.8');
 insert into rates values (default,0,24, 'monthly','1.28');
 insert into rates values (default,0,24, 'weekly','1.2');
-
