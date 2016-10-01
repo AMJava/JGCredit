@@ -157,6 +157,43 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void changePass(String password, String newPassword, String newPassword2) throws SQLException, ServiceException, MessagingException, CommunicationException, UnAuthorizedUserException{
+
+        if(password.equals("")){
+            throw new ServiceException("Old Password cannot be null or empty");
+        }
+
+        if(newPassword.equals("")){
+            throw new ServiceException("New Password cannot be null or empty");
+        }
+
+        if(!newPassword.equals(newPassword2)){
+            throw new ServiceException("New passwords must be the same");
+        }
+
+        UserDTO userDTO = sessionUserDTOService.getUserDTO();
+        if(userDTO == null)
+            throw new UnAuthorizedUserException("Please Login");
+
+        User user = null;
+        user = findByLogin(userDTO.getLogin());
+        if(user == null)
+            throw new ServiceException("User not found, Please try again later");
+        else{
+            if(!userValidator.validatePassword(newPassword)){
+                throw new ServiceException("New Password must contain at least 8 characters including 1 uppercase letter, 1 lowercase letter and 1 alphanumeric characters.");
+            }
+            if (!passwordEncoder.matches(password, user.getPassword())) {
+                throw new ServiceException("Old Password is incorrect");
+            }
+            else{
+                user.setPassword(passwordEncoder.encode(newPassword));
+                update(user);
+                communicationService.sendChangeEmail(user);
+            }
+        }
+    }
+
     public UserDTO gerSessionUserDTO(){
         return sessionUserDTOService.getUserDTO();
     }

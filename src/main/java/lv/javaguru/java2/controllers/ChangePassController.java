@@ -3,6 +3,7 @@ package lv.javaguru.java2.controllers;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
+import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.dto.ConvertorDTO;
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class ChangePassController extends ErrorHandlingController{
     public ModelAndView executePostRequest(HttpServletRequest request)  throws Exception {
 
         try{
-            userService.restorePass(
+            userService.changePass(
             request.getParameter("password"),
             request.getParameter("newPassword"),
             request.getParameter("newPassword2"));
@@ -46,6 +47,10 @@ public class ChangePassController extends ErrorHandlingController{
             return new ModelAndView("redirect", "model", new MVCModel("/java2/profile",null));
         }
         catch(ServiceException e) {
+            errorResponse.setMessage(e.getMessage());
+            return  new ModelAndView("changePass","model",new MVCModel(null,errorResponse));
+        }
+        catch(UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
             return  new ModelAndView("changePass","model",new MVCModel(null,errorResponse));
         }

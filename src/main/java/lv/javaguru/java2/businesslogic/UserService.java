@@ -26,6 +26,8 @@ public interface UserService {
 
     void restorePass(String login, String question, String answer) throws SQLException, ServiceException, MessagingException, CommunicationException;
 
+    void changePass(String password, String newPassword, String newPassword2) throws SQLException, ServiceException, MessagingException, CommunicationException, UnAuthorizedUserException;
+
     void login(UserDTO userDTO);
 
     UserDTO gerSessionUserDTO();

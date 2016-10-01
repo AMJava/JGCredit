@@ -15,6 +15,8 @@ public interface CommunicationService {
 
     void sendRestoreEmail(User user, String password) throws SQLException, MessagingException, CommunicationException;
 
+    void sendChangeEmail(User user) throws SQLException, MessagingException, CommunicationException;
+
     void generateAndSendEmail(String sBody, String sTo, String sSubject) throws MessagingException;
 
 }

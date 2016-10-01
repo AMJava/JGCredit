@@ -53,6 +53,15 @@ public class CommunicationServiceImpl implements CommunicationService {
         Long CommunicationId = create(communication);
     }
 
+    @Transactional
+    public void sendChangeEmail(User user) throws SQLException, MessagingException, CommunicationException {
+        String sBody = "Password for your account was changed";
+        Date today = new Date();
+        generateAndSendEmail(sBody,user.getEmail(),"Password changed.");
+        Communication communication = new Communication("Password changed.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Long CommunicationId = create(communication);
+    }
+
     public void generateAndSendEmail(String sBody, String sTo, String sSubject) throws MessagingException {
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
