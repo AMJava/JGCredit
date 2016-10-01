@@ -13,7 +13,7 @@
     <div class="price-box">
       <div class="row">
         <div class="col-sm-6">
-          <form class="form-horizontal form-pricing" role="form">
+          <form class="form-horizontal form-pricing" role="form" method="post">
 
             <div class="price-slider">
               <h4 class="great">Amount</h4>

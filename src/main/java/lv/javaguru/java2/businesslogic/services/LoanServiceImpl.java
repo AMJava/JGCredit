@@ -20,7 +20,6 @@ public class LoanServiceImpl implements LoanService {
         Rate rate = new Rate();
         rate = rateDAO.getByTermAndDuration(duration,term);
         total = rate.getRate()*amount;
-        System.out.println(rate.getRate());
         return total;
     }
 

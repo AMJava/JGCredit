@@ -1,6 +1,7 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.dto.ConvertorDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class LogoutController extends ErrorHandlingController{
         if (request.getSession().getAttribute("userDTO") != null) {
             request.getSession().removeAttribute("userDTO");
         }
-        return new ModelAndView("home", "model", null);
+        return new ModelAndView("redirect", "model", new MVCModel("/java2/home",null));
     }
 
 

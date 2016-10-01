@@ -1,5 +1,6 @@
 package lv.javaguru.java2.controllers;
 
+import lv.javaguru.java2.domain.MVCModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,11 @@ public class HomeController extends ErrorHandlingController{
     @RequestMapping(value = "home", method = {RequestMethod.GET})
     public ModelAndView executeGetRequest(HttpServletRequest request) {
         return new ModelAndView("home", "model", null);
+    }
+
+    @RequestMapping(value = "", method = {RequestMethod.GET})
+    public ModelAndView executeGetRequestIndex(HttpServletRequest request) {
+        return new ModelAndView("redirect", "model", new MVCModel("/java2/home",null));
     }
 
     @RequestMapping(value = "home", method = {RequestMethod.POST})
