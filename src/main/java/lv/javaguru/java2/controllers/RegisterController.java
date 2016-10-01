@@ -6,6 +6,8 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.dto.ConvertorDTO;
 import lv.javaguru.java2.dto.UserDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-public class RegisterController{
+public class RegisterController extends ErrorHandlingController{
+
+    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     ConvertorDTO convertorDTO;
@@ -35,7 +39,7 @@ public class RegisterController{
     }
 
     @RequestMapping(value = "register", method = {RequestMethod.POST})
-    public ModelAndView executePostRequest(HttpServletRequest request) {
+    public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
         Date date = null;
         UserDTO userDTO = null;
         try {
@@ -63,9 +67,6 @@ public class RegisterController{
         } catch (ServiceException e) {
             errorResponse.setMessage(e.getMessage());
             return  new ModelAndView("register","model",new MVCModel(userDTO,errorResponse));
-        } catch (Exception e) {
-            errorResponse.setMessage(e.getMessage());
-            return  new ModelAndView("error","model",new MVCModel(userDTO,errorResponse));
         }
     }
 }

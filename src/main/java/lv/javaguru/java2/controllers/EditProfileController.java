@@ -7,6 +7,8 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.dto.UserDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 @Controller
-public class EditProfileController{
+public class EditProfileController extends ErrorHandlingController{
+
+    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     SessionUserDTOService sessionUserDTOService;
@@ -40,7 +44,7 @@ public class EditProfileController{
     }
 
     @RequestMapping(value = "editProfile", method = {RequestMethod.POST})
-    public ModelAndView executePostRequest(HttpServletRequest request) throws SQLException {
+    public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
         UserDTO userDTO = null;
         try {
             userDTO = userService.gerSessionUserDTO();
@@ -55,10 +59,6 @@ public class EditProfileController{
         } catch(ServiceException e) {
                 errorResponse.setMessage(e.getMessage());
             return  new ModelAndView("editProfile","model",new MVCModel(null,errorResponse));
-            }
-          catch (Exception e) {
-            errorResponse.setMessage(e.getMessage());
-              return  new ModelAndView("error","model",new MVCModel(null,errorResponse));
         }
     }
 }

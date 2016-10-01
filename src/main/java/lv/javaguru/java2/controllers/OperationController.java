@@ -4,6 +4,8 @@ import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class OperationController{
+public class OperationController extends ErrorHandlingController{
+
+    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     UserService userService;
@@ -33,7 +37,7 @@ public class OperationController{
     }
 
     @RequestMapping(value = "operations", method = {RequestMethod.POST})
-    public ModelAndView executePostRequest(HttpServletRequest request) {
+    public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
         return new ModelAndView("operations", "model", null);
     }
 }
