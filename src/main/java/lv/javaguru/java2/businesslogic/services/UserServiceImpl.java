@@ -45,16 +45,17 @@ public class UserServiceImpl implements UserService {
     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?";
 
     @Transactional
-    public UserDTO create(UserDTO userDTO) throws SQLException, ServiceException {
+    public UserDTO create(UserDTO userDTO) throws SQLException, ServiceException, CommunicationException, MessagingException {
 
         User user = convertorDTO.convertUserFromDTO(userDTO);
         if(user == null)
             throw new ServiceException("Please Contact Second Line Support, null was returned by DTOConverter");
-        boolean isVaalid = userValidator.validateUser(user,userDTO.getPassword2());
-        if (isVaalid) {
+        boolean isValid = userValidator.validateUser(user,userDTO.getPassword2());
+        if (isValid) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             Long userId = userDAO.create(user);
             userDTO.setId(userId);
+            communicationService.sendRegEmail(user);
         }
         return userDTO;
     }

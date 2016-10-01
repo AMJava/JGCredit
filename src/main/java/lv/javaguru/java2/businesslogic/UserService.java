@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface UserService {
 
-    UserDTO create(UserDTO userDTO) throws SQLException, ServiceException;
+    UserDTO create(UserDTO userDTO) throws SQLException, ServiceException, CommunicationException, MessagingException;
 
     User findByLogin(String login) throws SQLException;
 

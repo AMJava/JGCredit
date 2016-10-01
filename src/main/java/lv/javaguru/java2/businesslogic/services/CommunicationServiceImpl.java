@@ -54,6 +54,15 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Transactional
+    public void sendRegEmail(User user) throws SQLException, MessagingException, CommunicationException {
+        String sBody = "Welcome to JG Credit";
+        Date today = new Date();
+        generateAndSendEmail(sBody,user.getEmail(),"Welcome to JG Credit.");
+        Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null, null);
+        Long CommunicationId = create(communication);
+    }
+
+    @Transactional
     public void sendChangeEmail(User user) throws SQLException, MessagingException, CommunicationException {
         String sBody = "Password for your account was changed";
         Date today = new Date();

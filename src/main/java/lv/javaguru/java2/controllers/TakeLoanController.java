@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class OperationController extends ErrorHandlingController{
+public class TakeLoanController extends ErrorHandlingController{
 
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
@@ -25,19 +25,19 @@ public class OperationController extends ErrorHandlingController{
     @Autowired
     ErrorResponse errorResponse;
 
-    @RequestMapping(value = "operations", method = {RequestMethod.GET})
+    @RequestMapping(value = "takeLoan", method = {RequestMethod.GET})
     public ModelAndView executeGetRequest(HttpServletRequest request) {
         try {
             userService.checkAuthorization();
-            return new ModelAndView("operations", "model", null);
+            return new ModelAndView("takeLoan", "model", null);
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
             return  new ModelAndView("login","model",new MVCModel(null,errorResponse));
         }
     }
 
-    @RequestMapping(value = "operations", method = {RequestMethod.POST})
+    @RequestMapping(value = "tkeLoan", method = {RequestMethod.POST})
     public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
-        return new ModelAndView("operations", "model", null);
+        return new ModelAndView("takeLoan", "model", null);
     }
 }
