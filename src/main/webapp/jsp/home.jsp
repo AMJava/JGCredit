@@ -111,7 +111,10 @@
             </div>
 
           </div>
-
+          <input type="text" name="creditSum" id="creditSum" style="width: 1px;">
+          <input type="text" name="totalSum" id="totalSum" style="width: 1px;">
+          <input type="text" name="monthlySum" id="monthlySum" style="width: 1px;">
+          <input type="text" name="weeklySum" id="weeklySum" style="width: 1px;">
           </form>
         </div>
       </div>

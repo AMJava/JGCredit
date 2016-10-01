@@ -170,8 +170,12 @@ function calcualtePrice(val){
   };
 
   $.postJSON(url, data, function (data, status) {
+    $("#creditSum").val(Number(t[val]));
     $("#total").val(Number(data.total).toFixed(2));
+    $("#totalSum").val(Number(data.total).toFixed(2));
     $("#total12").val((Number(data.total)/12).toFixed(2));
+    $("#monthlySum").val((Number(data.total)/12).toFixed(2));
     $("#total52").val((Number(data.total)/52).toFixed(2));
+    $("#weeklySum").val((Number(data.total)/52).toFixed(2));
   });
 }
