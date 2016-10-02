@@ -32,7 +32,7 @@
           <div class="footer-widget">
             <h3 class="widget-title">Special Offers only for You</h3>
             <ul>
-              <li><a href="<%=request.getContextPath()%>/register">Register and take your first loan with 0% interest.</a></li>
+              <li><a href="<%=request.getContextPath()%>/register">Register and take your first credit in less than 5 minutes!</a></li>
             </ul>
           </div> <!-- /.footer-widget -->
         </div> <!-- /.col-md-2 -->

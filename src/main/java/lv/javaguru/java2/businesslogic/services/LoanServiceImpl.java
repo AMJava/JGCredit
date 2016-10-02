@@ -1,10 +1,8 @@
 package lv.javaguru.java2.businesslogic.services;
 
-import lv.javaguru.java2.businesslogic.CommunicationService;
-import lv.javaguru.java2.businesslogic.LoanService;
-import lv.javaguru.java2.businesslogic.LoanValidator;
-import lv.javaguru.java2.businesslogic.UserService;
+import lv.javaguru.java2.businesslogic.*;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
+import lv.javaguru.java2.businesslogic.exceptions.ExistingLoanUserException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.database.LoanDAO;
 import lv.javaguru.java2.database.RateDAO;
@@ -21,6 +19,7 @@ import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class LoanServiceImpl implements LoanService {
@@ -42,6 +41,9 @@ public class LoanServiceImpl implements LoanService {
 
     @Autowired
     CommunicationService communicationService;
+
+    @Autowired
+    SessionUserDTOService sessionUserDTOService;
 
     @Transactional
     public LoanDTO create(LoanDTO loanDTO) throws SQLException, ServiceException, CommunicationException, MessagingException {
@@ -76,5 +78,11 @@ public class LoanServiceImpl implements LoanService {
         return total;
     }
 
-
+    @Transactional
+    public void checkExistingLoans() throws ExistingLoanUserException, SQLException {
+        UserDTO userDTO = sessionUserDTOService.getUserDTO();
+        List<Loan> loanList = loanDAO.getActiveUserLoans(userDTO.getId());
+        if(loanList.size()>0)
+         throw new ExistingLoanUserException("User already have unpaid loan");
+    }
 }

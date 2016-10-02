@@ -36,7 +36,7 @@ public class ChangePassController extends ErrorHandlingController{
 }
 
     @RequestMapping(value = "changePassword", method = {RequestMethod.POST})
-    public ModelAndView executePostRequest(HttpServletRequest request)  throws Exception {
+    public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
 
         try{
             userService.changePass(

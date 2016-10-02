@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Arturs on 25.08.2016.
@@ -21,4 +22,9 @@ import java.sql.SQLException;
 @Repository
 public class LoanDAOImpl extends BaseDAOImpl<Loan> implements LoanDAO {
 
+    public List<Loan> getActiveUserLoans(Long userId) throws SQLException{
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Loan.class).add(Restrictions.and(Restrictions.eq("userId", userId),
+        Restrictions.eq("loanStatus","APPROVED"))).list();
+    }
 }

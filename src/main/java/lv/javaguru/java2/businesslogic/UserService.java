@@ -1,6 +1,7 @@
 package lv.javaguru.java2.businesslogic;
 
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
+import lv.javaguru.java2.businesslogic.exceptions.ExistingLoanUserException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.User;

@@ -1,7 +1,9 @@
 package lv.javaguru.java2.controllers;
 
+import lv.javaguru.java2.businesslogic.LoanService;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
+import lv.javaguru.java2.businesslogic.exceptions.ExistingLoanUserException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileOutputStream;
+import java.sql.SQLException;
 
 /**
  * Created by Arturs on 16.08.2016.
@@ -30,6 +33,9 @@ public class HomeController extends ErrorHandlingController{
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    LoanService loanService;
 
     @Autowired
     ErrorResponse errorResponse;
@@ -45,10 +51,10 @@ public class HomeController extends ErrorHandlingController{
     }
 
     @RequestMapping(value = "home", method = {RequestMethod.POST})
-    public ModelAndView executePostRequest(HttpServletRequest request){
+    public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
         try {
             userService.checkAuthorization();
-
+            loanService.checkExistingLoans();
             LoanDTO loanDTO = new LoanDTO();
             loanDTO.setLoan(Double.parseDouble(request.getParameter("creditSum")));
             loanDTO.setLoanSum(Double.parseDouble(request.getParameter("totalSum")));
@@ -67,6 +73,10 @@ public class HomeController extends ErrorHandlingController{
             return new ModelAndView("redirect", "model", new MVCModel("/java2/login",null));
         } catch (NullPointerException e) {
             errorResponse.setMessage("NullPointerException, Please Contact Second Line Support");
+            return  new ModelAndView("home","model",new MVCModel("",errorResponse));
+        } catch (ExistingLoanUserException e) {
+            errorResponse.setMessage(e.getMessage());
+            System.out.println("IN");
             return  new ModelAndView("home","model",new MVCModel("",errorResponse));
         }
     }

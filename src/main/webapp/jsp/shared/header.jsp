@@ -93,7 +93,7 @@
         </div> <!-- /.col-md-6 -->
         <div class="col-md-6 col-sm-5">
           <div class="notification">
-            <span>Register and take your first loan with 0% interest!</span>
+            <span>Register and take your first credit in less than 5 minutes!</span>
           </div>
         </div> <!-- /.col-md-6 -->
       </div> <!-- /.row -->

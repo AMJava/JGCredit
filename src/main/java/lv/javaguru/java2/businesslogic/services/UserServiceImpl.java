@@ -5,9 +5,12 @@ import lv.javaguru.java2.businesslogic.SessionUserDTOService;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.UserValidator;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
+import lv.javaguru.java2.businesslogic.exceptions.ExistingLoanUserException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
+import lv.javaguru.java2.database.LoanDAO;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.Loan;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.ConvertorUserDTO;
 import lv.javaguru.java2.dto.UserDTO;
@@ -20,12 +23,16 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private LoanDAO loanDAO;
 
     @Autowired
     private ConvertorUserDTO convertorUserDTO;
