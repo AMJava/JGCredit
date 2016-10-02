@@ -7,5 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface LoanDAO extends BaseDAO<Loan> {
+
     List<Loan> getActiveUserLoans(Long userId) throws SQLException;
+
+    List<Loan> getUserLoans(Long userId) throws SQLException;
 }

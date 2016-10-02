@@ -1,61 +1,90 @@
+<%@ page import="lv.javaguru.java2.domain.MVCModel" %>
+<%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
+<%@ page import="lv.javaguru.java2.domain.Loan" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
 <head>
   <link href="images/icon.png" rel="icon" type="image/png" />
   <link rel="stylesheet" href="styles/style.css">
-  <title>Take Loan</title>
+  <title>Login</title>
 </head>
 <body>
 <%@ include file="../jsp/shared/header.jsp" %>
-<div id="agreement_wrapper">
-        <div class="header_02"><%= request.getAttribute("model") %></div>
-  <form method="POST" action="">
-    <table>
-      <tr>
-        <td>Loan Sum:</td>
-        <td><input type="text" name="loanSum"></td>
-      </tr>
-      <tr>
-        <td>Interest Rate:</td>
-        <td><input type="text" name="interestRate"></td>
-      </tr>
-      <tr>
-        <td>Term:</td>
-        <td><input type="text" name="term"></td>
-      </tr>
-      <tr>
-        <td>Term Unit:</td>
-        <td><input type="text" name="termUnit"></td>
-      </tr>
-      <tr>
-        <td>Start Date:</td>
-        <td><input type="text" name=startDate"></td>
-      </tr>
-      <tr>
-        <td>End Date:</td>
-        <td><input type="text" name="endDate"></td>
-      </tr>
-      <tr>
-        <td>Comments:</td>
-        <td><input type="password" name="comments"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="SUBMIT" value="Finish" name="submit"></td>
-      </tr>
-      <% String error = (String) request.getAttribute("model");
-        if (error != null) {%>
-      <tr>
-        <td></td>
-        <td><font color="red"><%="Error: " + error%>
-        </font></td>
-
-      </tr>
-      <% } %>
-    </table>
-  </form>
+<%
+  MVCModel data = (MVCModel)request.getAttribute("model");
+  List<Loan> loans = null;
+  if (data != null) {
+    loans = (List<Loan>) data.getData();
+  }
+%>
+<div class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>User Loans</h4>
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+            <th class="text-center">Number</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Duration</th>
+            <th class="text-center">Amount Sum</th>
+            <th class="text-center">Term Unit</th>
+            <th class="text-center">Term Payments</th>
+            <th class="text-center">Start Date</th>
+            <th class="text-center">End Date</th>
+            <th class="text-center">IBAN</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Extended</th>
+            <th class="text-center">Extended Date</th>
+            <th class="text-center">Extend?</th>
+            </thead>
+            <tbody>
+            <tr class="text-center">
+              <%
+                if (loans.size() > 0) {
+                  int i =0;
+                  for(Loan loan : loans){
+              %>
+                <td><%=i++ %></td>
+                <td><%=loan.getLoan() %></td>
+                <td><%=loan.getDuration() %></td>
+                <td><%=loan.getLoanSum() %></td>
+                <td><%=loan.getTerm() %></td>
+                <td><%=loan.getTermPayment() %></td>
+                <td><%=loan.getStartDate() %></td>
+                <td><%=loan.getEndDate() %></td>
+                <td><%=loan.getBankAccountNumb() %></td>
+                <td><%=loan.getLoanStatus() %></td>
+                <td><input type="checkbox" class="checkthis" unchecked/></td>
+                <td><%=loan.getExtendedDate() %></td>
+                <td>
+                  <p data-placement="top" data-toggle="tooltip" title="Extend for 1 month"><button class="btn btn-primary btn-xs" data-title="Extend" data-toggle="modal" data-target="#extend" ><span class="glyphicon glyphicon-plus"></span></button></p>
+                </td>
+              <%
+                }}
+              %>
+            </tr>
+            </tbody>
+          </table>
+          <%
+              ErrorResponse error = (ErrorResponse)data.getError();
+            if(error != null){
+          %>
+          <h4 style="color:red"><%=error.getMessage()%></h4>
+          <%
+            }
+          %>
+        </div>
+      </div>
+    </div>
   </div>
-<script type=”text/javascript” src="../../libs/bootstrap.min.js"></script>
+</div> <!-- /.content-section -->
+
+<!--<script src="js/jquery.min.js"></script>-->
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/script.js"></script>
 <%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

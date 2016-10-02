@@ -85,4 +85,11 @@ public class LoanServiceImpl implements LoanService {
         if(loanList.size()>0)
          throw new ExistingLoanUserException("User already have unpaid loan");
     }
+
+    @Transactional
+    public List<Loan> getUserLoans() throws SQLException{
+        UserDTO userDTO = sessionUserDTOService.getUserDTO();
+        List<Loan> loanList = loanDAO.getUserLoans(userDTO.getId());
+        return loanList;
+    }
 }

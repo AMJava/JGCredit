@@ -3,11 +3,13 @@ package lv.javaguru.java2.businesslogic;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ExistingLoanUserException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
+import lv.javaguru.java2.domain.Loan;
 import lv.javaguru.java2.domain.Rate;
 import lv.javaguru.java2.dto.LoanDTO;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface LoanService {
 
@@ -17,4 +19,5 @@ public interface LoanService {
 
     void checkExistingLoans() throws ExistingLoanUserException, SQLException;
 
+    List<Loan> getUserLoans() throws SQLException;
 }

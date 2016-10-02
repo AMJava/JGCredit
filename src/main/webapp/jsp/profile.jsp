@@ -74,7 +74,7 @@
                 </tbody>
               </table>
 
-              <a href="<%=request.getContextPath()%>/operations" class="btn btn-primary">My Operations</a>
+              <a href="<%=request.getContextPath()%>/loans" class="btn btn-primary">My Loans</a>
               <a href="<%=request.getContextPath()%>/changePassword" class="btn btn-primary">Change Password</a>
             </div>
           </div>

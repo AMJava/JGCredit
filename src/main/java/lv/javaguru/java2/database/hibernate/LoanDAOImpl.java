@@ -27,4 +27,9 @@ public class LoanDAOImpl extends BaseDAOImpl<Loan> implements LoanDAO {
         return session.createCriteria(Loan.class).add(Restrictions.and(Restrictions.eq("userId", userId),
         Restrictions.eq("loanStatus","APPROVED"))).list();
     }
+
+    public List<Loan> getUserLoans(Long userId) throws SQLException{
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Loan.class).add(Restrictions.eq("userId",userId)).list();
+    }
 }

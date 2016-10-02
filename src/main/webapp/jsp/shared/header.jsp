@@ -62,7 +62,7 @@
                 if (user != null) {
               %>
               <li><a href="<%=request.getContextPath()%>/profile">My Account</a></li>
-              <li><a href="<%=request.getContextPath()%>/loan">My Loans</a></li>
+              <li><a href="<%=request.getContextPath()%>/loans">My Loans</a></li>
               <%
                 }
                 else
