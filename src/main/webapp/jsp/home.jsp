@@ -1,3 +1,4 @@
+<%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <head>
@@ -109,7 +110,15 @@
                 <img src="images/payment.png" class="img-responsive payment" />
               </div>
             </div>
-
+            <%
+              MVCModel data = (MVCModel)request.getAttribute("model");
+              if (data != null) {
+                ErrorResponse error = (ErrorResponse)data.getError();
+            %>
+            <h4 style="color:red"><%=error.getMessage()%></h4>
+            <%
+              }
+            %>
           </div>
           <input type="text" name="creditSum" id="creditSum" style="width: 1px;">
           <input type="text" name="totalSum" id="totalSum" style="width: 1px;">

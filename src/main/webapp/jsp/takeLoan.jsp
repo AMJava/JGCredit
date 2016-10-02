@@ -6,9 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="lv.javaguru.java2.domain.MVCModel" %>
-<%@ page import="lv.javaguru.java2.dto.UserDTO" %>
+<%@ page import="lv.javaguru.java2.dto.LoanDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,9 +22,10 @@
 <%@ include file="../jsp/shared/header.jsp" %>
 <%
   MVCModel data = (MVCModel)request.getAttribute("model");
-  UserDTO errorUser = null;
+  LoanDTO loanDTO = null;
+  NumberFormat formatter = new DecimalFormat("#0.00");
   if (data != null) {
-    errorUser = (UserDTO) data.getData();
+    loanDTO = (LoanDTO) data.getData();
   }
 %>
 <div class="container">
@@ -32,163 +35,92 @@
       <label for="amount" class="col-sm-3 control-label">Amount</label>
       <div class="col-sm-9">
         <%
-          if (errorUser != null) {
+          if (loanDTO != null) {
         %>
-        <input type="text" name="amount" id="amount" placeholder="Amount" required="required" class="form-control" autofocus value='<%=errorUser.getLogin() %>'>
+        <input type="text" name="amount" id="amount" readonly="readonly" placeholder="Amount" required="required" class="form-control" autofocus value='<%=formatter.format(loanDTO.getLoan()) %>€'>
         <%
         }
         else{
         %>
-        <input type="text" name="amount" id="amount" placeholder="Amount" required="required" class="form-control" autofocus>
+        <input type="text" name="amount" id="amount" readonly="readonly" placeholder="Amount" required="required" class="form-control" autofocus>
         <%
           }
         %>
       </div>
     </div>
     <div class="form-group required">
-      <label for="firstName" class="col-sm-3 control-label">First Name</label>
+      <label for="duration" class="col-sm-3 control-label">Duration(months)</label>
       <div class="col-sm-9">
         <%
-          if (errorUser != null) {
+          if (loanDTO != null) {
         %>
-        <input type="text" name="fName" id="firstName" placeholder="First Name" required="required" class="form-control" autofocus value='<%=errorUser.getFName() %>'>
+        <input type="text" name="duration" id="duration" readonly="readonly" placeholder="Duration" required="required" class="form-control" autofocus value='<%=loanDTO.getDuration() %>'>
         <%
         }
         else{
         %>
-        <input type="text" name="fName" id="firstName" placeholder="First Name" required="required" class="form-control">
+        <input type="text" name="duration" id="duration" readonly="readonly" placeholder="Duration" required="required" class="form-control">
         <%
           }
         %>
       </div>
     </div>
     <div class="form-group required">
-      <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+      <label for="finalAmount" class="col-sm-3 control-label">Final Amount</label>
       <div class="col-sm-9">
         <%
-          if (errorUser != null) {
+          if (loanDTO != null) {
         %>
-        <input type="text" name="lName" id="lastName" placeholder="Last Name" required="required" class="form-control" autofocus value='<%=errorUser.getLName() %>'>
+        <input type="text" name="finalAmount" id="finalAmount" readonly="readonly" placeholder="Final Amount" required="required" class="form-control" autofocus value='<%=formatter.format(loanDTO.getLoanSum()) %>€'>
         <%
         }
         else{
         %>
-        <input type="text" name="lName" id="lastName" placeholder="Last Name" required="required" class="form-control">
+        <input type="text" name="finalAmount" id="finalAmount" readonly="readonly" required="required" placeholder="Final Amount" class="form-control">
         <%
           }
         %>
       </div>
     </div>
     <div class="form-group required">
-      <label for="personalNumber" class="col-sm-3 control-label">Personal Number</label>
+      <label for="term" class="col-sm-3 control-label">Term Unit</label>
       <div class="col-sm-9">
         <%
-          if (errorUser != null) {
+          if (loanDTO != null) {
         %>
-        <input type="text" name="personalNumber" id="personalNumber" placeholder="personalNumber" required="required" class="form-control" autofocus value='<%=errorUser.getPersonalCode() %>'>
+        <input type="text" name="termUnit" id="termUnit" readonly="readonly" placeholder="Term Unit" required="required" class="form-control" autofocus value='<%=loanDTO.getTerm().substring(0, 1).toUpperCase() + loanDTO.getTerm().substring(1) %>'>
         <%
         }
         else{
         %>
-        <input type="text" name="personalNumber" id="personalNumber" required="required" placeholder="Personal Number" class="form-control">
+        <input type="text" name="termUnit" id="termUnit" readonly="readonly" placeholder="Term Unit" required="required" class="form-control">
         <%
           }
         %>
       </div>
     </div>
-    <div class="form-group">
-      <label for="companyName" class="col-sm-3 control-label">Company Name</label>
+    <div class="form-group required">
+      <label for="termPayment" class="col-sm-3 control-label">Term Payment</label>
       <div class="col-sm-9">
         <%
-          if (errorUser != null) {
+          if (loanDTO != null) {
         %>
-        <input type="text" name="companyName" id="companyName" placeholder="Company Name" class="form-control" autofocus value='<%=errorUser.getCompany() %>'>
+        <input type="text" name="termPayment" id="termPayment" readonly="readonly" placeholder="Term Payment" required="required" class="form-control" autofocus value='<%=formatter.format(loanDTO.getTermPayment()) %>€'>
         <%
         }
         else{
         %>
-        <input type="text" name="companyName" id="companyName" placeholder="Company Name" class="form-control">
+        <input type="text" name="termPayment" id="termPayment" readonly="readonly" placeholder="Term Payment" required="required" class="form-control">
         <%
           }
         %>
       </div>
     </div>
-    <div class="form-group">
-      <label for="jobTitle" class="col-sm-3 control-label">Job Title</label>
+    <div class="form-group required">
+      <label for="bankAccount" class="col-sm-3 control-label">Bank Account</label>
       <div class="col-sm-9">
-        <%
-          if (errorUser != null) {
-        %>
-        <input type="text" name="jobTitle" id="jobTitle" placeholder="Job Title" class="form-control" autofocus value='<%=errorUser.getJobTitle() %>'>
-        <%
-        }
-        else{
-        %>
-        <input type="text" name="jobTitle" id="jobTitle" placeholder="Job Title" class="form-control">
-        <%
-          }
-        %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="salary" class="col-sm-3 control-label">Salary</label>
-      <div class="col-sm-4">
-        <select id="salary" name="salary" class="form-control">
-          <option><500 EURO</option>
-          <option>500-1000 EURO</option>
-          <option>1000-2000 EURO</option>
-          <option>>2000 EURO</option>
-        </select>
-      </div>
-    </div> <!-- /.form-group -->
-    <div class="form-group required">
-      <label class="control-label col-sm-3">Gender</label>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-4">
-            <label class="radio-inline">
-              <input type="radio" name="gender" id="femaleRadio" required="required" value="Female">Female
-            </label>
-          </div>
-          <div class="col-sm-4">
-            <label class="radio-inline">
-              <input type="radio" name="gender" id="maleRadio" required="required" value="Male">Male
-            </label>
-          </div>
-        </div>
-      </div>
-    </div> <!-- /.form-group -->
-    <div class="form-group required">
-      <label for="question" class="col-sm-3 control-label">Secret Qeastion</label>
-      <div class="col-sm-6">
-        <select id="question" name="question" required="required" class="form-control">
-          <option>Best childhood friend</option>
-          <option>Name of first pet</option>
-          <option>Favorite teacher</option>
-          <option>Favorite historical person</option>
-        </select>
-        <span class="help-block">Secret question when password is forgotten</span>
-      </div>
-    </div> <!-- /.form-group -->
-    <div class="form-group required">
-      <label for="answer" class="col-sm-3 control-label">Secret Answer</label>
-      <div class="col-sm-9">
-        <input type="text" name="answer" id="answer" placeholder="Secret Answer" required="required" class="form-control">
-        <span class="help-block">Secret answer when password is forgotten</span>
-      </div>
-    </div>
-    <div class="form-group required">
-      <label for="password" class="col-sm-3 control-label">Password</label>
-      <div class="col-sm-9">
-        <input type="password" name="password" id="password" placeholder="Password" required="required" class="form-control">
-        <span class="help-block">Use letters and numbers</span>
-      </div>
-    </div>
-    <div class="form-group required">
-      <label for="password2" class="col-sm-3 control-label">Confirm Password</label>
-      <div class="col-sm-9">
-        <input type="password" name="password2" id="password2" placeholder="Password" required="required" class="form-control">
-        <span class="help-block">Use letters and numbers</span>
+        <input type="text" name="bankAccount" id="bankAccount" placeholder="Bank Account" required="required" class="form-control">
+        <span class="help-block">Your Bank Account Number</span>
       </div>
     </div>
     <div class="form-group required">
@@ -203,10 +135,11 @@
     <%
       if (data != null) {
         ErrorResponse error = (ErrorResponse)data.getError();
+        if (error != null) {
     %>
     <h4 style="color:red"><%=error.getMessage()%></h4>
     <%
-      }
+      }}
     %>
     <div class="form-group">
       <div class="col-sm-6 col-sm-offset-3">

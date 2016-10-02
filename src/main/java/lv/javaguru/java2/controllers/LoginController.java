@@ -6,10 +6,9 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
-import lv.javaguru.java2.dto.ConvertorDTO;
+import lv.javaguru.java2.dto.ConvertorUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +27,7 @@ public class LoginController extends ErrorHandlingController{
     UserService userService;
 
     @Autowired
-    ConvertorDTO convertorDTO;
+    ConvertorUserDTO convertorUserDTO;
 
     @Autowired
     ErrorResponse errorResponse;
@@ -46,7 +45,7 @@ public class LoginController extends ErrorHandlingController{
             request.getParameter("user"),
             request.getParameter("pass"));
 
-            UserDTO userDTO = convertorDTO.convertUserToDTO(user);
+            UserDTO userDTO = convertorUserDTO.convertUserToDTO(user);
             byte[] photoDTO = userDTO.getPhoto();
             if (photoDTO != null) {
                 //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows

@@ -6,6 +6,7 @@ import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.dto.LoanDTO;
 import lv.javaguru.java2.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,16 +48,25 @@ public class HomeController extends ErrorHandlingController{
     public ModelAndView executePostRequest(HttpServletRequest request){
         try {
             userService.checkAuthorization();
-            Float creditSum = Float.parseFloat(request.getParameter("creditSum"));
-            Float totalSum = Float.parseFloat(request.getParameter("totalSum"));
-            Float monthlySum = Float.parseFloat(request.getParameter("monthlySum"));
-            Float weeklySum = Float.parseFloat(request.getParameter("weeklySum"));
-            int duration = Integer.parseInt(request.getParameter("month").substring(0,2));
-            String term = request.getParameter("term");
-            return new ModelAndView("redirect", "model", new MVCModel("/java2/takeLoan",null));
+
+            LoanDTO loanDTO = new LoanDTO();
+            loanDTO.setLoan(Double.parseDouble(request.getParameter("creditSum")));
+            loanDTO.setLoanSum(Double.parseDouble(request.getParameter("totalSum")));
+            loanDTO.setDuration(Integer.parseInt(request.getParameter("month").substring(0,2)));
+            loanDTO.setTerm(request.getParameter("term"));
+
+            if(request.getParameter("term").equals("weekly")){
+                loanDTO.setTermPayment(Double.parseDouble(request.getParameter("weeklySum")));
+            }else{
+                loanDTO.setTermPayment(Double.parseDouble(request.getParameter("monthlySum")));
+            }
+            return new ModelAndView("takeLoan", "model", new MVCModel(loanDTO,null));
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
             return new ModelAndView("redirect", "model", new MVCModel("/java2/login",null));
+        } catch (NullPointerException e) {
+            errorResponse.setMessage("NullPointerException, Please Contact Second Line Support");
+            return  new ModelAndView("home","model",new MVCModel("",errorResponse));
         }
     }
 }

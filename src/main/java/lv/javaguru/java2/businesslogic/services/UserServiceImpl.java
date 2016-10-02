@@ -8,9 +8,8 @@ import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.domain.Communication;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.dto.ConvertorDTO;
+import lv.javaguru.java2.dto.ConvertorUserDTO;
 import lv.javaguru.java2.dto.UserDTO;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
 import java.sql.SQLException;
-import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Autowired
-    private ConvertorDTO convertorDTO;
+    private ConvertorUserDTO convertorUserDTO;
 
     @Autowired
     private UserValidator userValidator;
@@ -49,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDTO create(UserDTO userDTO) throws SQLException, ServiceException, CommunicationException, MessagingException {
 
-        User user = convertorDTO.convertUserFromDTO(userDTO);
+        User user = convertorUserDTO.convertUserFromDTO(userDTO);
         if(user == null)
             throw new ServiceException("Please Contact Second Line Support, null was returned by DTOConverter");
         boolean isValid = userValidator.validateUser(user,userDTO.getPassword2());
@@ -95,7 +93,7 @@ public class UserServiceImpl implements UserService {
         user.setCompany(userDTO.getCompany());
         user.setJobTitle(userDTO.getJobTitle());
         userDAO.update(user);
-        return convertorDTO.convertUserToDTO(user);
+        return convertorUserDTO.convertUserToDTO(user);
     }
 
     @Transactional

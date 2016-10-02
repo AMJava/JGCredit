@@ -2,7 +2,7 @@ package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.MVCModel;
-import lv.javaguru.java2.dto.ConvertorDTO;
+import lv.javaguru.java2.dto.ConvertorUserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class LogoutController extends ErrorHandlingController{
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    ConvertorDTO convertorDTO;
+    ConvertorUserDTO convertorDTO;
 
     @Autowired
     private UserDAO userDAO;

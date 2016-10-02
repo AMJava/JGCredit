@@ -5,7 +5,7 @@ import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
-import lv.javaguru.java2.dto.ConvertorDTO;
+import lv.javaguru.java2.dto.ConvertorUserDTO;
 import lv.javaguru.java2.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class RegisterController extends ErrorHandlingController{
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    ConvertorDTO convertorDTO;
+    ConvertorUserDTO convertorUserDTO;
 
     @Autowired
     UserService userService;

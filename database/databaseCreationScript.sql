@@ -53,10 +53,12 @@ CREATE TABLE employees (
 CREATE TABLE loans (
   id int(11) NOT NULL AUTO_INCREMENT UNIQUE,
   version bigint(11),
+  loan DECIMAL(10,2) NOT NULL,
   loan_sum DECIMAL(10,2) NOT NULL,
   interest_rate DECIMAL(10,3) NOT NULL,
   duration INT(2) DEFAULT 12,
-  term VARCHAR(250) DEFAULT 'monthly' CHECK (term_unit IN('weekly', 'monthly')),
+  term_unit VARCHAR(250) DEFAULT 'monthly' CHECK (term_unit IN('weekly', 'monthly')),
+  term_payment DECIMAL(10,2) NOT NULL,
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
   extended_date DATE,
@@ -106,11 +108,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 /*Examples:*/
 insert into users values (default,0,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null,'Y');
 insert into employees values (default,0,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
-insert into loans values (default,0,'250.00', '0.12',12,'monthly',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
+insert into loans values (default,0,'200','250.00', '0.12',12,'monthly','200.4',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
 
 insert into rates values (default,0,12, 'monthly','1.225');
 insert into rates values (default,0,12, 'weekly','1.15');
 insert into rates values (default,0,18, 'monthly','1.25');
-insert into rates values (default,0,18, 'weekly','1.8');
+insert into rates values (default,0,18, 'weekly','1.22');
 insert into rates values (default,0,24, 'monthly','1.28');
 insert into rates values (default,0,24, 'weekly','1.2');

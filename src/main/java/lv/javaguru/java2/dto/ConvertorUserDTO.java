@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Arturs on 29.08.2016.
  */
 @Component
-public class ConvertorDTO {
+public class ConvertorUserDTO {
 
     public UserDTO convertUserToDTO(User user) {
 

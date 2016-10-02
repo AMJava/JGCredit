@@ -1,23 +1,17 @@
 package lv.javaguru.java2.businesslogic.validators;
 
-import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.UserValidator;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.dto.ConvertorDTO;
-import lv.javaguru.java2.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class UserValidatorImpl implements UserValidator {

@@ -5,7 +5,7 @@ import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
-import lv.javaguru.java2.dto.ConvertorDTO;
+import lv.javaguru.java2.dto.ConvertorUserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class ChangePassController extends ErrorHandlingController{
     UserService userService;
 
     @Autowired
-    ConvertorDTO convertorDTO;
+    ConvertorUserDTO convertorUserDTO;
 
     @Autowired
     ErrorResponse errorResponse;

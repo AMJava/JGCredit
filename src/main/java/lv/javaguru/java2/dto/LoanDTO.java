@@ -1,69 +1,56 @@
-package lv.javaguru.java2.domain;
+package lv.javaguru.java2.dto;
 
 import lv.javaguru.java2.domain.Base.BaseEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by Arturs on 09.08.2016.
  */
-@Entity
-@Table(name = "loans")
-public class Loan extends BaseEntity {
 
-    @Column(name = "loan", columnDefinition = "decimal")
+public class LoanDTO{
+
+    private Long id;
+
     private Double loan;
 
-    @Column(name = "loan_sum", columnDefinition = "decimal")
     private Double loanSum;
 
-    @Column(name = "interest_rate", columnDefinition = "decimal")
     private Double interestRate;
 
-    @Column(name = "duration")
     private int duration;
 
-    @Column(name = "term_unit")
     private String term;
 
-    @Column(name = "term_payment", columnDefinition = "decimal")
     private Double termPayment;
 
-    @Column(name = "start_date")
     private Date startDate;
 
-    @Column(name = "end_date")
     private Date endDate;
 
-    @Column(name = "extended_date")
     private Date extendedDate;
 
-    @Column(name = "loan_status")
     private String loanStatus;
 
-    @Column(name = "extended_flag")
     private String extendedFlag;
 
-    @Column(name = "user_id", columnDefinition = "int")
     private Long userId;
 
-    @Column(name = "employee_id", columnDefinition = "int")
     private Long employeeId;
 
-    @Column(name = "bank_acc_number")
     private String bankAccountNumb;
 
-    @Column(name = "comments")
     private String comments;
 
-    public Loan() {
+    public LoanDTO() {
     }
 
-    public Loan(Long id, Double loan, Double loanSum, Double interestRate, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
+    public LoanDTO(Long id, Double loan, Double loanSum, Double interestRate, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
         this.id = id;
         this.loan = loan;
         this.loanSum = loanSum;
@@ -88,6 +75,14 @@ public class Loan extends BaseEntity {
 
     public void setTermPayment(Double termPayment) {
         this.termPayment = termPayment;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Double getLoan() {
@@ -212,4 +207,23 @@ public class Loan extends BaseEntity {
         return HashCodeBuilder.reflectionHashCode(this);
     }
 
+    @Override
+    public String toString() {
+        return "LoanDTO{" +
+        "loan=" + loan +
+        ", loanSum=" + loanSum +
+        ", interestRate=" + interestRate +
+        ", duration=" + duration +
+        ", term='" + term + '\'' +
+        ", startDate=" + startDate +
+        ", endDate=" + endDate +
+        ", extendedDate=" + extendedDate +
+        ", loanStatus='" + loanStatus + '\'' +
+        ", extendedFlag='" + extendedFlag + '\'' +
+        ", userId=" + userId +
+        ", employeeId=" + employeeId +
+        ", bankAccountNumb='" + bankAccountNumb + '\'' +
+        ", comments='" + comments + '\'' +
+        '}';
+    }
 }
