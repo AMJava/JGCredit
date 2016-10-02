@@ -4,13 +4,16 @@ import lv.javaguru.java2.businesslogic.CommunicationService;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.database.CommunicationDAO;
+import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Communication;
+import lv.javaguru.java2.domain.Loan;
 import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -27,6 +30,9 @@ public class CommunicationServiceImpl implements CommunicationService {
 
     @Autowired
     private CommunicationDAO communicationDAO;
+
+    @Autowired
+    private UserDAO userDAO;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -89,6 +95,21 @@ public class CommunicationServiceImpl implements CommunicationService {
         Long CommunicationId = create(communication);
     }
 
+    @Transactional
+    public void sendWarningEmail(List<Long> userIdList) throws SQLException, MessagingException, CommunicationException{
+        if(userIdList.size() > 0){
+            for(int i = 0; i<userIdList.size(); i++) {
+                    User user = userDAO.getById(userIdList.get(i));
+                    if(user != null){
+                        String sBody = "You have only 7 days to pay your loan";
+                        Date today = new Date();
+                        generateAndSendEmail(sBody,user.getEmail(),"You have only 7 days to pay your loan.");
+                        Communication communication = new Communication("You have only 7 days to pay your loan.", sBody, today, "Outbound", "E-mail", user.getEmail(), user.getId(), null);
+                        Long CommunicationId = create(communication);
+                    }
+            }
+        }
+    }
     public void generateAndSendEmail(String sBody, String sTo, String sSubject) throws MessagingException {
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");

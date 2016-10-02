@@ -1,5 +1,6 @@
 package lv.javaguru.java2.config;
 
+import lv.javaguru.java2.businesslogic.job.Task;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -26,10 +28,15 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = {"lv.javaguru.java2"})
 @EnableTransactionManagement
+@EnableScheduling
 public class SpringConfig {
 
     private static final String DATABASE_PROPERTIES_FILE = "database.properties";
 
+    @Bean
+    public Task task() {
+        return new Task();
+    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer prodPropertiesPlaceholderConfigurer() {
