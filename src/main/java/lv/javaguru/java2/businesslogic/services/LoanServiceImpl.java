@@ -99,4 +99,24 @@ public class LoanServiceImpl implements LoanService {
         }}
         return loanDTOList;
     }
+
+    @Transactional
+    public void extendActiveUserLoan(Long userId) throws SQLException{
+        Date today = new Date();
+        List<Loan> loanList = loanDAO.getActiveUserLoans(userId);
+        if(loanList.size() == 1){
+            Loan loan = loanList.get(0);
+            Double totalSum = loan.getLoanSum();
+            Date endDate = loan.getEndDate();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(endDate);
+            cal.add(Calendar.MONTH, +3);
+            totalSum += 300.0;
+            loan.setExtendedFlag("Y");
+            loan.setExtendedDate(today);
+            loan.setLoanSum(totalSum);
+            loan.setEndDate(cal.getTime());
+        }
+
+    }
 }

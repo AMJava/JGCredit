@@ -91,8 +91,12 @@
                       if(loan.getLoanStatus().toString().equals("ACTIVE") && loan.getExtendedFlag() == null){
                   %>
                 <td>
-                  <p data-placement="top" data-toggle="tooltip" title="Extend for 3 month"><button class="btn btn-primary btn-xs" data-title="Extend" data-toggle="modal" data-target="#extend" ><span class="glyphicon glyphicon-plus"></span></button></p>
+                  <p data-placement="top" data-toggle="tooltip" title="Edit"><a href="<%=request.getContextPath()%>/extendLoan" data-original-title="Extend for 3 month" data-toggle="modal" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></p>
                 </td>
+                  <%
+                    }else{
+                  %>
+                  <td></td>
                   <%
                     }
                   %>
