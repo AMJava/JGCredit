@@ -6,6 +6,7 @@ import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.Loan;
 import lv.javaguru.java2.domain.MVCModel;
+import lv.javaguru.java2.dto.LoanDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class LoanController extends ErrorHandlingController{
     public ModelAndView executeGetRequest(HttpServletRequest request) throws Exception {
         try {
             userService.checkAuthorization();
-            List<Loan> loans = loanService.getUserLoans();
+            List<LoanDTO> loans = loanService.getUserLoans();
             return new ModelAndView("loan", "model", new MVCModel(loans,null));
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());

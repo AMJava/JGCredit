@@ -19,5 +19,5 @@ public interface LoanService {
 
     void checkExistingLoans() throws ExistingLoanUserException, SQLException;
 
-    List<Loan> getUserLoans() throws SQLException;
+    List<LoanDTO> getUserLoans() throws SQLException;
 }

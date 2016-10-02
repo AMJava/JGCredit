@@ -325,3 +325,8 @@ body {
   content: "\f069";
 }
 
+td.green {
+  color: green;
+font-size:large
+}
+

@@ -61,7 +61,7 @@ CREATE TABLE loans (
   start_date DATETIME NOT NULL,
   end_date DATETIME NOT NULL,
   extended_date DATETIME,
-  loan_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (loan_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
+  loan_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (loan_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'ACTIVE')),
   extended_flag VARCHAR(1) DEFAULT 'N',
   user_id int(11),
   employee_id int(11),

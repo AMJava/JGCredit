@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -61,7 +62,7 @@ public class LoanServiceImpl implements LoanService {
 
             loan.setStartDate(today);
             loan.setEndDate(cal.getTime());
-            loan.setLoanStatus("APPROVED");
+            loan.setLoanStatus("ACTIVE");
             loan.setUserId(userDTO.getId());
             Long loanId = loanDAO.create(loan);
             loanDTO.setId(loanId);
@@ -87,9 +88,15 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Transactional
-    public List<Loan> getUserLoans() throws SQLException{
+    public List<LoanDTO> getUserLoans() throws SQLException{
         UserDTO userDTO = sessionUserDTOService.getUserDTO();
         List<Loan> loanList = loanDAO.getUserLoans(userDTO.getId());
-        return loanList;
+        List<LoanDTO> loanDTOList = new ArrayList<LoanDTO>();
+        System.out.println(loanList.size());
+        if(loanList.size() > 0){
+        for (Loan loan : loanList){
+            loanDTOList.add(convertorLoanDTO.convertLoanToDTO(loan));
+        }}
+        return loanDTOList;
     }
 }

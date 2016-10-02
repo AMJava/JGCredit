@@ -2,6 +2,9 @@
 <%@ page import="lv.javaguru.java2.businesslogic.exceptions.ErrorResponse" %>
 <%@ page import="lv.javaguru.java2.domain.Loan" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="lv.javaguru.java2.dto.LoanDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <head>
@@ -12,10 +15,11 @@
 <body>
 <%@ include file="../jsp/shared/header.jsp" %>
 <%
+  NumberFormat formatter = new DecimalFormat("#0.00");
   MVCModel data = (MVCModel)request.getAttribute("model");
-  List<Loan> loans = null;
+  List<LoanDTO> loans = null;
   if (data != null) {
-    loans = (List<Loan>) data.getData();
+    loans = (List<LoanDTO>) data.getData();
   }
 %>
 <div class="content-section">
@@ -28,7 +32,7 @@
             <thead>
             <th class="text-center">Number</th>
             <th class="text-center">Amount</th>
-            <th class="text-center">Duration</th>
+            <th class="text-center">Duration(months)</th>
             <th class="text-center">Amount Sum</th>
             <th class="text-center">Term Unit</th>
             <th class="text-center">Term Payments</th>
@@ -38,34 +42,64 @@
             <th class="text-center">Status</th>
             <th class="text-center">Extended</th>
             <th class="text-center">Extended Date</th>
-            <th class="text-center">Extend?</th>
+            <th class="text-center">Extend?(300€)</th>
             </thead>
             <tbody>
-            <tr class="text-center">
               <%
-                if (loans.size() > 0) {
+                if (loans != null && loans.size() > 0) {
                   int i =0;
-                  for(Loan loan : loans){
+                  for(LoanDTO loan : loans){
               %>
-                <td><%=i++ %></td>
-                <td><%=loan.getLoan() %></td>
+                <tr class="text-center">
+                <td><%=++i %></td>
+                <td><%=formatter.format(loan.getLoan())%>€</td>
                 <td><%=loan.getDuration() %></td>
-                <td><%=loan.getLoanSum() %></td>
-                <td><%=loan.getTerm() %></td>
-                <td><%=loan.getTermPayment() %></td>
-                <td><%=loan.getStartDate() %></td>
-                <td><%=loan.getEndDate() %></td>
+                <td><%=formatter.format(loan.getLoanSum()) %>€</td>
+                <td><%=loan.getTerm().substring(0, 1).toUpperCase() + loan.getTerm().substring(1) %></td>
+                <td><%=formatter.format(loan.getTermPayment()) %>€</td>
+                <td><%=loan.getStartDate().toString().substring(0,10) %></td>
+                <td><%=loan.getEndDate().toString().substring(0,10) %></td>
                 <td><%=loan.getBankAccountNumb() %></td>
-                <td><%=loan.getLoanStatus() %></td>
-                <td><input type="checkbox" class="checkthis" unchecked/></td>
-                <td><%=loan.getExtendedDate() %></td>
+                  <%
+                    if(loan.getLoanStatus().toString().equals("ACTIVE")){
+                  %>
+                    <td class="green"><%=loan.getLoanStatus() %></td>
+                  <%
+                    }else{
+                  %>
+                    <td class="orange"><%=loan.getLoanStatus() %></td>
+                  <%
+                    }
+                    if(loan.getExtendedFlag() != null){
+                  %>
+                <td><input type="checkbox" disabled="disabled" class="checkthis" checked/></td>
+                  <%
+                    }else{
+                  %>
+                  <td><input type="checkbox" disabled="disabled" class="checkthis" unchecked/></td>
+                  <%
+                    }
+                    if(loan.getExtendedDate() != null){
+                  %>
+                    <td><%=loan.getExtendedDate().toString().substring(0,10) %></td>
+                  <%
+                    }else{
+                  %>
+                    <td></td>
+                  <%
+                    }
+                      if(loan.getLoanStatus().toString().equals("ACTIVE") && loan.getExtendedFlag() == null){
+                  %>
                 <td>
-                  <p data-placement="top" data-toggle="tooltip" title="Extend for 1 month"><button class="btn btn-primary btn-xs" data-title="Extend" data-toggle="modal" data-target="#extend" ><span class="glyphicon glyphicon-plus"></span></button></p>
+                  <p data-placement="top" data-toggle="tooltip" title="Extend for 3 month"><button class="btn btn-primary btn-xs" data-title="Extend" data-toggle="modal" data-target="#extend" ><span class="glyphicon glyphicon-plus"></span></button></p>
                 </td>
+                  <%
+                    }
+                  %>
+                </tr>
               <%
                 }}
               %>
-            </tr>
             </tbody>
           </table>
           <%
