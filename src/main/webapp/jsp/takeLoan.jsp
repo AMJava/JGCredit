@@ -22,11 +22,8 @@
 <%@ include file="../jsp/shared/header.jsp" %>
 <%
   MVCModel data = (MVCModel)request.getAttribute("model");
-  LoanDTO loanDTO = null;
+  LoanDTO loanDTO = (LoanDTO)session.getAttribute("loanDTO");
   NumberFormat formatter = new DecimalFormat("#0.00");
-  if (data != null) {
-    loanDTO = (LoanDTO) data.getData();
-  }
 %>
 <div class="container">
   <form class="form-horizontal" role="form" method="post">

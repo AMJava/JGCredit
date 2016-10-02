@@ -21,6 +21,8 @@ public interface CommunicationService {
 
     void sendRegEmail(User user) throws SQLException, MessagingException, CommunicationException;
 
+    void sendLoanEmail(Long id, String email) throws SQLException, MessagingException, CommunicationException;
+
     void generateAndSendEmail(String sBody, String sTo, String sSubject) throws MessagingException;
 
 }

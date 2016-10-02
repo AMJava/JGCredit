@@ -72,6 +72,15 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Transactional
+    public void sendLoanEmail(Long id, String email) throws MessagingException, CommunicationException, SQLException {
+        String sBody = "Loan was created";
+        Date today = new Date();
+        generateAndSendEmail(sBody,email,"Loan was created.");
+        Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", email, id, null);
+        Long CommunicationId = create(communication);
+    }
+
+    @Transactional
     public void sendChangeEmail(User user) throws SQLException, MessagingException, CommunicationException {
         String sBody = "Password for your account was changed";
         Date today = new Date();
@@ -95,7 +104,7 @@ public class CommunicationServiceImpl implements CommunicationService {
 
         Transport transport = getMailSession.getTransport("smtp");
 
-        transport.connect("smtp.gmail.com", "TEST@gmail.com", "");
+        transport.connect("smtp.gmail.com", "@gmail.com", "");
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
     }

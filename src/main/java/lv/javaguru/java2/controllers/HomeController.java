@@ -60,7 +60,8 @@ public class HomeController extends ErrorHandlingController{
             }else{
                 loanDTO.setTermPayment(Double.parseDouble(request.getParameter("monthlySum")));
             }
-            return new ModelAndView("takeLoan", "model", new MVCModel(loanDTO,null));
+            request.getSession().setAttribute("loanDTO", loanDTO);
+            return new ModelAndView("redirect", "model", new MVCModel("/java2/takeLoan",null));
         } catch (UnAuthorizedUserException e) {
             errorResponse.setMessage(e.getMessage());
             return new ModelAndView("redirect", "model", new MVCModel("/java2/login",null));

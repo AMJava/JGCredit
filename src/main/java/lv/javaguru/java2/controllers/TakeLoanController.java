@@ -1,9 +1,12 @@
 package lv.javaguru.java2.controllers;
 
+import lv.javaguru.java2.businesslogic.LoanService;
 import lv.javaguru.java2.businesslogic.UserService;
 import lv.javaguru.java2.businesslogic.exceptions.ErrorResponse;
+import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.businesslogic.exceptions.UnAuthorizedUserException;
 import lv.javaguru.java2.domain.MVCModel;
+import lv.javaguru.java2.dto.LoanDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 public class TakeLoanController extends ErrorHandlingController{
 
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    LoanService loanService;
 
     @Autowired
     UserService userService;
@@ -36,8 +42,19 @@ public class TakeLoanController extends ErrorHandlingController{
         }
     }
 
-    @RequestMapping(value = "tkeLoan", method = {RequestMethod.POST})
+    @RequestMapping(value = "takeLoan", method = {RequestMethod.POST})
     public ModelAndView executePostRequest(HttpServletRequest request) throws Exception {
-        return new ModelAndView("takeLoan", "model", null);
+        try {
+            LoanDTO loanDTO = (LoanDTO) request.getSession().getAttribute("loanDTO");
+            loanDTO.setBankAccountNumb(request.getParameter("bankAccount"));
+            loanDTO.setAgreementTeam(request.getParameter("term"));
+            loanService.create(loanDTO);
+
+            request.getSession().setAttribute("loanDTO", null);
+            return new ModelAndView("redirect", "model", new MVCModel("/java2",null));
+        } catch (ServiceException e) {
+            errorResponse.setMessage(e.getMessage());
+            return  new ModelAndView("takeLoan","model",new MVCModel(null,errorResponse));
+         }
     }
 }

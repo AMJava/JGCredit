@@ -1,21 +1,10 @@
 package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.domain.Loan;
+import lv.javaguru.java2.domain.User;
 
-import java.util.List;
+import java.sql.SQLException;
 
-/**
- * Created by Arturs on 10.08.2016.
- */
-public interface LoanDAO {
+public interface LoanDAO extends BaseDAO<Loan> {
 
-    void createLoan(Loan loan) throws DBException;
-
-    Loan getLoanById(Long id) throws DBException;
-
-    void deleteLoan(Long id) throws DBException;
-
-    void updateLoanStatus(String status) throws DBException;
-
-    List<Loan> getAllUserLoans(Long userId) throws DBException;
 }

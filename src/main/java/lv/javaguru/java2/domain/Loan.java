@@ -21,9 +21,6 @@ public class Loan extends BaseEntity {
     @Column(name = "loan_sum", columnDefinition = "decimal")
     private Double loanSum;
 
-    @Column(name = "interest_rate", columnDefinition = "decimal")
-    private Double interestRate;
-
     @Column(name = "duration")
     private int duration;
 
@@ -63,11 +60,10 @@ public class Loan extends BaseEntity {
     public Loan() {
     }
 
-    public Loan(Long id, Double loan, Double loanSum, Double interestRate, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
+    public Loan(Long id, Double loan, Double loanSum, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
         this.id = id;
         this.loan = loan;
         this.loanSum = loanSum;
-        this.interestRate = interestRate;
         this.duration = duration;
         this.term = term;
         this.termPayment = termPayment;
@@ -104,14 +100,6 @@ public class Loan extends BaseEntity {
 
     public void setLoanSum(Double loanSum) {
         this.loanSum = loanSum;
-    }
-
-    public Double getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
     }
 
     public int getDuration() {

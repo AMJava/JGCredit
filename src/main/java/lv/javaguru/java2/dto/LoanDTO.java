@@ -21,8 +21,6 @@ public class LoanDTO{
 
     private Double loanSum;
 
-    private Double interestRate;
-
     private int duration;
 
     private String term;
@@ -47,14 +45,15 @@ public class LoanDTO{
 
     private String comments;
 
+    private String agreementTeam;
+
     public LoanDTO() {
     }
 
-    public LoanDTO(Long id, Double loan, Double loanSum, Double interestRate, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
+    public LoanDTO(Long id, Double loan, Double loanSum, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
         this.id = id;
         this.loan = loan;
         this.loanSum = loanSum;
-        this.interestRate = interestRate;
         this.duration = duration;
         this.term = term;
         this.termPayment = termPayment;
@@ -67,6 +66,14 @@ public class LoanDTO{
         this.employeeId = employeeId;
         this.bankAccountNumb = bankAccountNumb;
         this.comments = comments;
+    }
+
+    public String getAgreementTeam() {
+        return agreementTeam;
+    }
+
+    public void setAgreementTeam(String agreementTeam) {
+        this.agreementTeam = agreementTeam;
     }
 
     public Double getTermPayment() {
@@ -99,14 +106,6 @@ public class LoanDTO{
 
     public void setLoanSum(Double loanSum) {
         this.loanSum = loanSum;
-    }
-
-    public Double getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
     }
 
     public int getDuration() {
@@ -210,11 +209,12 @@ public class LoanDTO{
     @Override
     public String toString() {
         return "LoanDTO{" +
-        "loan=" + loan +
+        "id=" + id +
+        ", loan=" + loan +
         ", loanSum=" + loanSum +
-        ", interestRate=" + interestRate +
         ", duration=" + duration +
         ", term='" + term + '\'' +
+        ", termPayment=" + termPayment +
         ", startDate=" + startDate +
         ", endDate=" + endDate +
         ", extendedDate=" + extendedDate +
@@ -224,6 +224,7 @@ public class LoanDTO{
         ", employeeId=" + employeeId +
         ", bankAccountNumb='" + bankAccountNumb + '\'' +
         ", comments='" + comments + '\'' +
+        ", agreementTeam='" + agreementTeam + '\'' +
         '}';
     }
 }

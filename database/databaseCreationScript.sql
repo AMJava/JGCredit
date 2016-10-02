@@ -55,13 +55,12 @@ CREATE TABLE loans (
   version bigint(11),
   loan DECIMAL(10,2) NOT NULL,
   loan_sum DECIMAL(10,2) NOT NULL,
-  interest_rate DECIMAL(10,3) NOT NULL,
   duration INT(2) DEFAULT 12,
-  term_unit VARCHAR(250) DEFAULT 'monthly' CHECK (term_unit IN('weekly', 'monthly')),
+  term_unit VARCHAR(250) DEFAULT 'Monthly' CHECK (term_unit IN('weekly', 'monthly')),
   term_payment DECIMAL(10,2) NOT NULL,
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
-  extended_date DATE,
+  start_date DATETIME NOT NULL,
+  end_date DATETIME NOT NULL,
+  extended_date DATETIME,
   loan_status VARCHAR(10) DEFAULT 'PROCESSING' CHECK (loan_status IN ('CANCELLED', 'APPROVED', 'PROCESSING', 'CLOSED', 'PAID')),
   extended_flag VARCHAR(1) DEFAULT 'N',
   user_id int(11),
@@ -108,7 +107,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 /*Examples:*/
 insert into users values (default,0,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null,'Y');
 insert into employees values (default,0,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
-insert into loans values (default,0,'200','250.00', '0.12',12,'monthly','200.4',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
+insert into loans values (default,0,'200','250.00',12,'monthly','200.4',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
 
 insert into rates values (default,0,12, 'monthly','1.225');
 insert into rates values (default,0,12, 'weekly','1.15');

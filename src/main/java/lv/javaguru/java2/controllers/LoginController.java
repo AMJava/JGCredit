@@ -46,8 +46,8 @@ public class LoginController extends ErrorHandlingController{
             request.getParameter("pass"));
 
             UserDTO userDTO = convertorUserDTO.convertUserToDTO(user);
-            byte[] photoDTO = userDTO.getPhoto();
-            if (photoDTO != null) {
+            byte[] photo = userDTO.getPhoto();
+            if (photo != null) {
                 //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
                 FileOutputStream fos = new FileOutputStream("output.jpg");
                 fos.write(userDTO.getPhoto());
