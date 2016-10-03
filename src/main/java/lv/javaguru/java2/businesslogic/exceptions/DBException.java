@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database;
+package lv.javaguru.java2.businesslogic.exceptions;
 
 public class DBException extends Exception {
 

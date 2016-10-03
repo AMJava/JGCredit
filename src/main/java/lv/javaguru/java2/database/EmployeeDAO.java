@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database;
 
+import lv.javaguru.java2.businesslogic.exceptions.DBException;
 import lv.javaguru.java2.domain.Employee;
 
 import java.util.List;
