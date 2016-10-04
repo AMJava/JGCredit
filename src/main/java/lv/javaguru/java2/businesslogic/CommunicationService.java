@@ -1,5 +1,6 @@
 package lv.javaguru.java2.businesslogic;
 
+import com.lowagie.text.DocumentException;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.domain.Communication;
@@ -8,7 +9,10 @@ import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.dto.UserDTO;
 
 import javax.mail.MessagingException;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 public interface CommunicationService {
@@ -25,8 +29,9 @@ public interface CommunicationService {
 
     void sendRegEmail(User user) throws SQLException, MessagingException, CommunicationException;
 
-    void sendLoanEmail(Long id, String email) throws SQLException, MessagingException, CommunicationException;
+    void sendLoanEmail(Long id, String email) throws SQLException, MessagingException, CommunicationException, IOException, DocumentException;
 
     void generateAndSendEmail(String sBody, String sTo, String sSubject) throws MessagingException;
 
+    File generatePDF(User user, Date today) throws DocumentException, IOException;
 }

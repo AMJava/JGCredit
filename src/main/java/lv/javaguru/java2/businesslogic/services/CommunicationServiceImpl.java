@@ -1,5 +1,8 @@
 package lv.javaguru.java2.businesslogic.services;
 
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.html.simpleparser.HTMLWorker;
 import lv.javaguru.java2.businesslogic.CommunicationService;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
@@ -12,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -78,12 +85,14 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Transactional
-    public void sendLoanEmail(Long id, String email) throws MessagingException, CommunicationException, SQLException {
+    public void sendLoanEmail(Long id, String email) throws MessagingException, CommunicationException, SQLException, IOException, DocumentException {
         String sBody = "Loan was created";
+        User user = userDAO.getById(id);
         Date today = new Date();
-        generateAndSendEmail(sBody,email,"Loan was created.");
-        Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", email, id, null);
-        Long CommunicationId = create(communication);
+        File pdf = generatePDF(user,today);
+        //generateAndSendEmail(sBody,email,"Loan was created.");
+       // Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", email, id, null);
+       // Long CommunicationId = create(communication);
     }
 
     @Transactional
@@ -125,8 +134,31 @@ public class CommunicationServiceImpl implements CommunicationService {
 
         Transport transport = getMailSession.getTransport("smtp");
 
-        transport.connect("smtp.gmail.com", "@gmail.com", "");
+        transport.connect("smtp.gmail.com", "TEST@gmail.com", "");
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
+    }
+
+    public File generatePDF(User user, Date today) throws DocumentException,IOException {
+        Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("temp/Agreement"+user.getId()+"-"+today.getTime()+".pdf"));
+            document.open();
+            Paragraph preface = new Paragraph("Agreement");
+            preface.setAlignment(Element.ALIGN_CENTER);
+            document.add(preface);
+            document.setPageSize(PageSize.LETTER);
+            document.addAuthor("JGCredit");
+            document.addCreator("JGCredit");
+            document.addSubject("Thanks for your support");
+            document.addCreationDate();
+            document.addTitle("Please read this");
+            HTMLWorker htmlWorker = new HTMLWorker(document);
+            String str =
+            "<br>" +
+            "<p>Dear "+user.getFName()+" "+ user.getLName()+" you have successfully signed an Agreement with JGCredit Group." +
+            "</body></html>";
+            htmlWorker.parse(new StringReader(str));
+        document.close();
+        return new File("temp/Agreement"+user.getId()+"-"+today.toString()+".pdf");
     }
 }

@@ -1,5 +1,6 @@
 package lv.javaguru.java2.businesslogic.services;
 
+import com.lowagie.text.DocumentException;
 import lv.javaguru.java2.businesslogic.*;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ExistingLoanUserException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,7 +49,7 @@ public class LoanServiceImpl implements LoanService {
     SessionUserDTOService sessionUserDTOService;
 
     @Transactional
-    public LoanDTO create(LoanDTO loanDTO) throws SQLException, ServiceException, CommunicationException, MessagingException {
+    public LoanDTO create(LoanDTO loanDTO) throws SQLException, ServiceException, CommunicationException, MessagingException, IOException, DocumentException {
 
         boolean isValid = loanValidator.validateLoan(loanDTO);
         if (isValid) {
