@@ -29,9 +29,9 @@ public interface CommunicationService {
 
     void sendRegEmail(User user) throws SQLException, MessagingException, CommunicationException;
 
-    void sendLoanEmail(Long id, String email) throws SQLException, MessagingException, CommunicationException, IOException, DocumentException;
+    void sendLoanEmail(Long loanId, Long id, String email) throws SQLException, MessagingException, CommunicationException, IOException, DocumentException;
 
     void generateAndSendEmail(String sBody, String sTo, String sSubject) throws MessagingException;
 
-    File generatePDF(User user, Date today) throws DocumentException, IOException;
+    File generatePDF(User user, Date today, Long loanId) throws DocumentException, IOException, SQLException;
 }

@@ -7,18 +7,18 @@ import lv.javaguru.java2.businesslogic.CommunicationService;
 import lv.javaguru.java2.businesslogic.exceptions.CommunicationException;
 import lv.javaguru.java2.businesslogic.exceptions.ServiceException;
 import lv.javaguru.java2.database.CommunicationDAO;
+import lv.javaguru.java2.database.LoanDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Communication;
 import lv.javaguru.java2.domain.Loan;
 import lv.javaguru.java2.domain.User;
+import org.hibernate.LobHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -26,9 +26,9 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 
@@ -40,6 +40,9 @@ public class CommunicationServiceImpl implements CommunicationService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private LoanDAO loanDAO;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -85,14 +88,14 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Transactional
-    public void sendLoanEmail(Long id, String email) throws MessagingException, CommunicationException, SQLException, IOException, DocumentException {
+    public void sendLoanEmail(Long loanId, Long id, String email) throws MessagingException, CommunicationException, SQLException, IOException, DocumentException {
         String sBody = "Loan was created";
         User user = userDAO.getById(id);
         Date today = new Date();
-        File pdf = generatePDF(user,today);
-        //generateAndSendEmail(sBody,email,"Loan was created.");
-       // Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", email, id, null);
-       // Long CommunicationId = create(communication);
+        File pdf = generatePDF(user,today, loanId);
+        generateAndSendEmail(sBody,email,"Loan was created.");
+        Communication communication = new Communication("Welcome to JG Credit.", sBody, today, "Outbound", "E-mail", email, id, null);
+        Long CommunicationId = create(communication);
     }
 
     @Transactional
@@ -139,7 +142,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         transport.close();
     }
 
-    public File generatePDF(User user, Date today) throws DocumentException,IOException {
+    public File generatePDF(User user, Date today, Long loanId) throws DocumentException, IOException, SQLException {
         Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("temp/Agreement"+user.getId()+"-"+today.getTime()+".pdf"));
             document.open();
@@ -159,6 +162,21 @@ public class CommunicationServiceImpl implements CommunicationService {
             "</body></html>";
             htmlWorker.parse(new StringReader(str));
         document.close();
-        return new File("temp/Agreement"+user.getId()+"-"+today.toString()+".pdf");
+
+        FileInputStream fis = new FileInputStream(new File("temp/Agreement"+user.getId()+"-"+today.getTime()+".pdf"));
+        byte[] buffer = new byte[8192];
+        int bytesRead;
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        while ((bytesRead = fis.read(buffer)) != -1)
+        {
+            output.write(buffer, 0, bytesRead);
+        }
+        SerialBlob blob = new SerialBlob(output.toByteArray());
+        Loan loan = loanDAO.getById(loanId);
+        if(loan != null) {
+            loan.setAgreement(blob);
+            loanDAO.update(loan);
+        }
+        return new File("temp/Agreement"+user.getId()+"-"+today.getTime()+".pdf");
     }
 }

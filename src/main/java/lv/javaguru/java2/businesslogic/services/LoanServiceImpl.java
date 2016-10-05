@@ -68,7 +68,7 @@ public class LoanServiceImpl implements LoanService {
             loan.setUserId(userDTO.getId());
             Long loanId = loanDAO.create(loan);
             loanDTO.setId(loanId);
-            communicationService.sendLoanEmail(userDTO.getId(), userDTO.getEmail());
+            communicationService.sendLoanEmail(loanId,userDTO.getId(), userDTO.getEmail());
         }
         return loanDTO;
     }

@@ -28,7 +28,8 @@ public class ConvertorLoanDTO {
             loan.getUserId(),
             loan.getEmployeeId(),
             loan.getBankAccountNumb(),
-            loan.getComments());
+            loan.getComments(),
+            loan.getAgreement());
         }
         return null;
     }
@@ -51,7 +52,8 @@ public class ConvertorLoanDTO {
             loanDTO.getUserId(),
             loanDTO.getEmployeeId(),
             loanDTO.getBankAccountNumb(),
-            loanDTO.getComments());
+            loanDTO.getComments(),
+            loanDTO.getAgreement());
         }
         return null;
     }

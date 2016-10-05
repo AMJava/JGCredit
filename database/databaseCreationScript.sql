@@ -67,6 +67,7 @@ CREATE TABLE loans (
   employee_id int(11),
   bank_acc_number VARCHAR(50),
   comments VARCHAR(250),
+  agreement longblob,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (employee_id) REFERENCES employees(id)
@@ -107,7 +108,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 /*Examples:*/
 insert into users values (default,0,'user','111','Antons', 'Antonovs','asda@inbox.lv','Male','139091-1234',sysdate(),'Lenina iela 20-3','+37543432412','Samsung Latvia','Operator','0-500€','Name of first pet','Ezis',null,'Y');
 insert into employees values (default,0,'employee','222','Antons', 'Vasiljevs','232131@inbox.lv','Male','112049-1231',sysdate(),'Lomonosova iela - 4','+37543432423','JagCredit Latvia','Operator');
-insert into loans values (default,0,'200','250.00',12,'monthly','200.4',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST');
+insert into loans values (default,0,'200','250.00',12,'monthly','200.4',sysdate(),sysdate(),sysdate(),'PROCESSING','Y',1,1,'3123123123','TEST',null);
 
 insert into rates values (default,0,12, 'monthly','1.225');
 insert into rates values (default,0,12, 'weekly','1.15');

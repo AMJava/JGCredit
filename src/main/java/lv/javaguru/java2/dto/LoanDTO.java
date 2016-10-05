@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -47,10 +48,12 @@ public class LoanDTO{
 
     private String agreementTeam;
 
+    private Blob agreement;
+
     public LoanDTO() {
     }
 
-    public LoanDTO(Long id, Double loan, Double loanSum, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
+    public LoanDTO(Long id, Double loan, Double loanSum, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments, Blob agreement) {
         this.id = id;
         this.loan = loan;
         this.loanSum = loanSum;
@@ -66,6 +69,15 @@ public class LoanDTO{
         this.employeeId = employeeId;
         this.bankAccountNumb = bankAccountNumb;
         this.comments = comments;
+        this.agreement = agreement;
+    }
+
+    public Blob getAgreement() {
+        return agreement;
+    }
+
+    public void setAgreement(Blob agreement) {
+        this.agreement = agreement;
     }
 
     public String getAgreementTeam() {

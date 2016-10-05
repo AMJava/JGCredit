@@ -8,7 +8,8 @@
   <title>Fatal Error</title>
 </head>
 <body>
-<h1>Fatal ERROR, PLEASE CONTACT SECOND LINE SUPPORT</h1>
+<%@ include file="../jsp/shared/header.jsp" %>
+<h1>ERROR, PLEASE CONTACT SECOND LINE SUPPORT</h1>
 <%
   MVCModel data = (MVCModel)request.getAttribute("model");
   if (data != null) {
@@ -18,5 +19,6 @@
 <%
   }
 %>
+<%@ include file="../jsp/shared/footer.jsp" %>
 </body>
 </html>

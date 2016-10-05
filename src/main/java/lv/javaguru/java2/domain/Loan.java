@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -57,10 +58,13 @@ public class Loan extends BaseEntity {
     @Column(name = "comments")
     private String comments;
 
+    @Column(name = "agreement")
+    private Blob agreement;
+
     public Loan() {
     }
 
-    public Loan(Long id, Double loan, Double loanSum, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments) {
+    public Loan(Long id, Double loan, Double loanSum, int duration, String term, Double termPayment, Date startDate, Date endDate, Date extendedDate, String loanStatus, String extendedFlag, Long userId, Long employeeId, String bankAccountNumb, String comments, Blob agreement) {
         this.id = id;
         this.loan = loan;
         this.loanSum = loanSum;
@@ -76,6 +80,15 @@ public class Loan extends BaseEntity {
         this.employeeId = employeeId;
         this.bankAccountNumb = bankAccountNumb;
         this.comments = comments;
+        this.agreement=agreement;
+    }
+
+    public Blob getAgreement() {
+        return agreement;
+    }
+
+    public void setAgreement(Blob agreement) {
+        this.agreement = agreement;
     }
 
     public Double getTermPayment() {
