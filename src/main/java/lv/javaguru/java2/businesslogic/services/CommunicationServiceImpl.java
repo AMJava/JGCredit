@@ -137,7 +137,7 @@ public class CommunicationServiceImpl implements CommunicationService {
 
         Transport transport = getMailSession.getTransport("smtp");
 
-        transport.connect("smtp.gmail.com", "TEST@gmail.com", "");
+        transport.connect("smtp.gmail.com", "@gmail.com", "");
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
     }
@@ -162,6 +162,7 @@ public class CommunicationServiceImpl implements CommunicationService {
             "</body></html>";
             htmlWorker.parse(new StringReader(str));
         document.close();
+
 
         FileInputStream fis = new FileInputStream(new File("temp/Agreement"+user.getId()+"-"+today.getTime()+".pdf"));
         byte[] buffer = new byte[8192];
